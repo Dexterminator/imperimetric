@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: yogthos/config:0.8">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/yogthos/config/0.8/config-0.8.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
