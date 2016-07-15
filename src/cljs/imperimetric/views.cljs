@@ -1,22 +1,19 @@
 (ns imperimetric.views
-    (:require [re-frame.core :as re-frame]))
-
+  (:require [re-frame.core :as re-frame]
+            [imperimetric.components.common :refer [header]]))
 
 ;; home
 
 (defn home-panel []
-  (let [name (re-frame/subscribe [:name])]
-    (fn []
-      [:div (str "Hello from " @name ". This is the Home Page.")
-       [:div [:a {:href "#/about"} "go to About Page"]]])))
-
+  (fn []
+    [:div (str "Welcome to Imperimetric. Paste or type some text to automatically convert
+    the measurments it contains into the system of measurement you desire.")]))
 
 ;; about
 
 (defn about-panel []
   (fn []
-    [:div "This is the About Page."
-     [:div [:a {:href "#/"} "go to Home Page"]]]))
+    [:div "This is the About Page."]))
 
 
 ;; main
@@ -33,4 +30,7 @@
 (defn main-panel []
   (let [active-panel (re-frame/subscribe [:active-panel])]
     (fn []
-      [show-panel @active-panel])))
+      [:div
+       [header]
+       [:div#pagewrap
+        [show-panel @active-panel]]])))

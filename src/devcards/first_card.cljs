@@ -5,25 +5,7 @@
                            mkdn-pprint-source]])
   (:require
     [devcards.core]
-    [reagent.core :as reagent]
-    [imperimetric.views :refer [test-panel]]))
+    [reagent.core :as reagent]))
 
-(defcard-doc "#lolfi")
-
-(defonce app-state (reagent/atom {:count 0}))
-
-(defn on-click [ratom]
-  (swap! ratom update-in [:count] inc))
-
-(defn counter [ratom]
-  (let [count (:count @ratom)]
-    [:div
-     [:p "Current count: " count]
-     [:button
-      {:on-click #(on-click ratom)}
-      "Increment"]]))
-
-(defcard-rg counter
-            [counter app-state]
-            app-state
-            {:inspect-data true})
+(defcard-doc
+  "###This is a devcard.")
