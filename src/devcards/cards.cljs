@@ -1,4 +1,4 @@
-(ns imperimetric.first-card
+(ns imperimetric.cards
   (:require-macros
     [devcards.core :refer [defcard-doc
                            defcard-rg

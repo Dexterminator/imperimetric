@@ -2,7 +2,7 @@
   (:require-macros
     [devcards.core :as dc])
   (:require
-    [imperimetric.first-card]))
+    [imperimetric.cards]))
 
 
 (dc/start-devcard-ui!)
