@@ -6,6 +6,7 @@
                  [re-frame "0.7.0"]
                  [secretary "1.2.3"]
                  [compojure "1.5.0"]
+                 [instaparse "1.4.2"]
                  [yogthos/config "0.8"]
                  [ring "1.4.0"]
                  [devcards "0.2.1"]]

@@ -1,0 +1,14 @@
+recipe = token+
+token = measurement / word / whitespace
+word = #'[^\s]+'
+measurement = quantity <whitespace> unit
+whitespace = #'\s+'
+quantity = mixed | integer | decimal | fraction
+mixed = integer <whitespace> fraction
+integer = #'\d+'
+decimal = #'\d+\.\d+'
+fraction = #'\d+\/\d+'
+unit = oz | cl | tablespoon
+oz = 'oz' | 'ounces' | 'ounce'
+cl = 'cl' | 'centiliters' | 'centiliter'
+tablespoon = 'tablespoon' | 'tbsp'
