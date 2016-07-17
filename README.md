@@ -1,6 +1,7 @@
 # imperimetric
 
-A [re-frame](https://github.com/Day8/re-frame) application designed to ... well, that part is up to you.
+Webapp for converting texts with some system of measurement to another, such as imperial to metric.
+Uses Clojure, reagent, and reframe.
 
 ## Development Mode
 
