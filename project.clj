@@ -5,6 +5,7 @@
                  [binaryage/devtools "0.6.1"]
                  [re-frame "0.7.0"]
                  [secretary "1.2.3"]
+                 [cljs-ajax "0.5.4"]
                  [compojure "1.5.0"]
                  [instaparse "1.4.2"]
                  [liberator "0.13"]

@@ -19,12 +19,25 @@ a {
 }
 
 textarea {
-    position: relative;
     resize: none;
     border: 1px solid @mid-dark-grey;
     border-radius: 5px;
-    width: 50%;
-    height: 300px;
+    height: 70vh;
+    flex: 0 1 50%;
+}
+
+#result-text {
+    flex: 1 1 50%;
+    background: @light-grey;
+    border-radius: 10px;
+}
+
+#main-description {
+    margin-bottom: 10px;
+}
+
+#convert-area {
+    display: flex;
 }
 
 #main {

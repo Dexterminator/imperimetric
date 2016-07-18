@@ -11,4 +11,4 @@ fraction = #'\d+\/\d+'
 unit = oz | cl | tablespoon
 oz = 'oz' | 'ounces' | 'ounce'
 cl = 'cl' | 'centiliters' | 'centiliter'
-tablespoon = 'tablespoon' | 'tbsp'
+tablespoon = 'tablespoon' | 'tablespoons'| 'tbsp' | 'tbsps'
