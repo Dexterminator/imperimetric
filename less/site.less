@@ -30,13 +30,18 @@ textarea {
     height: 70vh;
     margin-right: 10px;
     flex: 0 1 50%;
+    padding: 10px;
     .base-text-style
 }
 
 #result-text {
-    flex: 1 1 50%;
+    flex: 0 1 50%;
+    max-width: 50%;
     background: @light-grey;
     border-radius: 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    padding: 10px;
 }
 
 #disclaimer {
@@ -69,6 +74,10 @@ textarea {
     font-size: 25px;
     font-weight: 200;
     text-decoration: none;
+    color: @orange;
+}
+
+#app-name-text {
     color: @orange;
 }
 

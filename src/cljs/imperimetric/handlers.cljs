@@ -13,7 +13,7 @@
 
 (defn text-changed-handler [db [text]]
   (api/convert
-    text
+    (js/encodeURIComponent text)
     "us"
     "metric"
     {:handler       #(dispatch [:convert-response %])
