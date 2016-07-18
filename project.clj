@@ -7,8 +7,11 @@
                  [secretary "1.2.3"]
                  [compojure "1.5.0"]
                  [instaparse "1.4.2"]
+                 [liberator "0.13"]
+                 [medley "0.8.2"]
                  [yogthos/config "0.8"]
                  [ring "1.4.0"]
+                 [ring/ring-mock "0.3.0"]
                  [devcards "0.2.1"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]

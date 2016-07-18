@@ -28,14 +28,18 @@
 (defmethod convert [:metric :us :cl] [_ _ q _] (str (decimal-round (cl->oz q)) " oz"))
 (defmethod convert [:us :metric :tablespoon] [_ _ q _] (str (decimal-round (tbsp->cl q)) " cl"))
 
+(defn transform-map [from-system to-system]
+  (merge
+    (map-all-to [:recipe :token :word :whitespace] str)
+    (map-all-to [:integer :fraction :decimal] read-string)
+    {:measurement (partial convert from-system to-system)
+     :quantity    identity
+     :unit        first
+     :mixed       +}))
+
 (defn convert-recipe [recipe from-system to-system]
-  (str/join
-    (insta/transform
-      (merge
-        (map-all-to [:recipe :token :word :whitespace] str)
-        (map-all-to [:integer :fraction :decimal] read-string)
-        {:measurement (partial convert from-system to-system)
-         :quantity    identity
-         :unit        first
-         :mixed       +})
-      (parse-recipe recipe))))
+  (let [parsed (parse-recipe recipe)]
+    (if (insta/failure? parsed)
+      nil
+      (str/join (insta/transform
+                  (transform-map from-system to-system) parsed)))))

@@ -1,7 +1,10 @@
 (ns clj.convert-test
   (:require [clojure.test :refer :all]
             [imperimetric.convert :refer [convert-recipe parse-recipe]]
-            [imperimetric.util :refer [map-all-to]]))
+            [imperimetric.handler :refer [handler]]
+            [ring.mock.request :refer [request header]]
+            [imperimetric.util :refer [map-all-to]]
+            [clojure.string :as str]))
 
 (def daquiri "1 1/2 oz White rum, 1/2 oz Simple syrup, 1 oz Lime juice.")
 (def daquiri-metric "4.5 cl White rum, 1.5 cl Simple syrup, 3 cl Lime juice.")
@@ -12,10 +15,12 @@
 (deftest map-all-to-empty
   (is (= (map-all-to [] "test") {})))
 
-(deftest map-all-to-common
-  (is (= (map-all-to [:recipe :token :word] "test") {:recipe "test"
-                                                     :token  "test"
-                                                     :word   "test"})))
+(deftest map-all-to-common (is (= (map-all-to [:recipe :token :word] "test") {:recipe "test"
+                                                                              :token  "test"
+                                                                              :word   "test"})))
+(deftest convert-empty
+  (is (= (convert-recipe "" :us :metric) nil)))
+
 (deftest us->metric-fluid
   (is (= (convert-recipe daquiri :us :metric) "4.44 cl White rum, 1.48 cl Simple syrup, 2.96 cl Lime juice.")))
 
@@ -27,3 +32,20 @@
 
 (deftest metric->us-fluid
   (is (= (convert-recipe daquiri-metric :metric :us) "1.52 oz White rum, 0.51 oz Simple syrup, 1.01 oz Lime juice.")))
+
+(deftest api-convert
+  (is (= (handler (request :get "/convert" {"text" "1 oz of water."
+                                            "from" "us"
+                                            "to"   "metric"}))
+         {:status  200
+          :headers {"Content-Type" "text/plain;charset=UTF-8"
+                    "Vary"         "Accept"}
+          :body    "2.96 cl of water."})))
+
+(deftest api-uri-too-long
+  (is (= (handler (request :get "/convert" {"text" (str/join (repeat 2000 "a"))
+                                            "from" "us"
+                                            "to"   "metric"}))
+         {:status  414
+          :headers {"Content-Type" "text/plain;charset=UTF-8"}
+          :body    "Request URI too long."})))
