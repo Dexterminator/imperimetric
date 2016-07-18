@@ -4,14 +4,18 @@
 @mid-dark-grey: #B3B3B3;
 @dark-grey: #424242;
 
-body {
+.base-text-style {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 18px;
+    font-weight: 300;
+}
+
+body {
     line-height: 1.5;
     margin: 0;
     padding: 0;
-    font-weight: 300;
     color: @dark-grey;
+    .base-text-style
 }
 
 a {
@@ -23,7 +27,9 @@ textarea {
     border: 1px solid @mid-dark-grey;
     border-radius: 5px;
     height: 70vh;
+    margin-right: 10px;
     flex: 0 1 50%;
+    .base-text-style
 }
 
 #result-text {
@@ -32,7 +38,9 @@ textarea {
     border-radius: 10px;
 }
 
-#main-description {
+#disclaimer {
+    font-style: italic;
+    font-size: 15px;
     margin-bottom: 10px;
 }
 

@@ -14,11 +14,12 @@
     [:div
      [:div#main-description
       (str "Welcome to Imperimetric. Paste or type some text to automatically convert
-        the measurments it contains into the system of measurement you desire."
-           " (Note: For the moment, only metric to US customary units for fluid ounces and tablespoons is available."
-           " More units and options coming soon.")]
+        the measurments it contains into the system of measurement you desire.")]
+     [:div#disclaimer (str "(Note: For the moment, only metric to US customary units for fluid"
+                           " ounces and tablespoons is available. More units and options coming soon.)")]
      [:div#convert-area
-      [:textarea {:on-change #(dispatch [:text-changed (target-value %)])}]
+      [:textarea {:placeholder "Paste or write some text here, like '1 ounce of water and 3 tablespoons of salt.'"
+                  :on-change   #(dispatch [:text-changed (target-value %)])}]
       [result-text]]]))
 
 ;; about
