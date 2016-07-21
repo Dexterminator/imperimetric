@@ -2,7 +2,7 @@
   (:require [re-frame.core :refer [register-handler trim-v dispatch]]
             [imperimetric.db :as db]
             [imperimetric.api :as api]
-            [imperimetric.js-utils :refer [log]]
+            [imperimetric.utils-js :refer [log]]
             [clojure.string :as str]))
 
 (defn failed-response-handler [db [{:keys [status status-text]}]]

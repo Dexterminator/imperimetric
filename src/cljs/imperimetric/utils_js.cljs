@@ -1,4 +1,4 @@
-(ns imperimetric.js-utils)
+(ns imperimetric.utils-js)
 
 (defn js-apply [f target args]
   (.apply f target (to-array args)))

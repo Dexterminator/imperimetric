@@ -1,7 +1,7 @@
 (ns imperimetric.views
   (:require [re-frame.core :refer [dispatch subscribe]]
             [imperimetric.components.common :refer [header about result-text]]
-            [imperimetric.js-utils :refer [target-value]]))
+            [imperimetric.utils-js :refer [target-value]]))
 
 ;; home
 (defn home-panel []
