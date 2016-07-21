@@ -25,9 +25,6 @@
 (defn cup->dl [q]
   (* q cup-cl-ratio 0.1))
 
-(defn cl->cup [q]
-  (/ q cup-cl-ratio))
-
 (defmulti convert
   (fn [from-system to-system quantity unit] [from-system to-system unit]))
 
@@ -49,5 +46,4 @@
   (let [parsed (parse-recipe recipe)]
     (if (insta/failure? parsed)
       nil
-      (str/join (insta/transform
-                  (transform-map from-system to-system) parsed)))))
+      (str/join (insta/transform (transform-map from-system to-system) parsed)))))
