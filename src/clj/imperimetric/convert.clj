@@ -9,6 +9,7 @@
 (def oz-cl-ratio 2.95735)
 (def tbsp-cl-ratio 1.47868)
 (def cup-cl-ratio 23.6588)
+(def tsp-ml-ratio 4.92892)
 
 (defn decimal-round [n]
   (format "%.1f" n))
@@ -25,6 +26,9 @@
 (defn cup->dl [q]
   (* q cup-cl-ratio 0.1))
 
+(defn tsp->ml [q]
+  (* q tsp-ml-ratio))
+
 (defmulti convert
   (fn [from-system to-system quantity unit] [from-system to-system unit]))
 
@@ -32,6 +36,7 @@
 (defmethod convert [:metric :us :cl] [_ _ q _] (str (decimal-round (cl->oz q)) " oz"))
 (defmethod convert [:us :metric :tablespoon] [_ _ q _] (str (decimal-round (tbsp->cl q)) " cl"))
 (defmethod convert [:us :metric :cup] [_ _ q _] (str (decimal-round (cup->dl q)) " dl"))
+(defmethod convert [:us :metric :teaspoon] [_ _ q _] (str (decimal-round (tsp->ml q)) " ml"))
 
 (defn transform-map [from-system to-system]
   (merge
