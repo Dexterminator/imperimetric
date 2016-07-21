@@ -3,8 +3,6 @@
             [imperimetric.components.common :refer [header about result-text]]
             [imperimetric.js-utils :refer [target-value]]))
 
-
-
 ;; home
 (defn home-panel []
   (fn []
