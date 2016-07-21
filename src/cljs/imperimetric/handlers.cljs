@@ -1,8 +1,9 @@
 (ns imperimetric.handlers
-    (:require [re-frame.core :refer [register-handler trim-v dispatch]]
-              [imperimetric.db :as db]
-              [imperimetric.api :as api]
-              [imperimetric.js-utils :refer [log]]))
+  (:require [re-frame.core :refer [register-handler trim-v dispatch]]
+            [imperimetric.db :as db]
+            [imperimetric.api :as api]
+            [imperimetric.js-utils :refer [log]]
+            [clojure.string :as str]))
 
 (defn failed-response-handler [db [{:keys [status status-text]}]]
   (log (str "Something went wrong: " status " " status-text))
@@ -12,13 +13,15 @@
   (assoc db :converted-text text))
 
 (defn text-changed-handler [db [text]]
-  (api/convert
-    (js/encodeURIComponent text)
-    "us"
-    "metric"
-    {:handler       #(dispatch [:convert-response %])
-     :error-handler #(dispatch [:failed-response %])})
-  db)
+  (if-not (str/blank? text)
+    (do (api/convert
+          (js/encodeURIComponent text)
+          "us"
+          "metric"
+          {:handler       #(dispatch [:convert-response %])
+           :error-handler #(dispatch [:failed-response %])})
+        db)
+    (dissoc db :converted-text)))
 
 (register-handler
   :text-changed
@@ -26,14 +29,14 @@
   text-changed-handler)
 
 (register-handler
- :initialize-db
- (fn  [_ _]
-   db/default-db))
+  :initialize-db
+  (fn [_ _]
+    db/default-db))
 
 (register-handler
- :set-active-panel
- (fn [db [_ active-panel]]
-   (assoc db :active-panel active-panel)))
+  :set-active-panel
+  (fn [db [_ active-panel]]
+    (assoc db :active-panel active-panel)))
 
 (register-handler
   :convert-response
