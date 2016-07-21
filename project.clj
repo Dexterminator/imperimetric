@@ -15,6 +15,8 @@
                  [ring/ring-mock "0.3.0"]
                  [devcards "0.2.1"]]
 
+  :uberjar-name "imperimetric-standalone.jar"
+
   :plugins [[lein-cljsbuild "1.1.3"]
             [lein-less "1.7.5"]]
 
@@ -38,6 +40,8 @@
     :plugins      [[lein-figwheel "0.5.4-3"]
                    [lein-doo "0.1.6"]]
     }}
+  
+  :uberjar {:aot :all}
 
   :cljsbuild
   {:builds
