@@ -33,6 +33,8 @@
   :less {:source-paths ["less"]
          :target-path  "resources/public/css"}
 
+  :hooks [leiningen.less]
+
   :profiles
   {:dev
    {:dependencies []
@@ -40,7 +42,7 @@
     :plugins      [[lein-figwheel "0.5.4-3"]
                    [lein-doo "0.1.6"]]
     }}
-  
+
   :uberjar {:aot :all}
 
   :cljsbuild
