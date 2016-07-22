@@ -21,6 +21,10 @@
 (deftest convert-empty
   (is (= (convert-recipe "" :us :metric) nil)))
 
+(deftest metric->us
+  (is (= (convert-recipe "2 l milk, 3 dl water, 5 cl rice, 5 ml salt." :metric :us)
+         "8.5 cup milk, 1.3 cup water, 1.7 oz rice, 1.0 tsp salt.")))
+
 (deftest us->metric-fluid
   (is (= (convert-recipe daquiri :us :metric) "4.4 cl White rum, 1.5 cl Simple syrup, 3.0 cl Lime juice.")))
 
@@ -32,6 +36,7 @@
 
 (deftest metric->us-fluid
   (is (= (convert-recipe daquiri-metric :metric :us) "1.5 oz White rum, 0.5 oz Simple syrup, 1.0 oz Lime juice.")))
+
 
 (deftest api-convert
   (is (= (handler (request :get "/convert" {"text" "1 oz of water."
