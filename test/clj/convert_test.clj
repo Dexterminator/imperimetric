@@ -26,7 +26,7 @@
 
 (deftest us->metric-fluid-tbsp
   (is (= (convert-recipe margarita :us :metric)
-         (str "Lime wedge, plus 2 lime wheels for garnish\n1.5 cl coarse salt,"
+         (str "Lime wedge, plus 2 lime wheels for garnish\n14.8 ml coarse salt,"
               " for glass rims\n11.8 cl high quality blanco tequila (see note above)\n5.9"
               " cl Cointreau\n4.4 cl fresh juice from 2 limes"))))
 

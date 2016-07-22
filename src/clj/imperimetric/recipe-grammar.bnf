@@ -1,7 +1,7 @@
 recipe = token+
 token = measurement / word / whitespace
 word = #'[^\s]+'
-measurement = quantity <whitespace>* unit
+measurement = quantity <whitespace>* unit <#'(?!\w)'>
 whitespace = #'\s+'
 quantity = mixed | integer | decimal | fraction
 mixed = integer <whitespace> fraction
