@@ -27,7 +27,7 @@ textarea {
     resize: none;
     border: 1px solid @mid-dark-grey;
     border-radius: 5px;
-    height: 70vh;
+    height: 60vh;
     margin-right: 10px;
     flex: 0 1 50%;
     padding: 10px;
@@ -96,4 +96,30 @@ textarea {
     align: right;
     margin-top: 10px;
     font-size: 12px;
+}
+
+@media all and (max-width: 1000px) {
+    #convert-area {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    textarea {
+        height: 180px;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    #result-text {
+        height: 180px;
+        max-width: 100%;
+    }
+
+    #pagewrap {
+        width: 90%;
+    }
+
+    #main-nav {
+        width: 90%;
+    }
 }

@@ -10,7 +10,7 @@
      [:div#main-description
       "Welcome to "
       [:span#app-name-text "Imperimetric"]
-      ". Paste or type some text to automatically convert the measurments it contains into the system of measurement you prefer."]
+      ". Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer."]
      [:div#disclaimer (str "(Note: For the moment, only conversions from the metric system to US customary units for "
                            "fluid ounces and tablespoons is available. More units and options coming soon.)")]
      [:div#convert-area
