@@ -3,8 +3,12 @@
             [clojure.string :as str]
             [imperimetric.util :refer [map-all-to]]))
 
-(def parse-recipe
-  (insta/parser "src/clj/imperimetric/recipe-grammar.bnf"))
+(def parsers
+  {:metric (insta/parser "src/clj/imperimetric/metric-grammar.bnf")
+   :us     (insta/parser "src/clj/imperimetric/us-grammar.bnf")})
+
+(defn parse-recipe [recipe from-system]
+  ((parsers from-system) recipe))
 
 (def oz-cl-ratio 2.95735)
 (def tbsp-ml-ratio 14.7868)
@@ -48,7 +52,7 @@
      :mixed       +}))
 
 (defn convert-recipe [recipe from-system to-system]
-  (let [parsed (parse-recipe recipe)]
+  (let [parsed (parse-recipe recipe from-system)]
     (if (insta/failure? parsed)
       nil
       (str/join (insta/transform (transform-map from-system to-system) parsed)))))

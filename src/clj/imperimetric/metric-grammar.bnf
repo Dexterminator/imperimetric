@@ -1,0 +1,15 @@
+recipe = token+
+token = measurement / word / whitespace
+word = #'[^\s]+'
+measurement = quantity <whitespace>* unit <#'(?!\w)'>
+whitespace = #'\s+'
+quantity = mixed | integer | decimal | fraction
+mixed = integer <whitespace> fraction
+integer = #'\d+'
+decimal = #'\d+\.\d+'
+fraction = #'\d+\/\d+'
+unit = l | dl | cl | ml
+l = 'l' | #'liters?'
+dl = #'dls?' | #'deciliters?'
+cl = #'cls?' | #'centiliters?'
+ml = #'mls?' | #'milliliters?'
