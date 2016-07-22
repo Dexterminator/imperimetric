@@ -10,7 +10,9 @@
   db)
 
 (defn convert-response-handler [db [text]]
-  (assoc db :converted-text text))
+  (if (str/blank? (:text db))
+    (dissoc db :converted-text)
+    (assoc db :converted-text text)))
 
 (defn text-changed-handler [db [text]]
   (if-not (str/blank? text)
@@ -20,8 +22,10 @@
           "metric"
           {:handler       #(dispatch [:convert-response %])
            :error-handler #(dispatch [:failed-response %])})
-        db)
-    (dissoc db :converted-text)))
+        (assoc db :text text))
+    (-> db
+        (dissoc :converted-text)
+        (dissoc :text))))
 
 (register-handler
   :text-changed

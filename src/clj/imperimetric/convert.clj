@@ -7,8 +7,8 @@
   (insta/parser "src/clj/imperimetric/recipe-grammar.bnf"))
 
 (def oz-cl-ratio 2.95735)
-(def tbsp-cl-ratio 1.47868)
-(def cup-cl-ratio 23.6588)
+(def tbsp-ml-ratio 14.7868)
+(def cup-dl-ratio 2.36588)
 (def tsp-ml-ratio 4.92892)
 
 (defn decimal-round [n]
@@ -20,11 +20,11 @@
 (defn cl->oz [q]
   (/ q oz-cl-ratio))
 
-(defn tbsp->cl [q]
-  (* q tbsp-cl-ratio))
-
 (defn cup->dl [q]
-  (* q cup-cl-ratio 0.1))
+  (* q cup-dl-ratio))
+
+(defn tbsp->ml [q]
+  (* q tbsp-ml-ratio))
 
 (defn tsp->ml [q]
   (* q tsp-ml-ratio))
@@ -34,7 +34,7 @@
 
 (defmethod convert [:us :metric :oz] [_ _ q _] (str (decimal-round (oz->cl q)) " cl"))
 (defmethod convert [:metric :us :cl] [_ _ q _] (str (decimal-round (cl->oz q)) " oz"))
-(defmethod convert [:us :metric :tablespoon] [_ _ q _] (str (decimal-round (tbsp->cl q)) " cl"))
+(defmethod convert [:us :metric :tablespoon] [_ _ q _] (str (decimal-round (tbsp->ml q)) " ml"))
 (defmethod convert [:us :metric :cup] [_ _ q _] (str (decimal-round (cup->dl q)) " dl"))
 (defmethod convert [:us :metric :teaspoon] [_ _ q _] (str (decimal-round (tsp->ml q)) " ml"))
 
