@@ -9,6 +9,25 @@
   (log (str "Something went wrong: " status " " status-text))
   db)
 
+(def system-switches
+  {:us       :metric
+   :metric   :us
+   :imperial :metric})
+
+(defn from-button-clicked-handler [db [system]]
+  (if-not (= system (:to-system db))
+    (assoc db :from-system system)
+    (-> db
+        (assoc :from-system system)
+        (assoc :to-system (system-switches system)))))
+
+(defn to-button-clicked-handler [db [system]]
+  (if-not (= system (:from-system db))
+    (assoc db :to-system system)
+    (-> db
+        (assoc :to-system system)
+        (assoc :from-system (system-switches system)))))
+
 (defn convert-response-handler [db [text]]
   (if (str/blank? (:text db))
     (dissoc db :converted-text)
@@ -18,8 +37,8 @@
   (if-not (str/blank? text)
     (do (api/convert
           (js/encodeURIComponent text)
-          "us"
-          "metric"
+          (name (:from-system db))
+          (name (:to-system db))
           {:handler       #(dispatch [:convert-response %])
            :error-handler #(dispatch [:failed-response %])})
         (assoc db :text text))
@@ -51,3 +70,13 @@
   :failed-response
   trim-v
   failed-response-handler)
+
+(register-handler
+  :from-button-clicked
+  trim-v
+  from-button-clicked-handler)
+
+(register-handler
+  :to-button-clicked
+  trim-v
+  to-button-clicked-handler)

@@ -23,6 +23,10 @@ a {
     color: @dark-grey;
 }
 
+#main-description {
+    margin-bottom: 10px;
+}
+
 textarea {
     resize: none;
     border: 1px solid @mid-dark-grey;
@@ -43,12 +47,6 @@ textarea {
     padding: 10px;
     overflow: scroll;
     max-height: 70vh;
-}
-
-#disclaimer {
-    font-style: italic;
-    font-size: 15px;
-    margin-bottom: 10px;
 }
 
 #convert-area {
@@ -95,6 +93,46 @@ textarea {
     align: right;
     margin-top: 10px;
     font-size: 12px;
+}
+
+#button-area {
+    margin-bottom: 10px;
+}
+
+.button-group {
+    border: 2px solid @grey;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-flex;
+}
+
+.button {
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5px;
+    display: inline-block;
+
+    background-color: white;
+    border: 1px solid @orange;
+    padding: 9px 20px 9px 20px;
+    color: @orange;
+
+    &:hover {
+        background-color: @grey;
+        border: 1px solid @grey;
+    }
+}
+
+.active-button {
+    background-color: @orange;
+    color: white;
+    border: 1px solid @orange;
+
+    &:hover {
+        background-color: @orange;
+        border: 1px solid @orange;
+    }
 }
 
 @media all and (max-width: 1000px) {

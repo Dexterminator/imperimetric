@@ -11,3 +11,13 @@
   :converted-text
   (fn [db _]
     (reaction (:converted-text @db))))
+
+(register-sub
+  :from-system
+  (fn [db _]
+    (reaction (:from-system @db))))
+
+(register-sub
+  :to-system
+  (fn [db _]
+    (reaction (:to-system @db))))
