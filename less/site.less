@@ -4,6 +4,7 @@
 @mid-dark-grey: #B3B3B3;
 @dark-grey: #424242;
 @orange: #FA6900;
+@border-radius: 10px;
 
 .base-text-style {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -27,10 +28,10 @@ a {
     margin-bottom: 10px;
 }
 
-textarea {
+#text-entry {
     resize: none;
     border: 1px solid @mid-dark-grey;
-    border-radius: 5px;
+    border-radius: @border-radius;
     height: 60vh;
     margin-right: 10px;
     flex: 0 1 50%;
@@ -41,7 +42,7 @@ textarea {
 #result-text {
     flex: 0 1 50%;
     background: @light-grey;
-    border-radius: 10px;
+    border-radius: @border-radius;
     word-wrap: break-word;
     white-space: pre-wrap;
     padding: 10px;
@@ -97,13 +98,34 @@ textarea {
 
 #button-area {
     margin-bottom: 10px;
+    display: flex;
+}
+
+.button-group-headline {
+    color: @mid-dark-grey;
+    margin-right: 20px;
+}
+
+.to-button-group-headline {
+    color: @mid-dark-grey;
+    margin-right: 40px;
 }
 
 .button-group {
+    flex: 0 1 50%;
     border: 2px solid @grey;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: @border-radius;
     display: inline-flex;
+}
+
+#left-button-group {
+    margin-right: 10px;
+    .button-group;
+}
+
+#right-button-group {
+    .button-group;
 }
 
 .button {
@@ -112,10 +134,9 @@ textarea {
     cursor: pointer;
     margin-right: 5px;
     display: inline-block;
-
     background-color: white;
     border: 1px solid @orange;
-    padding: 9px 20px 9px 20px;
+    padding: 9px 19px 9px 19px;
     color: @orange;
 
     &:hover {
@@ -141,7 +162,7 @@ textarea {
         width: 100%;
     }
 
-    textarea {
+    #text-entry {
         height: 180px;
         margin-right: 0;
         margin-bottom: 5px;
@@ -151,11 +172,58 @@ textarea {
         height: 180px;
     }
 
+    #button-area {
+        flex-direction: column;
+        border: 2px solid @light-grey;
+        border-radius: @border-radius;
+    }
+
+    .button-group {
+        border: none;
+    }
+
+    #left-button-group {
+        border: none;
+    }
+
+    #right-button-group {
+        border: none;
+    }
+
     #pagewrap {
         width: 90%;
     }
 
     #main-nav {
         width: 90%;
+    }
+}
+
+@media all and (max-width: 550px) {
+    .button {
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    .button-group-headline {
+        margin-bottom: 10px;
+    }
+
+    .to-button-group-headline {
+        margin-bottom: 10px;
+    }
+
+    #button-area {
+        flex-direction: row;
+    }
+
+    #left-button-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #right-button-group {
+        display: flex;
+        flex-direction: column;
     }
 }

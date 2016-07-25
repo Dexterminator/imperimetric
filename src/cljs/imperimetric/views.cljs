@@ -11,7 +11,8 @@
 (defn from-button-area []
   (let [from-system (subscribe [:from-system])]
     (fn []
-      [:div.button-group
+      [:div#left-button-group
+       [:div.button-group-headline "From"]
        [from-button "US customary units" :us from-system]
        [from-button "Metric" :metric from-system]
        [from-button "Imperial" :imperial from-system]])))
@@ -24,7 +25,8 @@
 (defn to-button-area []
   (let [to-system (subscribe [:to-system])]
     (fn []
-      [:div.button-group
+      [:div#right-button-group
+       [:div.to-button-group-headline "To"]
        [to-button "US customary units" :us to-system]
        [to-button "Metric" :metric to-system]
        [to-button "Imperial" :imperial to-system]])))
@@ -41,7 +43,7 @@
       [from-button-area]
       [to-button-area]]
      [:div#convert-area
-      [:textarea {:placeholder "Paste or write some text here, like '1 ounce of water and 3 tablespoons of salt.'"
+      [:textarea#text-entry {:placeholder "Paste or write some text here, like '1 ounce of water and 3 tablespoons of salt.'"
                   :on-change   #(dispatch [:text-changed (target-value %)])}]
       [result-text]]]))
 
