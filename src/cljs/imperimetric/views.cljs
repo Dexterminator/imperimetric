@@ -14,8 +14,8 @@
       [:div#left-button-group
        [:div.button-group-headline "From"]
        [from-button "US customary units" :us from-system]
-       [from-button "Metric" :metric from-system]
-       [from-button "Imperial" :imperial from-system]])))
+       [from-button "Imperial" :imperial from-system]
+       [from-button "Metric" :metric from-system]])))
 
 (defn to-button [text system active-to-system]
   [:div {:on-click #(dispatch [:to-button-clicked system])
@@ -28,8 +28,8 @@
       [:div#right-button-group
        [:div.to-button-group-headline "To"]
        [to-button "US customary units" :us to-system]
-       [to-button "Metric" :metric to-system]
-       [to-button "Imperial" :imperial to-system]])))
+       [to-button "Imperial" :imperial to-system]
+       [to-button "Metric" :metric to-system]])))
 
 ;; home
 (defn home-panel []
