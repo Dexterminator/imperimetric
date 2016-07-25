@@ -15,18 +15,16 @@
    :imperial :metric})
 
 (defn from-button-clicked-handler [db [system]]
-  (if-not (= system (:to-system db))
-    (assoc db :from-system system)
-    (-> db
-        (assoc :from-system system)
-        (assoc :to-system (system-switches system)))))
+  (let [updated-db (assoc db :from-system system)]
+    (if (= system (:to-system db))
+      (assoc updated-db :to-system (system-switches system))
+      updated-db)))
 
 (defn to-button-clicked-handler [db [system]]
-  (if-not (= system (:from-system db))
-    (assoc db :to-system system)
-    (-> db
-        (assoc :to-system system)
-        (assoc :from-system (system-switches system)))))
+  (let [updated-db (assoc db :to-system system)]
+    (if (= system (:from-system db))
+      (assoc updated-db :from-system (system-switches system))
+      updated-db)))
 
 (defn convert-response-handler [db [text]]
   (if (str/blank? (:text db))
