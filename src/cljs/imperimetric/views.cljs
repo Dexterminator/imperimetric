@@ -43,7 +43,7 @@
       [from-button-area]
       [to-button-area]]
      [:div#convert-area
-      [:textarea#text-entry {:placeholder "Paste or write some text here, like '1 ounce of water and 3 tablespoons of salt.'"
+      [:textarea#text-entry {:placeholder "Paste or write some text here, like '3 cups of milk and 2 tablespoons of sugar.'"
                   :on-change   #(dispatch [:text-changed (target-value %)])}]
       [result-text]]]))
 
@@ -65,6 +65,6 @@
   (let [active-panel (subscribe [:active-panel])]
     (fn []
       [:div
-       [header]
+       [header @active-panel]
        [:div#pagewrap
         [show-panel @active-panel]]])))
