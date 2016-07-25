@@ -1,7 +1,11 @@
 (ns imperimetric.convert
   (:require [instaparse.core :as insta]
             [clojure.string :as str]
-            [imperimetric.util :refer [map-all-to]]))
+            [imperimetric.util :refer [map-all-to]]
+            [frinj.jvm :refer [frinj-init!]]
+            [frinj.ops :refer [fj]]))
+
+(frinj-init!)
 
 (def parsers
   {:metric (insta/parser "src/clj/imperimetric/metric-grammar.bnf")
@@ -13,37 +17,24 @@
 (defn decimal-round [n]
   (format "%.1f" n))
 
-(def cup-l-ratio 0.236588)
-(def cup-dl-ratio 2.36588)
-(def oz-cl-ratio 2.95735)
-(def tbsp-ml-ratio 14.7868)
-(def tsp-ml-ratio 4.92892)
-
-(defn cup->dl [q] (* q cup-dl-ratio))
-(defn oz->cl [q] (* q oz-cl-ratio))
-(defn tbsp->ml [q] (* q tbsp-ml-ratio))
-(defn tsp->ml [q] (* q tsp-ml-ratio))
-
-(defn l->cup [q] (/ q cup-l-ratio))
-(defn dl->cup [q] (/ q cup-dl-ratio))
-(defn cl->oz [q] (/ q oz-cl-ratio))
-(defn ml->tsp [q] (/ q tsp-ml-ratio))
-
 (defn convert-str [q suffix]
   (str (decimal-round q) " " suffix))
+
+(defn convert-units [from to q]
+  (double (:v (fj q from :to to))))
 
 (defmulti convert
   (fn [from-system to-system quantity unit] [from-system to-system unit]))
 
-(defmethod convert [:us :metric :cup] [_ _ q _] (convert-str (cup->dl q) "dl"))
-(defmethod convert [:us :metric :oz] [_ _ q _] (convert-str (oz->cl q) "cl"))
-(defmethod convert [:us :metric :tablespoon] [_ _ q _] (convert-str (tbsp->ml q) "ml"))
-(defmethod convert [:us :metric :teaspoon] [_ _ q _] (convert-str (tsp->ml q) "ml"))
+(defmethod convert [:us :metric :cup] [_ _ q _] (convert-str (convert-units :cup :dl q) "dl"))
+(defmethod convert [:us :metric :oz] [_ _ q _] (convert-str (convert-units :floz :cl q) "cl"))
+(defmethod convert [:us :metric :tablespoon] [_ _ q _] (convert-str (convert-units :tbsp :ml q) "ml"))
+(defmethod convert [:us :metric :teaspoon] [_ _ q _] (convert-str (convert-units :tsp :ml q) "ml"))
 
-(defmethod convert [:metric :us :l] [_ _ q _] (convert-str (l->cup q) "cup"))
-(defmethod convert [:metric :us :dl] [_ _ q _] (convert-str (dl->cup q) "cup"))
-(defmethod convert [:metric :us :cl] [_ _ q _] (convert-str (cl->oz q) "oz"))
-(defmethod convert [:metric :us :ml] [_ _ q _] (convert-str (ml->tsp q) "tsp"))
+(defmethod convert [:metric :us :l] [_ _ q _] (convert-str (convert-units :liter :cup q) "cup"))
+(defmethod convert [:metric :us :dl] [_ _ q _] (convert-str (convert-units :dl :cup q) "cup"))
+(defmethod convert [:metric :us :cl] [_ _ q _] (convert-str (convert-units :cl :floz q) "oz"))
+(defmethod convert [:metric :us :ml] [_ _ q _] (convert-str (convert-units :ml :tsp q) "tsp"))
 
 (defn transform-map [from-system to-system]
   (merge

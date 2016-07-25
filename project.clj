@@ -10,6 +10,7 @@
                  [instaparse "1.4.2"]
                  [liberator "0.13"]
                  [medley "0.8.2"]
+                 [frinj "0.2.5"]
                  [yogthos/config "0.8"]
                  [ring "1.4.0"]
                  [ring/ring-mock "0.3.0"]
