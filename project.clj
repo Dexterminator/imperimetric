@@ -28,8 +28,7 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"]
 
-  :figwheel {:css-dirs     ["resources/public/css"]
-             :ring-handler imperimetric.handler/dev-handler}
+  :figwheel {:css-dirs     ["resources/public/css"]}
 
   :less {:source-paths ["less"]
          :target-path  "resources/public/css"}

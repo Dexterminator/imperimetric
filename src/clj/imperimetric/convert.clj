@@ -2,10 +2,7 @@
   (:require [instaparse.core :as insta]
             [clojure.string :as str]
             [imperimetric.util :refer [map-all-to]]
-            [frinj.jvm :refer [frinj-init!]]
             [frinj.ops :refer [fj]]))
-
-(frinj-init!)
 
 (def parsers
   {:metric   (insta/parser "src/clj/imperimetric/metric-grammar.bnf")
