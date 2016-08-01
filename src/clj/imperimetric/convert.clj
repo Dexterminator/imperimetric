@@ -9,6 +9,12 @@
    :us       (insta/parser "src/clj/imperimetric/us-grammar.bnf")
    :imperial (insta/parser "src/clj/imperimetric/us-grammar.bnf")})
 
+(def numeral->int
+  {"one"       1 "two" 2 "three" 3 "four" 4 "five" 5 "six" 6 "seven" 7 "eight" 8 "nine" 9
+   "ten"       10 "eleven" 11 "twelve" 12 "thirteen" 13 "fourteen" 14 "fifteen" 15 "sixteen" 16
+   "seventeen" 17 "eighteen" 18 "nineteen" 19 "twenty" 20 "thirty" 30 "forty" 40 "fifty" 50
+   "sixty"     60 "seventy" 70 "eighty" 80 "ninety" 90})
+
 (defn parse-recipe [recipe from-system]
   ((parsers from-system) recipe))
 
@@ -61,10 +67,11 @@
   (merge
     (map-all-to [:recipe :token :word :whitespace] str)
     (map-all-to [:integer :fraction :decimal] read-string)
+    (map-all-to [:quantity :numeral :20-99] identity)
+    (map-all-to [:1-9 :10-19 :base] numeral->int)
+    (map-all-to [:base-with-suffix :mixed] +)
     {:measurement (partial convert from-system to-system)
-     :quantity    identity
-     :unit        first
-     :mixed       +}))
+     :unit        first}))
 
 (defn convert-recipe [recipe from-system to-system]
   (let [parsed (parse-recipe recipe from-system)]
