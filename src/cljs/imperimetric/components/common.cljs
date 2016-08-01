@@ -25,7 +25,7 @@
           "System of measurement"]]
     [:li [:a {:href "https://en.wikipedia.org/wiki/Metric_system" :target "_blank"}
           "Metric system"]]
-    [:li [:a {:href "https://en.wikipedia.org/wiki/United_States_customary_unitsl" :target "_blank"}
+    [:li [:a {:href "https://en.wikipedia.org/wiki/United_States_customary_units" :target "_blank"}
           "US customary units"]]
     [:li [:a {:href "https://en.wikipedia.org/wiki/Imperial_units" :target "_blank"}
           "Imperial units"]]]])
