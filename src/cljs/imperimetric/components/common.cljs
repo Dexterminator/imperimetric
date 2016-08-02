@@ -1,5 +1,6 @@
 (ns imperimetric.components.common
-  (:require [re-frame.core :refer [subscribe]]))
+  (:require [re-frame.core :refer [subscribe]]
+            [clojure.string :as str]))
 
 (defn header [active-panel]
   [:header#header
@@ -30,7 +31,12 @@
     [:li [:a {:href "https://en.wikipedia.org/wiki/Imperial_units" :target "_blank"}
           "Imperial units"]]]])
 
+(js/Clipboard. "#copy")
+
 (defn result-text []
   (let [text (subscribe [:converted-text])]
     (fn []
-      [:div#result-text @text])))
+      [:div#result-text
+       [:div {:id "copy" :data-clipboard-text @text :class (if (str/blank? @text) "hidden")}
+        [:img#clipboard {:src "images/clipboard.svg"}]]
+       @text])))

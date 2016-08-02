@@ -1,6 +1,7 @@
 (ns imperimetric.views
   (:require [re-frame.core :refer [dispatch subscribe]]
             [imperimetric.components.common :refer [header about result-text]]
+            [cljsjs.clipboard]
             [imperimetric.utils-js :refer [target-value]]))
 
 (defn from-button [text system active-from-system]
@@ -44,7 +45,7 @@
       [to-button-area]]
      [:div#convert-area
       [:textarea#text-entry {:placeholder "Paste or write some text here, like '3 cups of milk and 2 tablespoons of sugar.'"
-                  :on-change   #(dispatch [:text-changed (target-value %)])}]
+                             :on-change   #(dispatch [:text-changed (target-value %)])}]
       [result-text]]]))
 
 ;; about

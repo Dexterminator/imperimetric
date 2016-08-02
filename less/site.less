@@ -163,6 +163,28 @@ a {
     }
 }
 
+#copy {
+    position: absolute;
+    margin-left: 420px;
+    margin-top: 5px;
+    cursor: pointer;
+    background: white;
+    padding: 5px 6px 1px 8px;
+    border-radius: @border-radius;
+    box-shadow: 4px 4px 4px #888888;
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+#clipboard {
+    height: 20px;
+    width: 20px;
+}
+
 @media all and (max-width: 1000px) {
     #convert-area {
         flex-direction: column;
