@@ -68,7 +68,7 @@
     (map-all-to [:recipe :token :word :whitespace] str)
     (map-all-to [:integer :fraction :decimal] read-string)
     (map-all-to [:quantity :numeral :20-99] identity)
-    (map-all-to [:1-9 :10-19 :base] numeral->int)
+    (map-all-to [:1-9 :10-19 :base] (comp numeral->int str/lower-case))
     (map-all-to [:base-with-suffix :mixed] +)
     {:measurement (partial convert from-system to-system)
      :unit        first}))
