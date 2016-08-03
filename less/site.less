@@ -165,10 +165,10 @@ a {
 
 #copy {
     position: absolute;
-    margin-left: 420px;
-    margin-top: 5px;
+    margin-left: 480px;
+    margin-bottom: 5px;
     cursor: pointer;
-    background: white;
+    background: @light-grey;
     padding: 5px 6px 1px 8px;
     border-radius: @border-radius;
     box-shadow: 4px 4px 4px #888888;
@@ -183,6 +183,40 @@ a {
 #clipboard {
     height: 20px;
     width: 20px;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    bottom: 120%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.tooltip-trigger .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip-trigger:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }
 
 @media all and (max-width: 1000px) {
@@ -226,6 +260,18 @@ a {
     #main-nav {
         width: 90%;
     }
+
+    #copy {
+        margin-left: -5px;
+        margin-top: 200px;
+    }
+
+    .tooltip {
+        font-size: 11px;
+        width: 100px;
+        left: 80%;
+    }
+
 }
 
 @media all and (max-width: 550px) {

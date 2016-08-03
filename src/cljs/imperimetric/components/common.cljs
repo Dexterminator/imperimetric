@@ -37,6 +37,7 @@
   (let [text (subscribe [:converted-text])]
     (fn []
       [:div#result-text
-       [:div {:id "copy" :data-clipboard-text @text :class (if (str/blank? @text) "hidden")}
-        [:img#clipboard {:src "images/clipboard.svg"}]]
+       [:div.tooltip-trigger {:id "copy" :data-clipboard-text @text :class (if (str/blank? @text) "hidden")}
+        [:img#clipboard {:src "images/clipboard.svg"}]
+        [:span.tooltip "Copy to clipboard"]]
        @text])))
