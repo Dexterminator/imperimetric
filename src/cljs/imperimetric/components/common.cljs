@@ -1,6 +1,7 @@
 (ns imperimetric.components.common
   (:require [re-frame.core :refer [subscribe]]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [reagent.core :as r]))
 
 (defn header [active-panel]
   [:header#header
@@ -34,10 +35,16 @@
 (js/Clipboard. "#copy")
 
 (defn result-text []
-  (let [text (subscribe [:converted-text])]
+  (let [text (subscribe [:converted-text])
+        default-tooltip "Copy to clipboard"
+        tooltip-text (r/atom default-tooltip)]
     (fn []
       [:div#result-text
-       [:div.tooltip-trigger {:id "copy" :data-clipboard-text @text :class (if (str/blank? @text) "hidden")}
+       [:div.tooltip-trigger {:id                  "copy"
+                              :data-clipboard-text @text
+                              :class               (if (str/blank? @text) "hidden")
+                              :on-click            #(reset! tooltip-text "Copied!")
+                              :on-mouse-leave      #(reset! tooltip-text default-tooltip)}
         [:img#clipboard {:src "images/clipboard.svg"}]
-        [:span.tooltip "Copy to clipboard"]]
+        [:span.tooltip @tooltip-text]]
        @text])))
