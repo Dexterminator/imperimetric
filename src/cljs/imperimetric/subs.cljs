@@ -18,6 +18,11 @@
     (reaction (:from-system @db))))
 
 (register-sub
+  :loading
+  (fn [db _]
+    (reaction (:loading @db))))
+
+(register-sub
   :to-system
   (fn [db _]
     (reaction (:to-system @db))))
