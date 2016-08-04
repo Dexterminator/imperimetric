@@ -6,7 +6,7 @@
 (defn header [active-panel loading]
   [:header#header
    [:div#main-nav
-    [:a#app-nav-name {:href "#/"} "Imperimetric"]
+    [:a#app-nav-name {:href "#/"} "imperimetric"]
     (if loading
       [:div.spinner])
     (if (= active-panel :about-panel)
@@ -20,7 +20,7 @@
         "that use different systems often encounter recipes in systems they don't know by heart. "
         "Remembering how to convert between systems of measurements is tedious. "
         "Instead of you having to convert from cups to deciliters or the other way around, ")
-   [:span#app-name-text "Imperimetric"]
+   [:span#app-name-text "imperimetric"]
    (str " aims to convert the whole text automatically. For example, \"3 cups milk "
         "and 2 tablespoons sugar\" becomes \"7.1 dl milk and 29.6 ml sugar\".")
    [:h5 "More info:"]

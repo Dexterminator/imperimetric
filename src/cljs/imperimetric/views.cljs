@@ -38,7 +38,7 @@
     [:div
      [:div#main-description
       "Welcome to "
-      [:span#app-name-text "Imperimetric"]
+      [:span#app-name-text "imperimetric"]
       ". Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer."]
      [:div#button-area
       [from-button-area]
