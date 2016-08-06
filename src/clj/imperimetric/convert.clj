@@ -60,7 +60,7 @@
 
 (defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str (convert-units :liter :brcup q) "cups"))
 (defmethod convert [:metric :imperial :dl] [_ _ q _] (convert-str (convert-units :dl :brcup q) "cups"))
-(defmethod convert [:metric :imperial :cl] [_ _ q _] (convert-str (convert-units :cl :brtablespoon q) "tbsp"))
+(defmethod convert [:metric :imperial :cl] [_ _ q _] (convert-str (convert-units :cl :brfloz q) "oz"))
 (defmethod convert [:metric :imperial :ml] [_ _ q _] (convert-str (convert-units :ml :brtsp q) "tsp"))
 
 (defn transform-map [from-system to-system]
