@@ -27,7 +27,7 @@
 
 (deftest metric->imperial
   (is (= (convert-recipe "2 l milk, 3 dl water, 5 cl rice, 5 ml salt." :metric :imperial)
-         "7.0 cups milk, 1.1 cups water, 3.3 tbsp rice, 1.0 tsp salt.")))
+         "7.0 cups milk, 1.1 cups water, 1.8 oz rice, 1.0 tsp salt.")))
 
 (deftest us->metric-fluid
   (is (= (convert-recipe daquiri :us :metric) "4.4 cl White rum, 1.5 cl Simple syrup, 3.0 cl Lime juice.")))
