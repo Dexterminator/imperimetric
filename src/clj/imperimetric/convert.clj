@@ -15,6 +15,9 @@
    "seventeen" 17 "eighteen" 18 "nineteen" 19 "twenty" 20 "thirty" 30 "forty" 40 "fifty" 50
    "sixty"     60 "seventy" 70 "eighty" 80 "ninety" 90})
 
+(def unicode->fraction
+  {"¼" "1/4", "½" "1/2", "¾" "3/4", "⅓" "1/3", "⅔" "2/3", "⅕" "1/5", "⅖" "2/5"})
+
 (defn parse-recipe [recipe from-system]
   ((parsers from-system) recipe))
 
@@ -70,8 +73,9 @@
     (map-all-to [:quantity :numeral :20-99] identity)
     (map-all-to [:1-9 :10-19 :base] (comp numeral->int str/lower-case))
     (map-all-to [:base-with-suffix :mixed] +)
-    {:measurement (partial convert from-system to-system)
-     :unit        first}))
+    {:measurement      (partial convert from-system to-system)
+     :unicode-fraction unicode->fraction
+     :unit             first}))
 
 (defn convert-recipe [recipe from-system to-system]
   (let [parsed (parse-recipe recipe from-system)]
