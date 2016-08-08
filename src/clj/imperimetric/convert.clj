@@ -4,10 +4,15 @@
             [imperimetric.util :refer [map-all-to]]
             [frinj.ops :refer [fj]]))
 
+(def base-grammar "src/clj/imperimetric/base-grammar.bnf")
+
+(defn make-parser [file]
+  (insta/parser (str (slurp base-grammar) (slurp file))))
+
 (def parsers
-  {:metric   (insta/parser "src/clj/imperimetric/metric-grammar.bnf")
-   :us       (insta/parser "src/clj/imperimetric/us-grammar.bnf")
-   :imperial (insta/parser "src/clj/imperimetric/us-grammar.bnf")})
+  {:metric   (make-parser "src/clj/imperimetric/metric-grammar.bnf")
+   :us       (make-parser "src/clj/imperimetric/us-grammar.bnf")
+   :imperial (make-parser "src/clj/imperimetric/us-grammar.bnf")})
 
 (def numeral->int
   {"one"       1 "two" 2 "three" 3 "four" 4 "five" 5 "six" 6 "seven" 7 "eight" 8 "nine" 9
