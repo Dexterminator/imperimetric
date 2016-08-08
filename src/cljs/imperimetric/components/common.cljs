@@ -1,7 +1,8 @@
 (ns imperimetric.components.common
   (:require [re-frame.core :refer [subscribe]]
             [clojure.string :as str]
-            [reagent.core :as r]))
+            [reagent.core :as r]
+            [imperimetric.utils-js :refer [copy-message]]))
 
 (defn header [active-panel loading]
   [:header#header
@@ -45,7 +46,7 @@
        [:div.tooltip-trigger {:id                  "copy"
                               :data-clipboard-text @text
                               :class               (if (str/blank? @text) "hidden")
-                              :on-click            #(reset! tooltip-text "Copied!")
+                              :on-click            #(reset! tooltip-text (copy-message))
                               :on-mouse-leave      #(reset! tooltip-text default-tooltip)}
         [:img#clipboard {:src "images/clipboard.svg"}]
         [:span.tooltip @tooltip-text]]
