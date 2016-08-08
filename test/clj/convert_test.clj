@@ -6,11 +6,8 @@
             [imperimetric.util :refer [map-all-to]]
             [clojure.string :as str]))
 
-(def daquiri "1 1/2 oz White rum, 1/2 oz Simple syrup, 1 oz Lime juice.")
-(def daquiri-metric "4.5 cl White rum, 1.5 cl Simple syrup, 3 cl Lime juice.")
-(def margarita (str "Lime wedge, plus 2 lime wheels for garnish\n1 tablespoon coarse salt,"
-                    " for glass rims\n4 ounces high quality blanco tequila (see note above)\n2"
-                    " ounces Cointreau\n1 1/2 ounces fresh juice from 2 limes"))
+(def us-text "Four cups sugar, 1 1/2 Ounces lime, 5 tbsps salt, Twenty-five teaspoons pepper.")
+(def metric-text "Four litres sugar, 1 1/2 Deciliters lime, 5 cL salt, Twenty-five ml pepper.")
 
 (deftest map-all-to-empty
   (is (= (map-all-to [] "test") {})))
@@ -18,28 +15,36 @@
 (deftest map-all-to-common (is (= (map-all-to [:recipe :token :word] "test") {:recipe "test"
                                                                               :token  "test"
                                                                               :word   "test"})))
+
 (deftest convert-empty
   (is (= (convert-recipe "" :us :metric) nil)))
 
+; US customary units
+(deftest us->metric
+  (is (= (convert-recipe us-text :us :metric)
+         "9.5 dl sugar, 4.4 cl lime, 73.9 ml salt, 123.2 ml pepper.")))
+
+(deftest us->imperial
+  (is (= (convert-recipe us-text :us :imperial)
+         "3.3 cups sugar, 1.6 oz lime, 4.9 tbsp salt, 24.6 tsp pepper.")))
+
+; Imperial
+(deftest imperial->metric
+  (is (= (convert-recipe us-text :imperial :metric))
+      "11.4 dl sugar, 4.3 cl lime, 75.0 ml salt, 125.0 ml pepper."))
+
+(deftest imperial->us
+  (is (= (convert-recipe us-text :imperial :us))
+      "4.8 cups sugar, 1.4 oz lime, 5.1 tbsp, 25.4 tsp pepper."))
+
+; Metric
 (deftest metric->us
-  (is (= (convert-recipe "2 l milk, 3 dl water, 5 cl rice, 5 ml salt." :metric :us)
-         "8.5 cups milk, 1.3 cups water, 1.7 oz rice, 1.0 tsp salt.")))
+  (is (= (convert-recipe metric-text :metric :us))
+      "16.9 cups sugar, 0.6 cups lime, 1.7 oz salt, 5.1 tsp pepper."))
 
 (deftest metric->imperial
-  (is (= (convert-recipe "2 l milk, 3 dl water, 5 cl rice, 5 ml salt." :metric :imperial)
-         "7.0 cups milk, 1.1 cups water, 1.8 oz rice, 1.0 tsp salt.")))
-
-(deftest us->metric-fluid
-  (is (= (convert-recipe daquiri :us :metric) "4.4 cl White rum, 1.5 cl Simple syrup, 3.0 cl Lime juice.")))
-
-(deftest us->metric-fluid-tbsp
-  (is (= (convert-recipe margarita :us :metric)
-         (str "Lime wedge, plus 2 lime wheels for garnish\n14.8 ml coarse salt,"
-              " for glass rims\n11.8 cl high quality blanco tequila (see note above)\n5.9"
-              " cl Cointreau\n4.4 cl fresh juice from 2 limes"))))
-
-(deftest metric->us-fluid
-  (is (= (convert-recipe daquiri-metric :metric :us) "1.5 oz White rum, 0.5 oz Simple syrup, 1.0 oz Lime juice.")))
+  (is (= (convert-recipe metric-text :metric :imperial))
+      "14.1 cups sugar, 0.5 cups lime, 1.8 oz salt, 5.0 tsp pepper."))
 
 (deftest api-convert
   (is (= (handler (request :get "/convert" {"text" "1 oz of water."

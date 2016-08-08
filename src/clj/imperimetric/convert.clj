@@ -6,8 +6,8 @@
 
 (def base-grammar "src/clj/imperimetric/base-grammar.bnf")
 
-(defn make-parser [file]
-  (insta/parser (str (slurp base-grammar) (slurp file))))
+(defn make-parser [grammar-file]
+  (insta/parser (str (slurp base-grammar) (slurp grammar-file))))
 
 (def parsers
   {:metric   (make-parser "src/clj/imperimetric/metric-grammar.bnf")
