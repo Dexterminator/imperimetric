@@ -6,7 +6,8 @@
             [imperimetric.util :refer [map-all-to]]
             [clojure.string :as str]))
 
-(def us-text "Four cups sugar, 1 1/2 Ounces lime, 5 tbsps salt, Twenty-five teaspoons pepper.")
+(def us-text (str "Four cups sugar, 1 1/2 Ounces lime, 5 tbsps salt, Twenty-five teaspoons pepper, "
+                  "½ gallon water, three pints beer, 2 quarts milk."))
 (def metric-text "Four liters sugar, 1 1/2 Decilitres lime, 5 cL salt, Twenty-five ml pepper.")
 
 (deftest map-all-to-empty
@@ -22,20 +23,20 @@
 ; US customary units
 (deftest us->metric
   (is (= (convert-recipe us-text :us :metric)
-         "9.5 dl sugar, 4.4 cl lime, 73.9 ml salt, 123.2 ml pepper.")))
+         "9.5 dl sugar, 4.4 cl lime, 73.9 ml salt, 123.2 ml pepper, 1.9 l water, 1.4 l beer, 1.9 l milk.")))
 
 (deftest us->imperial
   (is (= (convert-recipe us-text :us :imperial)
-         "3.3 cups sugar, 1.6 oz lime, 4.9 tbsp salt, 24.6 tsp pepper.")))
+         "3.3 cups sugar, 1.6 oz lime, 4.9 tbsp salt, 24.6 tsp pepper, 0.4 gallons water, 2.5 pints beer, 1.7 quarts milk.")))
 
 ; Imperial
 (deftest imperial->metric
   (is (= (convert-recipe us-text :imperial :metric))
-      "11.4 dl sugar, 4.3 cl lime, 75.0 ml salt, 125.0 ml pepper."))
+      "11.4 dl sugar, 4.3 cl lime, 75.0 ml salt, 125.0 ml pepper 2.3 l water, 1.7 l beer, 2.3 l milk."))
 
 (deftest imperial->us
   (is (= (convert-recipe us-text :imperial :us))
-      "4.8 cups sugar, 1.4 oz lime, 5.1 tbsp, 25.4 tsp pepper."))
+      "4.8 cups sugar, 1.4 oz lime, 5.1 tbsp, 25.4 tsp pepper, 0.6 gallons water, 3.6 pints beer, 2.4 quarts milk."))
 
 ; Metric
 (deftest metric->us

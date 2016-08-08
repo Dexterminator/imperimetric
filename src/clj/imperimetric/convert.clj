@@ -43,22 +43,34 @@
 (defmethod convert [:us :metric :oz] [_ _ q _] (convert-str :floz :cl q "cl"))
 (defmethod convert [:us :metric :tablespoon] [_ _ q _] (convert-str :tbsp :ml q "ml"))
 (defmethod convert [:us :metric :teaspoon] [_ _ q _] (convert-str :tsp :ml q "ml"))
+(defmethod convert [:us :metric :gallon] [_ _ q _] (convert-str :gallon :liter q "l"))
+(defmethod convert [:us :metric :pint] [_ _ q _] (convert-str :pint :liter q "l"))
+(defmethod convert [:us :metric :quart] [_ _ q _] (convert-str :quart :liter q "l"))
 
 (defmethod convert [:us :imperial :cup] [_ _ q _] (convert-str :cup :brcup q "cups"))
 (defmethod convert [:us :imperial :oz] [_ _ q _] (convert-str :floz :brfloz q "oz"))
 (defmethod convert [:us :imperial :tablespoon] [_ _ q _] (convert-str :tbsp :brtablespoon q "tbsp"))
 (defmethod convert [:us :imperial :teaspoon] [_ _ q _] (convert-str :tsp :brtsp q "tsp"))
+(defmethod convert [:us :imperial :gallon] [_ _ q _] (convert-str :gallon :brgallon q "gallons"))
+(defmethod convert [:us :imperial :pint] [_ _ q _] (convert-str :pint :brpint q "pints"))
+(defmethod convert [:us :imperial :quart] [_ _ q _] (convert-str :quart :brquart q "quarts"))
 
 ;; Imperial
 (defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q "dl"))
 (defmethod convert [:imperial :metric :oz] [_ _ q _] (convert-str :brfloz :cl q "cl"))
 (defmethod convert [:imperial :metric :tablespoon] [_ _ q _] (convert-str :brtablespoon :ml q "ml"))
 (defmethod convert [:imperial :metric :teaspoon] [_ _ q _] (convert-str :brtsp :ml q "ml"))
+(defmethod convert [:imperial :metric :gallon] [_ _ q _] (convert-str :brgallon :liter q "l"))
+(defmethod convert [:imperial :metric :pint] [_ _ q _] (convert-str :brpint :liter q "l"))
+(defmethod convert [:imperial :metric :quart] [_ _ q _] (convert-str :brquart :liter q "l"))
 
 (defmethod convert [:imperial :us :cup] [_ _ q _] (convert-str :brcup :cup q "cups"))
 (defmethod convert [:imperial :us :oz] [_ _ q _] (convert-str :brfloz :floz q "oz"))
 (defmethod convert [:imperial :us :tablespoon] [_ _ q _] (convert-str :brtablespoon :tbsp q "tbsp"))
 (defmethod convert [:imperial :us :teaspoon] [_ _ q _] (convert-str :brtsp :tsp q "tsp"))
+(defmethod convert [:imperial :us :gallon] [_ _ q _] (convert-str :brgallon :gallon q "l"))
+(defmethod convert [:imperial :us :pint] [_ _ q _] (convert-str :brpint :pint q "l"))
+(defmethod convert [:imperial :us :quart] [_ _ q _] (convert-str :brquart :quart q "l"))
 
 ;; Metric
 (defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :cup q "cups"))
