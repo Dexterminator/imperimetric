@@ -1,5 +1,5 @@
 unit = l | dl | cl | ml
-l = #'(?i)l' | #'(?i)liters?' | #'(?i)litres?'
-dl = #'(?i)dls?' | #'(?i)deciliters?'
-cl = #'(?i)cls?' | #'(?i)centiliters?'
-ml = #'(?i)mls?' | #'(?i)milliliters?'
+l = #'(?i)l' | #'(?i)lit(er|re)s?'
+dl = #'(?i)dls?' | #'(?i)decilit(er|re)s?'
+cl = #'(?i)cls?' | #'(?i)centilit(er|re)s?'
+ml = #'(?i)mls?' | #'(?i)millilit(er|re)s?'

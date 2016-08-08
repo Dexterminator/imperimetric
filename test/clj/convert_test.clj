@@ -7,7 +7,7 @@
             [clojure.string :as str]))
 
 (def us-text "Four cups sugar, 1 1/2 Ounces lime, 5 tbsps salt, Twenty-five teaspoons pepper.")
-(def metric-text "Four litres sugar, 1 1/2 Deciliters lime, 5 cL salt, Twenty-five ml pepper.")
+(def metric-text "Four liters sugar, 1 1/2 Decilitres lime, 5 cL salt, Twenty-five ml pepper.")
 
 (deftest map-all-to-empty
   (is (= (map-all-to [] "test") {})))
