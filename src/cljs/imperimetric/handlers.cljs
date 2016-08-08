@@ -25,14 +25,15 @@
    :imperial :metric})
 
 (defn button-clicked-helper [db clicked-system-type other-system-type system]
-  (let [updated-db (-> db
-                       (assoc clicked-system-type system)
-                       (assoc :loading true))
+  (let [updated-db (assoc db clicked-system-type system)
         adjusted-db (if (= system (db other-system-type))
                       (assoc updated-db other-system-type (system-switches system))
                       updated-db)]
-    (api-convert-call adjusted-db (:text adjusted-db))
-    adjusted-db))
+    (if-not (str/blank? (:text adjusted-db))
+      (do
+        (api-convert-call adjusted-db (:text adjusted-db))
+        (assoc adjusted-db :loading true))
+      adjusted-db)))
 
 (defn from-button-clicked-handler [db [from-system]]
   (button-clicked-helper db :from-system :to-system from-system))
