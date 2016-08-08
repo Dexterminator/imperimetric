@@ -7,7 +7,9 @@
 
 (defn failed-response-handler [db [{:keys [status status-text]}]]
   (log (str "Something went wrong: " status " " status-text))
-  db)
+  (-> db
+      (dissoc :loading)
+      (assoc :converted-text "Something went wrong when converting text :(")))
 
 (defn api-convert-call [db text]
   (api/convert
