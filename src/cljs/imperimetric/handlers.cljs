@@ -24,21 +24,21 @@
    :metric   :us
    :imperial :metric})
 
-(defn from-button-clicked-handler [db [from-system]]
-  (let [updated-db (assoc db :from-system from-system)
-        adjusted-db (if (= from-system (:to-system db))
-                      (assoc updated-db :to-system (system-switches from-system))
+(defn button-clicked-helper [db clicked-system-type other-system-type system]
+  (let [updated-db (-> db
+                       (assoc clicked-system-type system)
+                       (assoc :loading true))
+        adjusted-db (if (= system (db other-system-type))
+                      (assoc updated-db other-system-type (system-switches system))
                       updated-db)]
     (api-convert-call adjusted-db (:text adjusted-db))
     adjusted-db))
 
+(defn from-button-clicked-handler [db [from-system]]
+  (button-clicked-helper db :from-system :to-system from-system))
+
 (defn to-button-clicked-handler [db [to-system]]
-  (let [updated-db (assoc db :to-system to-system)
-        adjusted-db (if (= to-system (:from-system db))
-                      (assoc updated-db :from-system (system-switches to-system))
-                      updated-db)]
-    (api-convert-call adjusted-db (:text adjusted-db))
-    adjusted-db))
+  (button-clicked-helper db :to-system :from-system to-system))
 
 (defn convert-response-handler [db [text]]
   (let [updated-db (dissoc db :loading)]
