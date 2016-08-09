@@ -33,7 +33,12 @@
   ((parsers from-system) text))
 
 (defn decimal-round [n]
-  (format "%.1f" n))
+  (let [v (format "%.1f" n)
+        dec-v (read-string v)
+        rounded-v (Math/round dec-v)]
+    (if (= dec-v (double rounded-v))
+      (str rounded-v)
+      v)))
 
 (defn convert-units [from to q]
   (double (:v (fj q from :to to))))
