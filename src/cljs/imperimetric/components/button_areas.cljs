@@ -1,15 +1,16 @@
 (ns imperimetric.components.button-areas
   (:require [re-frame.core :refer [dispatch subscribe]]))
 
-(defn from-button [text system active-from-system]
-  [:div {:on-click #(dispatch [:from-button-clicked system])
-         :class    (str "button " (if (= @active-from-system system) "active-button"))}
+(defn system-button [text system active-system event]
+  [:div {:on-click #(dispatch [event system])
+         :class    (str "button " (if (= @active-system system) "active-button"))}
    text])
 
+(defn from-button [text system active-from-system]
+  (system-button text system active-from-system :from-button-clicked))
+
 (defn to-button [text system active-to-system]
-  [:div {:on-click #(dispatch [:to-button-clicked system])
-         :class    (str "button " (if (= @active-to-system system) "active-button"))}
-   text])
+  (system-button text system active-to-system :to-button-clicked))
 
 (defn from-button-area []
   (let [from-system (subscribe [:from-system])]
