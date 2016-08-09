@@ -29,8 +29,8 @@
    :gallon "gallons" :brgallon "gallons" :pint "pints" :brpint "pints" :quart "quarts" :brquart "quarts"
    :mile   "miles" :yard "yards" :foot "feet" :inch "inches"})
 
-(defn parse-recipe [recipe from-system]
-  ((parsers from-system) recipe))
+(defn parse-text [text from-system]
+  ((parsers from-system) text))
 
 (defn decimal-round [n]
   (format "%.1f" n))
@@ -117,7 +117,7 @@
 
 (defn transform-map [from-system to-system]
   (merge
-    (map-all-to [:recipe :token :word :whitespace] str)
+    (map-all-to [:text :token :word :whitespace] str)
     (map-all-to [:integer :fraction :decimal] read-string)
     (map-all-to [:quantity :numeral :20-99] identity)
     (map-all-to [:1-9 :10-19 :base] (comp numeral->int str/lower-case))
@@ -126,8 +126,8 @@
      :unicode-fraction unicode->fraction
      :unit             first}))
 
-(defn convert-recipe [recipe from-system to-system]
-  (let [parsed (parse-recipe recipe from-system)]
+(defn convert-text [text from-system to-system]
+  (let [parsed (parse-text text from-system)]
     (if (insta/failure? parsed)
       nil
       (str/join (insta/transform (transform-map from-system to-system) parsed)))))

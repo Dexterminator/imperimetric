@@ -7,7 +7,7 @@
             [ring.util.response :refer [resource-response]]
             [ring.util.codec :refer [url-decode url-encode]]
             [ring.middleware.reload :refer [wrap-reload]]
-            [imperimetric.convert :refer [convert-recipe]]
+            [imperimetric.convert :refer [convert-text]]
             [medley.core :refer [map-keys]]))
 
 (def param-max-length 2000)
@@ -24,7 +24,7 @@
                (let [{text :text
                       from :from
                       to   :to} (params ctx)]
-                 (convert-recipe (url-decode text) (keyword from) (keyword to)))))
+                 (convert-text (url-decode text) (keyword from) (keyword to)))))
 
 (defroutes routes
   (GET "/" [] (resource-response "index.html" {:root "public"}))
