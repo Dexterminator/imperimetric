@@ -7,8 +7,10 @@
             [clojure.string :as str]))
 
 (def us-text (str "Four cups sugar, 1 1/2 Ounces lime, 5 tbsps salt, Twenty-five teaspoons pepper, "
-                  "½ gallon water, three pints beer, 2 quarts milk, nine miles away."))
-(def metric-text "Four liters sugar, 1 1/2 Decilitres lime, 5 cL salt, Twenty-five ml pepper, nine km away.")
+                  "½ gallon water, three pints beer, 2 quarts milk, nine miles away, 3 yards away, "
+                  "2 1/2 feet away, 2 inches away."))
+(def metric-text (str "Four liters sugar, 1 1/2 Decilitres lime, 5 cL salt, Twenty-five ml pepper, nine km away, "
+                      "9 meters away, 2 centimetres away, 1 millimetre away."))
 
 (deftest map-all-to-empty
   (is (= (map-all-to [] "test") {})))
@@ -23,12 +25,13 @@
 ; US customary units
 (deftest us->metric
   (is (= (convert-recipe us-text :us :metric)
-         "9.5 dl sugar, 4.4 cl lime, 73.9 ml salt, 123.2 ml pepper, 1.9 l water, 1.4 l beer, 1.9 l milk, 14.5 km away.")))
+         (str "9.5 dl sugar, 4.4 cl lime, 73.9 ml salt, 123.2 ml pepper, 1.9 l water, 1.4 l beer, 1.9 l milk, 14.5 km"
+              " away, 2.7 m away, 0.8 m away, 5.1 cm away."))))
 
 (deftest us->imperial
   (is (= (convert-recipe us-text :us :imperial)
          (str "3.3 cups sugar, 1.6 oz lime, 4.9 tbsp salt, 24.6 tsp pepper, 0.4 gallons water, 2.5 pints beer, 1.7"
-              " quarts milk, 9 miles away."))))
+              " quarts milk, 9 miles away, 3 yards away, 5/2 feet away, 2 inches away."))))
 
 ; Imperial
 (deftest imperial->metric

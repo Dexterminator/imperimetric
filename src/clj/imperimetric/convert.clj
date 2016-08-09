@@ -47,6 +47,9 @@
 (defmethod convert [:us :metric :pint] [_ _ q _] (convert-str :pint :liter q "l"))
 (defmethod convert [:us :metric :quart] [_ _ q _] (convert-str :quart :liter q "l"))
 (defmethod convert [:us :metric :mile] [_ _ q _] (convert-str :mile :km q "km"))
+(defmethod convert [:us :metric :yard] [_ _ q _] (convert-str :yard :meter q "m"))
+(defmethod convert [:us :metric :foot] [_ _ q _] (convert-str :foot :meter q "m"))
+(defmethod convert [:us :metric :inch] [_ _ q _] (convert-str :inch :cm q "cm"))
 
 (defmethod convert [:us :imperial :cup] [_ _ q _] (convert-str :cup :brcup q "cups"))
 (defmethod convert [:us :imperial :oz] [_ _ q _] (convert-str :floz :brfloz q "oz"))
@@ -56,6 +59,9 @@
 (defmethod convert [:us :imperial :pint] [_ _ q _] (convert-str :pint :brpint q "pints"))
 (defmethod convert [:us :imperial :quart] [_ _ q _] (convert-str :quart :brquart q "quarts"))
 (defmethod convert [:us :imperial :mile] [_ _ q _] (str q " miles"))
+(defmethod convert [:us :imperial :yard] [_ _ q _] (str q " yards"))
+(defmethod convert [:us :imperial :foot] [_ _ q _] (str q " feet"))
+(defmethod convert [:us :imperial :inch] [_ _ q _] (str q " inches"))
 
 ;; Imperial
 (defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q "dl"))
@@ -66,6 +72,9 @@
 (defmethod convert [:imperial :metric :pint] [_ _ q _] (convert-str :brpint :liter q "l"))
 (defmethod convert [:imperial :metric :quart] [_ _ q _] (convert-str :brquart :liter q "l"))
 (defmethod convert [:imperial :metric :mile] [_ _ q _] (convert-str :mile :km q "km"))
+(defmethod convert [:imperial :metric :yard] [_ _ q _] (convert-str :yard :meter q "m"))
+(defmethod convert [:imperial :metric :foot] [_ _ q _] (convert-str :foot :meter q "m"))
+(defmethod convert [:imperial :metric :inch] [_ _ q _] (convert-str :inch :cm q "cm"))
 
 (defmethod convert [:imperial :us :cup] [_ _ q _] (convert-str :brcup :cup q "cups"))
 (defmethod convert [:imperial :us :oz] [_ _ q _] (convert-str :brfloz :floz q "oz"))
@@ -75,6 +84,10 @@
 (defmethod convert [:imperial :us :pint] [_ _ q _] (convert-str :brpint :pint q "l"))
 (defmethod convert [:imperial :us :quart] [_ _ q _] (convert-str :brquart :quart q "l"))
 (defmethod convert [:imperial :us :mile] [_ _ q _] (str q " miles"))
+(defmethod convert [:imperial :us :mile] [_ _ q _] (str q " miles"))
+(defmethod convert [:imperial :us :yard] [_ _ q _] (str q " yards"))
+(defmethod convert [:imperial :us :foot] [_ _ q _] (str q " feet"))
+(defmethod convert [:imperial :us :inch] [_ _ q _] (str q " inches"))
 
 ;; Metric
 (defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :cup q "cups"))
@@ -82,12 +95,20 @@
 (defmethod convert [:metric :us :cl] [_ _ q _] (convert-str :cl :floz q "oz"))
 (defmethod convert [:metric :us :ml] [_ _ q _] (convert-str :ml :tsp q "tsp"))
 (defmethod convert [:metric :us :km] [_ _ q _] (convert-str :km :mile q "miles"))
+(defmethod convert [:metric :us :m] [_ _ q _] (convert-str :meter :yard q "yards"))
+(defmethod convert [:metric :us :dm] [_ _ q _] (convert-str :dm :feet q "feet"))
+(defmethod convert [:metric :us :cm] [_ _ q _] (convert-str :cm :inch q "inches"))
+(defmethod convert [:metric :us :mm] [_ _ q _] (convert-str :mm :inch q "inches"))
 
 (defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str :liter :brcup q "cups"))
 (defmethod convert [:metric :imperial :dl] [_ _ q _] (convert-str :dl :brcup q "cups"))
 (defmethod convert [:metric :imperial :cl] [_ _ q _] (convert-str :cl :brfloz q "oz"))
 (defmethod convert [:metric :imperial :ml] [_ _ q _] (convert-str :ml :brtsp q "tsp"))
 (defmethod convert [:metric :imperial :km] [_ _ q _] (convert-str :km :mile q "miles"))
+(defmethod convert [:metric :imperial :m] [_ _ q _] (convert-str :meter :yard q "yards"))
+(defmethod convert [:metric :imperial :dm] [_ _ q _] (convert-str :dm :feet q "feet"))
+(defmethod convert [:metric :imperial :cm] [_ _ q _] (convert-str :cm :inch q "inches"))
+(defmethod convert [:metric :imperial :mm] [_ _ q _] (convert-str :mm :inch q "inches"))
 
 (defn transform-map [from-system to-system]
   (merge
