@@ -1,5 +1,6 @@
-unit = l | dl | cl | ml
+unit = l | dl | cl | ml | km
 l = #'(?i)l' | #'(?i)lit(er|re)s?'
 dl = #'(?i)dls?' | #'(?i)decilit(er|re)s?'
 cl = #'(?i)cls?' | #'(?i)centilit(er|re)s?'
 ml = #'(?i)mls?' | #'(?i)millilit(er|re)s?'
+km = #'(?i)km' | #'(?i)kilomet(er|re)s?'

@@ -1,4 +1,4 @@
-unit = oz | cup | tablespoon | teaspoon | gallon | pint | quart
+unit = oz | cup | tablespoon | teaspoon | gallon | pint | quart | mile
 oz = #'(?i)ozs?' | #'(?i)ounces?' | #'(?i)fl ozs?' | #'(?i)floz' | #'(?i)fluid ounces?'
 cup = #'(?i)cups?'
 tablespoon = #'(?i)tbsps?' | #'(?i)tablespoons?'
@@ -6,3 +6,4 @@ teaspoon = #'(?i)tsps?' | #'(?i)teaspoons?'
 gallon = #'(?i)gallons?' | #'(?i)gals?'
 pint = #'(?i)pints?' | #'(?i)pts?'
 quart = #'(?i)quarts?' | #'(?i)qts?'
+mile = #'(?i)miles?'

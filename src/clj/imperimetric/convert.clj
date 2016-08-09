@@ -46,6 +46,7 @@
 (defmethod convert [:us :metric :gallon] [_ _ q _] (convert-str :gallon :liter q "l"))
 (defmethod convert [:us :metric :pint] [_ _ q _] (convert-str :pint :liter q "l"))
 (defmethod convert [:us :metric :quart] [_ _ q _] (convert-str :quart :liter q "l"))
+(defmethod convert [:us :metric :mile] [_ _ q _] (convert-str :mile :km q "km"))
 
 (defmethod convert [:us :imperial :cup] [_ _ q _] (convert-str :cup :brcup q "cups"))
 (defmethod convert [:us :imperial :oz] [_ _ q _] (convert-str :floz :brfloz q "oz"))
@@ -54,6 +55,7 @@
 (defmethod convert [:us :imperial :gallon] [_ _ q _] (convert-str :gallon :brgallon q "gallons"))
 (defmethod convert [:us :imperial :pint] [_ _ q _] (convert-str :pint :brpint q "pints"))
 (defmethod convert [:us :imperial :quart] [_ _ q _] (convert-str :quart :brquart q "quarts"))
+(defmethod convert [:us :imperial :mile] [_ _ q _] (str q " miles"))
 
 ;; Imperial
 (defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q "dl"))
@@ -63,6 +65,7 @@
 (defmethod convert [:imperial :metric :gallon] [_ _ q _] (convert-str :brgallon :liter q "l"))
 (defmethod convert [:imperial :metric :pint] [_ _ q _] (convert-str :brpint :liter q "l"))
 (defmethod convert [:imperial :metric :quart] [_ _ q _] (convert-str :brquart :liter q "l"))
+(defmethod convert [:imperial :metric :mile] [_ _ q _] (convert-str :mile :km q "km"))
 
 (defmethod convert [:imperial :us :cup] [_ _ q _] (convert-str :brcup :cup q "cups"))
 (defmethod convert [:imperial :us :oz] [_ _ q _] (convert-str :brfloz :floz q "oz"))
@@ -71,17 +74,20 @@
 (defmethod convert [:imperial :us :gallon] [_ _ q _] (convert-str :brgallon :gallon q "l"))
 (defmethod convert [:imperial :us :pint] [_ _ q _] (convert-str :brpint :pint q "l"))
 (defmethod convert [:imperial :us :quart] [_ _ q _] (convert-str :brquart :quart q "l"))
+(defmethod convert [:imperial :us :mile] [_ _ q _] (str q " miles"))
 
 ;; Metric
 (defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :cup q "cups"))
 (defmethod convert [:metric :us :dl] [_ _ q _] (convert-str :dl :cup q "cups"))
 (defmethod convert [:metric :us :cl] [_ _ q _] (convert-str :cl :floz q "oz"))
 (defmethod convert [:metric :us :ml] [_ _ q _] (convert-str :ml :tsp q "tsp"))
+(defmethod convert [:metric :us :km] [_ _ q _] (convert-str :km :mile q "miles"))
 
 (defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str :liter :brcup q "cups"))
 (defmethod convert [:metric :imperial :dl] [_ _ q _] (convert-str :dl :brcup q "cups"))
 (defmethod convert [:metric :imperial :cl] [_ _ q _] (convert-str :cl :brfloz q "oz"))
 (defmethod convert [:metric :imperial :ml] [_ _ q _] (convert-str :ml :brtsp q "tsp"))
+(defmethod convert [:metric :imperial :km] [_ _ q _] (convert-str :km :mile q "miles"))
 
 (defn transform-map [from-system to-system]
   (merge
