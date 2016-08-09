@@ -31,7 +31,7 @@
 (deftest us->imperial
   (is (= (convert-recipe us-text :us :imperial)
          (str "3.3 cups sugar, 1.6 oz lime, 4.9 tbsp salt, 24.6 tsp pepper, 0.4 gallons water, 2.5 pints beer, 1.7"
-              " quarts milk, 9 miles away, 3 yards away, 5/2 feet away, 2 inches away."))))
+              " quarts milk, 9.0 miles away, 3.0 yards away, 2.5 feet away, 2.0 inches away."))))
 
 ; Imperial
 (deftest imperial->metric
