@@ -1,8 +1,12 @@
 unit = l | dl | cl | ml | km | m | dm | cm | mm
+
+(* Volume *)
 l = #'(?i)l' | #'(?i)lit(er|re)s?'
 dl = #'(?i)dls?' | #'(?i)decilit(er|re)s?'
 cl = #'(?i)cls?' | #'(?i)centilit(er|re)s?'
 ml = #'(?i)mls?' | #'(?i)millilit(er|re)s?'
+
+(* Distance *)
 km = #'(?i)km' | #'(?i)kilomet(er|re)s?'
 m = #'(?i)m' | #'(?i)met(er|re)s?'
 dm = #'(?i)dm' | #'(?i)decimet(er|re)s?'
