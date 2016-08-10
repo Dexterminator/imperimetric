@@ -30,7 +30,7 @@
 
 (deftest us->imperial
   (is (= (convert-text us-text :us :imperial)
-         (str "3.3 cups sugar, 1.6 oz lime, 4.9 tbsp salt, 24.6 tsp pepper, 0.4 gallons water, 2.5 pints beer, 1.7"
+         (str "3.3 cups sugar, 1.6 fl. oz lime, 4.9 tbsp salt, 24.6 tsp pepper, 0.4 gallons water, 2.5 pints beer, 1.7"
               " quarts milk, 9 miles away, 3 yards away, 2.5 feet away, 2 inches away."))))
 
 ; Imperial
@@ -41,18 +41,18 @@
 
 (deftest imperial->us
   (is (= (convert-text us-text :imperial :us)
-         (str "4.8 cups sugar, 1.4 oz lime, 5.1 tbsp salt, 25.4 tsp pepper, 0.6 gallons water, 3.6 pints beer,"
+         (str "4.8 cups sugar, 1.4 fl. oz lime, 5.1 tbsp salt, 25.4 tsp pepper, 0.6 gallons water, 3.6 pints beer,"
               " 2.4 quarts milk, 9 miles away, 3 yards away, 2.5 feet away, 2 inches away."))))
 
 ; Metric
 (deftest metric->us
   (is (= (convert-text metric-text :metric :us)
-         (str "8.5 pints sugar, 0.6 cups lime, 1.7 oz salt, 5.1 tsp pepper, 5.6 miles away,"
+         (str "8.5 pints sugar, 0.6 cups lime, 1.7 fl. oz salt, 5.1 tsp pepper, 5.6 miles away,"
               " 9.8 yards away, 0.8 inches away, 4.7 inches away."))))
 
 (deftest metric->imperial
   (is (= (convert-text metric-text :metric :imperial)
-         (str "7 pints sugar, 0.5 cups lime, 1.8 oz salt, 5 tsp pepper, 5.6 miles"
+         (str "7 pints sugar, 0.5 cups lime, 1.8 fl. oz salt, 5 tsp pepper, 5.6 miles"
               " away, 9.8 yards away, 0.8 inches away, 4.7 inches away."))))
 
 (deftest api-convert

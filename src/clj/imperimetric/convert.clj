@@ -25,9 +25,9 @@
 
 (def unit->suffix
   {:liter  "l" :dl "dl" :cl "cl" :ml "ml" :km "km" :meter "m" :dm "dm" :cm "cm" :mm "mm"
-   :floz   "oz" :brfloz "oz" :cup "cups" :brcup "cups" :tbsp "tbsp" :brtablespoon "tbsp" :tsp "tsp" :brtsp "tsp"
+   :floz   "fl. oz" :brfloz "fl. oz" :cup "cups" :brcup "cups" :tbsp "tbsp" :brtablespoon "tbsp" :tsp "tsp" :brtsp "tsp"
    :gallon "gallons" :brgallon "gallons" :pint "pints" :brpint "pints" :quart "quarts" :brquart "quarts"
-   :mile   "miles" :yard "yards" :foot "feet" :inch "inches"})
+   :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz"})
 
 (defn parse-text [text from-system]
   ((parsers from-system) text))
@@ -51,7 +51,7 @@
 
 ;; US customary units
 (defmethod convert [:us :metric :cup] [_ _ q _] (convert-str :cup :dl q))
-(defmethod convert [:us :metric :oz] [_ _ q _] (convert-str :floz :cl q))
+(defmethod convert [:us :metric :floz] [_ _ q _] (convert-str :floz :cl q))
 (defmethod convert [:us :metric :tablespoon] [_ _ q _] (convert-str :tbsp :ml q))
 (defmethod convert [:us :metric :teaspoon] [_ _ q _] (convert-str :tsp :ml q))
 (defmethod convert [:us :metric :gallon] [_ _ q _] (convert-str :gallon :liter q))
@@ -63,7 +63,7 @@
 (defmethod convert [:us :metric :inch] [_ _ q _] (convert-str :inch :cm q))
 
 (defmethod convert [:us :imperial :cup] [_ _ q _] (convert-str :cup :brcup q))
-(defmethod convert [:us :imperial :oz] [_ _ q _] (convert-str :floz :brfloz q))
+(defmethod convert [:us :imperial :floz] [_ _ q _] (convert-str :floz :brfloz q))
 (defmethod convert [:us :imperial :tablespoon] [_ _ q _] (convert-str :tbsp :brtablespoon q))
 (defmethod convert [:us :imperial :teaspoon] [_ _ q _] (convert-str :tsp :brtsp q))
 (defmethod convert [:us :imperial :gallon] [_ _ q _] (convert-str :gallon :brgallon q))
@@ -76,7 +76,7 @@
 
 ;; Imperial
 (defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q))
-(defmethod convert [:imperial :metric :oz] [_ _ q _] (convert-str :brfloz :cl q))
+(defmethod convert [:imperial :metric :floz] [_ _ q _] (convert-str :brfloz :cl q))
 (defmethod convert [:imperial :metric :tablespoon] [_ _ q _] (convert-str :brtablespoon :ml q))
 (defmethod convert [:imperial :metric :teaspoon] [_ _ q _] (convert-str :brtsp :ml q))
 (defmethod convert [:imperial :metric :gallon] [_ _ q _] (convert-str :brgallon :liter q))
@@ -88,7 +88,7 @@
 (defmethod convert [:imperial :metric :inch] [_ _ q _] (convert-str :inch :cm q))
 
 (defmethod convert [:imperial :us :cup] [_ _ q _] (convert-str :brcup :cup q))
-(defmethod convert [:imperial :us :oz] [_ _ q _] (convert-str :brfloz :floz q))
+(defmethod convert [:imperial :us :floz] [_ _ q _] (convert-str :brfloz :floz q))
 (defmethod convert [:imperial :us :tablespoon] [_ _ q _] (convert-str :brtablespoon :tbsp q))
 (defmethod convert [:imperial :us :teaspoon] [_ _ q _] (convert-str :brtsp :tsp q))
 (defmethod convert [:imperial :us :gallon] [_ _ q _] (convert-str :brgallon :gallon q))
