@@ -5,9 +5,9 @@
    (for [item items]
      ^{:key item} [:li item])])
 
-(defn description []
+(defn motivation []
   [:div
-   [:h2 "Description"]
+   [:h2 "Motivation"]
    [:p
     (str "Today, the metric system is used in a majority of the world's countries. "
          "However, US customary units and the Imperial system still prevail, and people from countries "
@@ -53,7 +53,7 @@
 
 (defn about []
   [:div
-   [description]
+   [motivation]
    [supported-units]
    [more-info]])
 
