@@ -19,25 +19,24 @@
     (str " aims to convert the whole text automatically. For example, \"3 cups milk "
          "and 2 tablespoons sugar\" becomes \"7.1 dl milk and 29.6 ml sugar\".")]])
 
+(defn unit-list-div [title units]
+  [:div.unit-list
+   [:h4.supported-unit-type title]
+   (apply string-ul units)])
+
 (defn supported-units []
   [:div
    [:h2 "Supported units"]
    [:h3.supported-unit-system "Metric"]
    [:div.supported-units
-    [:div
-     [:h4.supported-unit-type "Volume"]
-     [string-ul "Liters" "Deciliters" "Centiliters" "Milliliters"]]
-    [:div
-     [:h4.supported-unit-type "Distance"]
-     [string-ul "Kilometers" "Meters" "Decimeters" "Millimeters"]]]
+    [unit-list-div "Volume" ["Liters" "Deciliters" "Centiliters" "Milliliters"]]
+    [unit-list-div "Distance" ["Kilometers" "Meters" "Decimeters" "Millimeters"]]
+    [unit-list-div "Weight" ["Kilograms" "Hectograms" "Grams" "Milligrams"]]]
    [:h3.supported-unit-system "US and Imperial"]
    [:div.supported-units
-    [:div
-     [:h4.supported-unit-type "Volume"]
-     [string-ul "Cups" "Ounces" "Tablespoons" "Teaspoons" "Gallons" "Pints" "Quarts"]]
-    [:div
-     [:h4.supported-unit-type "Distance"]
-     [string-ul "Miles" "Yards" "Feet" "Inches"]]]])
+    [unit-list-div "Volume" ["Cups" "Ounces (fluid)" "Tablespoons" "Teaspoons" "Gallons" "Pints" "Quarts"]]
+    [unit-list-div "Distance" ["Miles" "Yards" "Feet" "Inches"]]
+    [unit-list-div "Weight" ["Pounds" "Ounces (dry)"]]]])
 
 (defn more-info []
   [:div
