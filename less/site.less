@@ -7,6 +7,8 @@
 @dark-grey: #424242;
 @orange: #FA6900;
 @border-radius: 10px;
+@blue: #007E80;
+
 
 .base-text-style {
     font-family: 'Roboto', sans-serif;
@@ -68,10 +70,6 @@ a {
     display: flex;
 }
 
-#main {
-    background: @light-grey;
-}
-
 #pagewrap {
     margin: 0 auto;
     width: @page-width;
@@ -81,7 +79,7 @@ a {
     position: relative;
     height: 70px;
     margin-bottom: 20px;
-    background-color: @grey;
+    background-color: @blue;
 }
 
 #app-nav-name {
@@ -104,10 +102,15 @@ a {
 }
 
 #about-nav {
+    color: white;
     margin-left: auto;
     align: right;
     margin-top: 10px;
     font-size: 12px;
+
+    &:hover {
+        color: @mid-dark-grey;
+    }
 }
 
 #button-area {
