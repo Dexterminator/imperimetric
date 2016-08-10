@@ -10,7 +10,7 @@
                   "½ gallon water, three pints beer, 2 quarts milk, nine miles away, 3 yards away, "
                   "2 1/2 feet away, 2 inches away."))
 (def metric-text (str "Four liters sugar, 1 1/2 Decilitres lime, 5 cL salt, Twenty-five ml pepper, nine km away, "
-                      "9 meters away, 2 centimetres away, 1 millimetre away."))
+                      "9 meters away, 2 centimetres away, 120 millimetre away."))
 
 (deftest map-all-to-empty
   (is (= (map-all-to [] "test") {})))
@@ -35,21 +35,25 @@
 
 ; Imperial
 (deftest imperial->metric
-  (is (= (convert-text us-text :imperial :metric))
-      "11.4 dl sugar, 4.3 cl lime, 75.0 ml salt, 125.0 ml pepper 2.3 l water, 1.7 l beer, 2.3 l milk, 14.5 km away."))
+  (is (= (convert-text us-text :imperial :metric)
+         (str "11.4 dl sugar, 4.3 cl lime, 75 ml salt, 125 ml pepper, 2.3 l water, 1.7 l beer,"
+              " 2.3 l milk, 14.5 km away, 2.7 m away, 0.8 m away, 5.1 cm away."))))
 
 (deftest imperial->us
-  (is (= (convert-text us-text :imperial :us))
-      "4.8 cups sugar, 1.4 oz lime, 5.1 tbsp, 25.4 tsp pepper, 0.6 gallons water, 3.6 pints beer, 2.4 quarts milk, 9 miles away."))
+  (is (= (convert-text us-text :imperial :us)
+         (str "4.8 cups sugar, 1.4 oz lime, 5.1 tbsp salt, 25.4 tsp pepper, 0.6 gallons water, 3.6 pints beer,"
+              " 2.4 quarts milk, 9 miles away, 3 yards away, 2.5 feet away, 2 inches away."))))
 
 ; Metric
 (deftest metric->us
-  (is (= (convert-text metric-text :metric :us))
-      "16.9 cups sugar, 0.6 cups lime, 1.7 oz salt, 5.1 tsp pepper, 5.6 miles away."))
+  (is (= (convert-text metric-text :metric :us)
+         (str "8.5 pints sugar, 0.6 cups lime, 1.7 oz salt, 5.1 tsp pepper, 5.6 miles away,"
+              " 9.8 yards away, 0.8 inches away, 4.7 inches away."))))
 
 (deftest metric->imperial
-  (is (= (convert-text metric-text :metric :imperial))
-      "14.1 cups sugar, 0.5 cups lime, 1.8 oz salt, 5.0 tsp pepper, 5.6 miles away."))
+  (is (= (convert-text metric-text :metric :imperial)
+         (str "7 pints sugar, 0.5 cups lime, 1.8 oz salt, 5 tsp pepper, 5.6 miles"
+              " away, 9.8 yards away, 0.8 inches away, 4.7 inches away."))))
 
 (deftest api-convert
   (is (= (handler (request :get "/convert" {"text" "1 oz of water."

@@ -100,7 +100,7 @@
 (defmethod convert [:imperial :us :inch] [_ _ q _] (convert-str :inch :inch q))
 
 ;; Metric
-(defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :cup q))
+(defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :pint q))
 (defmethod convert [:metric :us :dl] [_ _ q _] (convert-str :dl :cup q))
 (defmethod convert [:metric :us :cl] [_ _ q _] (convert-str :cl :floz q))
 (defmethod convert [:metric :us :ml] [_ _ q _] (convert-str :ml :tsp q))
@@ -110,7 +110,7 @@
 (defmethod convert [:metric :us :cm] [_ _ q _] (convert-str :cm :inch q))
 (defmethod convert [:metric :us :mm] [_ _ q _] (convert-str :mm :inch q))
 
-(defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str :liter :brcup q))
+(defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str :liter :brpint q))
 (defmethod convert [:metric :imperial :dl] [_ _ q _] (convert-str :dl :brcup q))
 (defmethod convert [:metric :imperial :cl] [_ _ q _] (convert-str :cl :brfloz q))
 (defmethod convert [:metric :imperial :ml] [_ _ q _] (convert-str :ml :brtsp q))
