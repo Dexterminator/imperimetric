@@ -56,8 +56,8 @@
 (defn mile->metric [q] (convert-str :mile :km q))
 (defn yard->metric [q] (convert-str :yard :meter q))
 (defn foot->metric [q] (convert-str :foot :meter q))
-(defn pound->metric [q] (convert-str :pound :kg q))
 (defn inch->metric [q] (convert-str :inch :cm q))
+(defn pound->metric [q] (convert-str :pound :kg q))
 (defn oz->metric [q] (convert-str :oz :g q))
 
 (defn km->english [q] (convert-str :km :mile q))
@@ -83,7 +83,7 @@
 (defmethod convert [:us :metric :foot] [_ _ q _] (foot->metric q))
 (defmethod convert [:us :metric :inch] [_ _ q _] (inch->metric q))
 (defmethod convert [:us :metric :pound] [_ _ q _] (pound->metric q))
-(defmethod convert [:us :metric :oz] [_ _ q _] (pound->metric q))
+(defmethod convert [:us :metric :oz] [_ _ q _] (oz->metric q))
 
 (defmethod convert [:us :imperial :cup] [_ _ q _] (convert-str :cup :brcup q))
 (defmethod convert [:us :imperial :floz] [_ _ q _] (convert-str :floz :brfloz q))
