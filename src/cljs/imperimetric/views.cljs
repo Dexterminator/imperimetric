@@ -2,6 +2,7 @@
   (:require [imperimetric.pages.home :refer [home-panel]]
             [imperimetric.pages.about :refer [about-panel]]
             [imperimetric.components.header :refer [header]]
+            [imperimetric.components.footer :refer [footer]]
             [re-frame.core :refer [subscribe]]))
 
 ;; main
@@ -21,4 +22,5 @@
       [:div
        [header @active-panel @loading]
        [:div#pagewrap
-        [show-panel @active-panel]]])))
+        [show-panel @active-panel]
+        [footer]]])))
