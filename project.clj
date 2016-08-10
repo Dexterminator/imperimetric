@@ -11,6 +11,7 @@
                  [liberator "0.13"]
                  [medley "0.8.2"]
                  [frinj "0.2.5"]
+                 [cheshire "5.6.3"]
                  [yogthos/config "0.8"]
                  [cljsjs/clipboard "1.5.9-0"]
                  [ring "1.4.0"]

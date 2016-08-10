@@ -41,11 +41,13 @@
 (defn to-button-clicked-handler [db [to-system]]
   (button-clicked-helper db :to-system :from-system to-system))
 
-(defn convert-response-handler [db [text]]
+(defn convert-response-handler [db [{original-text  :original-text
+                                     converted-text :converted-text}]]
   (let [updated-db (dissoc db :loading)]
-    (if (str/blank? (:text updated-db))
-      (dissoc updated-db :converted-text)
-      (assoc updated-db :converted-text text))))
+    (cond
+      (str/blank? (:text db)) (dissoc updated-db :converted-text)
+      (= (:text db) original-text) (assoc updated-db :converted-text converted-text)
+      :else db)))
 
 (defn text-changed-handler [db [text]]
   (if-not (str/blank? text)

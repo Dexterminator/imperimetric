@@ -2,5 +2,7 @@
   (:require [ajax.core :refer [GET]]))
 
 (defn convert [text from to options]
-  (GET "/convert" (merge options {:params {:text text :from from :to to}})))
+  (GET "/convert" (merge options {:params          {:text text :from from :to to}
+                                  :response-format :json
+                                  :keywords?       true})))
 
