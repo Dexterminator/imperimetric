@@ -60,12 +60,12 @@
                                             "from" "us"
                                             "to"   "metric"}))
          {:status  200
-          :headers {"Content-Type" "text/plain;charset=UTF-8"
+          :headers {"Content-Type" "application/json;charset=UTF-8"
                     "Vary"         "Accept"}
-          :body    "3 cl of water."})))
+          :body    "{\"converted-text\":\"3 cl of water.\",\"original-text\":\"1 oz of water.\"}"})))
 
 (deftest api-uri-too-long
-  (is (= (handler (request :get "/convert" {"text" (str/join (repeat 2000 "a"))
+  (is (= (handler (request :get "/convert" {"text" (str/join (repeat 5000 "a"))
                                             "from" "us"
                                             "to"   "metric"}))
          {:status  414

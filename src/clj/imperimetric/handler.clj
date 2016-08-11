@@ -11,7 +11,7 @@
             [medley.core :refer [map-keys]]
             [cheshire.core :as json]))
 
-(def param-max-length 2000)
+(def param-max-length 5000)
 
 (defn params [ctx]
   (map-keys keyword (get-in ctx [:request :params])))
@@ -20,7 +20,7 @@
   :available-media-types ["application/json"]
   :uri-too-long? (fn [ctx]
                    (< param-max-length
-                      (count (get-in ctx [:request :query-string]))))
+                      (count (url-decode (get-in ctx [:request :query-string])))))
   :handle-ok (fn [ctx]
                (let [{text :text
                       from :from
