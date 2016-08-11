@@ -15,7 +15,7 @@
       [from-button-area]
       [to-button-area]]
      [:div#convert-area
-      [:textarea#text-entry {:max-length  "4800"
+      [:textarea#text-entry {:max-length  "2800"
                              :placeholder "Paste or write some text here, like '3 cups of milk and 2 tablespoons of sugar.'"
                              :on-change   #(dispatch [:text-changed (target-value %)])}]
       [result-text]]]))

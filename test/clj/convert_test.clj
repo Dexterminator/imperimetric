@@ -65,7 +65,7 @@
           :body    "{\"converted-text\":\"3 cl of water.\",\"original-text\":\"1 oz of water.\"}"})))
 
 (deftest api-uri-too-long
-  (is (= (handler (request :get "/convert" {"text" (str/join (repeat 5000 "a"))
+  (is (= (handler (request :get "/convert" {"text" (str/join (repeat 3000 "a"))
                                             "from" "us"
                                             "to"   "metric"}))
          {:status  414

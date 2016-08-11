@@ -11,7 +11,7 @@
             [medley.core :refer [map-keys]]
             [cheshire.core :as json]))
 
-(def param-max-length 5000)
+(def param-max-length 3000)
 
 (defn params [ctx]
   (map-keys keyword (get-in ctx [:request :params])))
