@@ -162,10 +162,11 @@
     (map-all-to [:integer :fraction :decimal] read-string)
     (map-all-to [:1-9 :10-19 :base] (comp numeral->int str/lower-case))
     (map-all-to [:base-with-suffix :mixed] +)
-    {:text             str
-     :measurement      (partial convert from-system to-system)
-     :unicode-fraction unicode->fraction
-     :unit             first}))
+    {:text                  str
+     :measurement           (partial convert from-system to-system)
+     :unicode-fraction      unicode->fraction
+     :implicit-zero-decimal (partial str "0")
+     :unit                  first}))
 
 (defn convert-text [text from-system to-system]
   (let [parsed (parse-text text from-system)]
