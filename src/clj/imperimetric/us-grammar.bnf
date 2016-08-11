@@ -2,7 +2,7 @@ unit = floz | cup | tablespoon | teaspoon | gallon | pint | quart | mile | yard 
 pound | oz
 
 (* Volume *)
-floz = #'(?i)oz?' | #'(?i)ounces?' | #'(?i)fl ozs?' | #'(?i)floz' | #'(?i)fluid ounces?'
+floz = #'(?i)fl\.? ozs?' | #'(?i)fl\.?ozs?' | #'(?i)fluid ounces?'
 cup = #'(?i)cups?'
 tablespoon = #'(?i)tbsps?' | #'(?i)tablespoons?'
 teaspoon = #'(?i)tsps?' | #'(?i)teaspoons?'
@@ -18,4 +18,4 @@ inch = #'(?i)inch(es)?'
 
 (* Weight *)
 pound = #'(?i)pounds?'
-oz = #'(?i)ounces?\(dry\)' | #'(?i)oz\(dry\)?'
+oz = #'(?i)oz?' | #'(?i)ounces?' | #'(?i)ounces?\(dry\)' | #'(?i)oz\(dry\)?'
