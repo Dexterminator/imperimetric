@@ -11,7 +11,7 @@
    [:p
     (str "Today, the metric system is used in a majority of the world's countries. "
          "However, US customary units and the Imperial system still prevail, and people from countries "
-         "that use different systems often encounter recipes in systems they don't know by heart. ")]
+         "that use different systems often encounter recipes and other text in systems they don't know by heart. ")]
    [:p
     (str "Remembering how to convert between systems of measurements is tedious. "
          "Instead of you having to convert from cups to deciliters or the other way around, ")
