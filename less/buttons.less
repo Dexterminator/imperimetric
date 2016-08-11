@@ -1,0 +1,111 @@
+#button-area {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.button-group-headline {
+    color: @mid-dark-grey;
+    margin-right: 20px;
+}
+
+.to-button-group-headline {
+    color: @mid-dark-grey;
+    margin-right: 40px;
+}
+
+.button-group {
+    flex: 0 1 50%;
+    border: 2px solid @grey;
+    padding: 10px;
+    border-radius: @border-radius;
+    display: inline-flex;
+}
+
+#left-button-group {
+    margin-right: 10px;
+    .button-group;
+}
+
+#right-button-group {
+    .button-group;
+}
+
+.button {
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5px;
+    display: inline-block;
+    background-color: white;
+    border: 1px solid @orange;
+    padding: 9px 19px 9px 19px;
+    color: @orange;
+
+    &:hover {
+        background-color: @grey;
+        border: 1px solid @grey;
+    }
+}
+
+.active-button {
+    background-color: @orange;
+    color: white;
+    border: 1px solid @orange;
+
+    &:hover {
+        background-color: @orange;
+        border: 1px solid @orange;
+    }
+}
+
+#copy {
+    position: absolute;
+    margin-left: 480px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background: @light-grey;
+    padding: 5px 6px 1px 8px;
+    border-radius: @border-radius;
+    box-shadow: 2px 2px 2px #888888;
+    -webkit-transition: opacity 0.3s ease-in;
+    transition: opacity 0.3s ease-in;
+}
+
+#clipboard {
+    height: 20px;
+    width: 20px;
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    bottom: 120%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.tooltip-trigger .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip-trigger:hover .tooltip {
+    visibility: visible;
+    opacity: 0.7;
+}
