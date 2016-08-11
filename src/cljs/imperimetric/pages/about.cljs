@@ -51,10 +51,26 @@
     [:li [:a {:href "https://en.wikipedia.org/wiki/Imperial_units" :target "_blank"}
           "Imperial units"]]]])
 
+(defn faq []
+  [:div
+   [:h2 "FAQ"]
+   [:div.faq-question "Q: Why does the site look weird?"]
+   [:div.faq-answer "A: This site uses some relatively new web stuff, try upgrading your browser if the site looks stange."]
+   [:div.faq-question "Q: I have a suggestion/I found a bug! Who do I talk to?"]
+   [:div.faq-answer
+    "A: You can contact " [:a {:href "http://www.dxtr.se" :target "_blank"} "me"] " by email right "
+    [:a {:href "mailto:dexter.gramfors@gmail.com?Subject=imperimetric" :target "_blank"} "here"] "."]
+   [:div.faq-question "Q: Can I see the source code anywhere?"]
+   [:div.faq-answer "A: Yes, the code is on " [:a {:href "https://github.com/Dexterminator/imperimetric" :target "_blank"} "GitHub"] "."]
+
+   ]
+  )
+
 (defn about []
   [:div
    [motivation]
    [supported-units]
+   [faq]
    [more-info]])
 
 (defn about-panel []
