@@ -34,9 +34,9 @@
     [unit-list-div "Weight" ["Kilograms" "Hectograms" "Grams" "Milligrams"]]]
    [:h3.supported-unit-system "US and Imperial"]
    [:div.supported-units
-    [unit-list-div "Volume" ["Cups" "Ounces (fluid)" "Tablespoons" "Teaspoons" "Gallons" "Pints" "Quarts"]]
+    [unit-list-div "Volume" ["Cups" "Fluid ounces" "Tablespoons" "Teaspoons" "Gallons" "Pints" "Quarts"]]
     [unit-list-div "Distance" ["Miles" "Yards" "Feet" "Inches"]]
-    [unit-list-div "Weight" ["Pounds" "Ounces (dry)"]]]])
+    [unit-list-div "Weight" ["Pounds" "Ounces"]]]])
 
 (defn more-info []
   [:div
