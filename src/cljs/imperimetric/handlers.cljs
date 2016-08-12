@@ -60,6 +60,19 @@
         (dissoc :converted-text)
         (dissoc :text))))
 
+(def ounce-pattern (js/RegExp. "ounces?|ozs?" "ig"))
+(def fluid-ounce-pattern #"(?i)fluid ounces?|flozs?|fl\.\s?oz")
+
+(defn make-ounces-fluid [text]
+  (if-not (re-find fluid-ounce-pattern text)
+    (.replace text ounce-pattern "fl. oz")
+    text))
+
+(defn ounce-button-clicked-handler [db _]
+  (let [changed-text (make-ounces-fluid (:text db))]
+    (api-convert-call db changed-text)
+    (assoc db :text changed-text)))
+
 (register-handler
   :text-changed
   trim-v
@@ -94,3 +107,8 @@
   :to-button-clicked
   trim-v
   to-button-clicked-handler)
+
+(register-handler
+  :ounce-button-clicked
+  trim-v
+  ounce-button-clicked-handler)

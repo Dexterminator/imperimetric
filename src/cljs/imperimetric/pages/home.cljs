@@ -2,7 +2,8 @@
   (:require [re-frame.core :refer [dispatch]]
             [imperimetric.utils-js :refer [target-value]]
             [imperimetric.components.button-areas :refer [from-button-area to-button-area]]
-            [imperimetric.components.result-text :refer [result-text]]))
+            [imperimetric.components.result-text :refer [result-text]]
+            [imperimetric.components.text-entry :refer [text-entry]]))
 
 (defn home-panel []
   (fn []
@@ -10,12 +11,13 @@
      [:div#main-description
       "Welcome to "
       [:span#app-name-text "imperimetric"]
-      ". Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer."]
+      ". Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer. "
+      [:span#ounce-note
+       "Note: imperimetric assumes 'ounces'/'oz' as weight ounces and 'fluid ounces'/'floz'/'fl. oz' as fluid ounces. "]
+      [:a.ounce-button {:on-click #(dispatch [:ounce-button-clicked])} "Make my ounces fluid!"]]
      [:div#button-area
       [from-button-area]
       [to-button-area]]
      [:div#convert-area
-      [:textarea#text-entry {:max-length  "2800"
-                             :placeholder "Paste or write some text here, like '3 cups of milk and 2 tablespoons of sugar.'"
-                             :on-change   #(dispatch [:text-changed (target-value %)])}]
+      [text-entry]
       [result-text]]]))

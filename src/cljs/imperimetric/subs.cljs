@@ -26,3 +26,8 @@
   :to-system
   (fn [db _]
     (reaction (:to-system @db))))
+
+(register-sub
+  :text
+  (fn [db _]
+    (reaction (:text @db))))
