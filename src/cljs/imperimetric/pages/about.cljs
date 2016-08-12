@@ -41,15 +41,14 @@
 (defn more-info []
   [:div
    [:h2 "More info"]
-   [:ul
-    [:li [:a {:href "https://en.wikipedia.org/wiki/System_of_measurement" :target "_blank"}
+   [:div [:a {:href "https://en.wikipedia.org/wiki/System_of_measurement" :target "_blank"}
           "System of measurement"]]
-    [:li [:a {:href "https://en.wikipedia.org/wiki/Metric_system" :target "_blank"}
+   [:div [:a {:href "https://en.wikipedia.org/wiki/Metric_system" :target "_blank"}
           "Metric system"]]
-    [:li [:a {:href "https://en.wikipedia.org/wiki/United_States_customary_units" :target "_blank"}
+   [:div [:a {:href "https://en.wikipedia.org/wiki/United_States_customary_units" :target "_blank"}
           "US customary units"]]
-    [:li [:a {:href "https://en.wikipedia.org/wiki/Imperial_units" :target "_blank"}
-          "Imperial units"]]]])
+   [:div [:a {:href "https://en.wikipedia.org/wiki/Imperial_units" :target "_blank"}
+          "Imperial units"]]])
 
 (defn faq []
   [:div
@@ -61,10 +60,7 @@
     "A: You can contact " [:a {:href "http://www.dxtr.se" :target "_blank"} "me"] " by email right "
     [:a {:href "mailto:dexter.gramfors@gmail.com?Subject=imperimetric" :target "_blank"} "here"] "."]
    [:div.faq-question "Q: Can I see the source code anywhere?"]
-   [:div.faq-answer "A: Yes, the code is on " [:a {:href "https://github.com/Dexterminator/imperimetric" :target "_blank"} "GitHub"] "."]
-
-   ]
-  )
+   [:div.faq-answer "A: Yes, the code is on " [:a {:href "https://github.com/Dexterminator/imperimetric" :target "_blank"} "GitHub"] "."]])
 
 (defn about []
   [:div
