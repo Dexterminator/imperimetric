@@ -14,7 +14,8 @@
       ". Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer. "
       [:span#ounce-note
        "Note: imperimetric assumes 'ounces'/'oz' as weight ounces and 'fluid ounces'/'floz'/'fl. oz' as fluid ounces. "]
-      [:a.ounce-button {:on-click #(dispatch [:ounce-button-clicked])} "Make my ounces fluid!"]]
+      [:div.ounce-button {:class "tooltip-trigger" :on-click #(dispatch [:ounce-button-clicked])} "Make my ounces fluid!"
+       [:span.tooltip {:id "ounce-tooltip"} "Converts 'ounce'/'oz' into 'fl. oz' if the text does not already contain any fluid ounces."]]]
      [:div#button-area
       [from-button-area]
       [to-button-area]]

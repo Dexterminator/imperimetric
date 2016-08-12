@@ -60,9 +60,16 @@
 }
 
 .ounce-button {
+    display: inline-block;
+    position: relative;
     cursor: pointer;
     font-size: 13px;
+    bottom: 1px;
     text-decoration: underline;
+
+    &:hover {
+        color: @orange;
+    }
 }
 
 .active-button {
@@ -116,6 +123,12 @@
     transition: opacity 0.5s;
 }
 
+#ounce-tooltip {
+    width: 200px;
+    font-size: 12px;
+    left: 20%;
+}
+
 .tooltip-trigger .tooltip::after {
     content: "";
     position: absolute;
@@ -129,8 +142,9 @@
 
 .tooltip-trigger:hover .tooltip {
     visibility: visible;
-    opacity: 0.7;
+    opacity: 0.85;
 }
+
 @media all and (max-width: 1100px) {
     #button-area {
         flex-direction: column;
