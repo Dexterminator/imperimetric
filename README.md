@@ -3,7 +3,7 @@
 #### Live at http://imperimetric.dxtr.se/
 
 Webapp for converting texts with some system of measurement to another, such as imperial to metric.
-Uses Clojure, reagent, and reframe.
+Uses Clojure, reagent, and re-frame.
 
 ## Development Mode
 
