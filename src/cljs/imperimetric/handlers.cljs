@@ -70,8 +70,13 @@
 
 (defn ounce-button-clicked-handler [db _]
   (let [changed-text (make-ounces-fluid (:text db))]
-    (api-convert-call db changed-text)
-    (assoc db :text changed-text)))
+    (if-not (= changed-text (:text db))
+      (do
+        (api-convert-call db changed-text)
+        (-> db
+            (assoc :loading true)
+            (assoc :text changed-text)))
+      db)))
 
 (register-handler
   :text-changed
