@@ -64,7 +64,7 @@
 (def fluid-ounce-pattern #"(?i)fluid ounces?|flozs?|fl\.\s?oz")
 
 (defn make-ounces-fluid [text]
-  (if-not (re-find fluid-ounce-pattern text)
+  (if-not (or (str/blank? text) (re-find fluid-ounce-pattern text))
     (.replace text ounce-pattern "fl. oz")
     text))
 
