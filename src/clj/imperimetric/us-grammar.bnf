@@ -3,7 +3,7 @@ pound | oz
 
 (* Volume *)
 floz = #'(?i)fl\.? ozs?' | #'(?i)fl\.?ozs?' | #'(?i)fluid ounces?'
-cup = #'(?i)cups?'
+cup = #'(?i)cups?' | #'(?i)cp'
 tablespoon = #'(?i)tbsps?' | #'(?i)tablespoons?'
 teaspoon = #'(?i)tsps?' | #'(?i)teaspoons?'
 gallon = #'(?i)gallons?' | #'(?i)gals?'
@@ -11,10 +11,10 @@ pint = #'(?i)pints?' | #'(?i)pts?'
 quart = #'(?i)quarts?' | #'(?i)qts?'
 
 (* Distance *)
-mile = #'(?i)miles?'
-yard = #'(?i)yards?'
-foot = #'(?i)foot' | #'(?i)feet'
-inch = #'(?i)inch(es)?'
+mile = #'(?i)miles?' | #'(?i)mi'
+yard = #'(?i)yards?' | #'(?i)yd'
+foot = #'(?i)foot' | #'(?i)feet' | #'(?i)ft' | '\''
+inch = #'(?i)inch(es)?' | #'(?i)in' | '\"'
 
 (* Weight *)
 pound = #'(?i)pounds?' | #'(?i)lbs?'
