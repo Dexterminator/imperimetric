@@ -17,5 +17,5 @@ foot = #'(?i)foot' | #'(?i)feet'
 inch = #'(?i)inch(es)?'
 
 (* Weight *)
-pound = #'(?i)pounds?'
+pound = #'(?i)pounds?' | #'(?i)lbs?'
 oz = #'(?i)ozs?' | #'(?i)ounces?' | #'(?i)ounces?\(dry\)' | #'(?i)oz\(dry\)?'
