@@ -29,6 +29,14 @@
    :gallon "gallons" :brgallon "gallons" :pint "pints" :brpint "pints" :quart "quarts" :brquart "quarts"
    :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz"})
 
+(defn singular [unit]
+  (cond
+    (#{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard}
+      unit) (let [suffix (unit->suffix unit)]
+              (subs suffix 0 (dec (count suffix))))
+    (= :foot unit) "foot"
+    :else (unit->suffix unit)))
+
 (defn parse-text [text from-system]
   ((parsers from-system) text))
 
@@ -44,7 +52,11 @@
   (double (:v (fj q from :to to))))
 
 (defn convert-str [from to quantity]
-  (str (decimal-round (convert-units from to quantity)) " " (unit->suffix to)))
+  (let [rounded-quantity (decimal-round (convert-units from to quantity))
+        suffix (if (= "1" rounded-quantity)
+                 (singular to)
+                 (unit->suffix to))]
+    (str rounded-quantity " " suffix)))
 
 (defmulti convert
   (fn [from-system to-system quantity unit] [from-system to-system unit]))

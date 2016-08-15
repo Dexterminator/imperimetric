@@ -22,6 +22,10 @@
 (deftest convert-empty
   (is (= (convert-text "" :us :metric) nil)))
 
+(deftest convert-singular
+  (is (= (convert-text "1.2 cups and 1 mile" :us :imperial)
+         "1 cup and 1 mile")))
+
 ; US customary units
 (deftest us->metric
   (is (= (convert-text us-text :us :metric)
