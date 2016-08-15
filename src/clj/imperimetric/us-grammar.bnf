@@ -18,4 +18,4 @@ inch = #'(?i)inch(es)?' | #'(?i)in' | '\"'
 
 (* Weight *)
 pound = #'(?i)pounds?' | #'(?i)lbs?'
-oz = #'(?i)ozs?' | #'(?i)ounces?' | #'(?i)ounces?\(dry\)' | #'(?i)oz\(dry\)?'
+oz = #'(?i)ozs?' | #'(?i)ounces?'
