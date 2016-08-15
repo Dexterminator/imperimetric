@@ -31,9 +31,8 @@
 
 (defn singular [unit]
   (cond
-    (#{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard}
-      unit) (let [suffix (unit->suffix unit)]
-              (subs suffix 0 (dec (count suffix))))
+    (#{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard} unit) (let [suffix (unit->suffix unit)]
+                                                                                        (subs suffix 0 (dec (count suffix))))
     (= :foot unit) "foot"
     :else (unit->suffix unit)))
 
