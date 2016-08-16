@@ -22,11 +22,6 @@
 (defn unit-list-div [title units]
   [:div.unit-list
    [:h4.supported-unit-type title]
-   [string-ul units]])
-
-(defn unit-list-div2 [title units]
-  [:div.unit-list
-   [:h4.supported-unit-type title]
    [:ul
     (for [unit units]
       ^{:key (:unit unit)} [:li (:unit unit) [:div.unit-symbols (:symbols unit)]])]])
@@ -36,33 +31,33 @@
    [:h2 "Supported units"]
    [:h3.supported-unit-system "Metric"]
    [:div.supported-units
-    [unit-list-div2 "Volume" [{:unit "Liters" :symbols "(liters, litres, l)"}
+    [unit-list-div "Volume" [{:unit "Liters" :symbols "(liters, litres, l)"}
                               {:unit "Deciliters" :symbols "(deciliters, decilitres, dl)"}
                               {:unit "Centiliters" :symbols "(centiliters, centilitres, cl)"}
                               {:unit "Milliliters" :symbols "(milliliters, millilitres, ml)"}]]
-    [unit-list-div2 "Distance" [{:unit "Kilometers" :symbols "(kilometers, kilometres, km)"}
+    [unit-list-div "Distance" [{:unit "Kilometers" :symbols "(kilometers, kilometres, km)"}
                                 {:unit "Meters" :symbols "(meters, metres, m)"}
                                 {:unit "Decimeters" :symbols "(decimeters, decimetres, dm)"}
                                 {:unit "Centimeters" :symbols "(centimeters, centimetres, cm)"}
                                 {:unit "Millimeters" :symbols "(millimeters, millimetres, mm)"}]]
-    [unit-list-div2 "Weight" [{:unit "Kilograms" :symbols "(kilograms, kg)"}
+    [unit-list-div "Weight" [{:unit "Kilograms" :symbols "(kilograms, kg)"}
                               {:unit "Hectograms" :symbols "(hectograms, hg)"}
                               {:unit "Grams" :symbols "(grams, g)"}
                               {:unit "Milligrams" :symbols "(milligrams, mg)"}]]]
    [:h3.supported-unit-system "US and Imperial"]
    [:div.supported-units
-    [unit-list-div2 "Volume" [{:unit "Cups" :symbols "(cups, cp)"}
+    [unit-list-div "Volume" [{:unit "Cups" :symbols "(cups, cp)"}
                               {:unit "Fluid ounces" :symbols "(fluid ounces, fl. oz, floz)"}
                               {:unit "Tablespoon" :symbols "(tablespoons, tbsp)"}
                               {:unit "Teaspoon" :symbols "(teaspoons, tsp)"}
                               {:unit "Gallons" :symbols "(gallons, gal)"}
                               {:unit "Pints" :symbols "(pints, pt)"}
                               {:unit "Quarts" :symbols "(quarts, qt)"}]]
-    [unit-list-div2 "Distance" [{:unit "Miles" :symbols "(miles, mi)"}
+    [unit-list-div "Distance" [{:unit "Miles" :symbols "(miles, mi)"}
                                 {:unit "Yards" :symbols "(yards, yd)"}
                                 {:unit "Feet" :symbols "(foot, feet, ft, ')"}
                                 {:unit "Inches" :symbols "(inches, in, \")"}]]
-    [unit-list-div2 "Weight" [{:unit "Pounds" :symbols "(pounds, lb)"}
+    [unit-list-div "Weight" [{:unit "Pounds" :symbols "(pounds, lb)"}
                               {:unit "Ounces" :symbols "(ounces, oz)"}]]]])
 
 (defn more-info []
