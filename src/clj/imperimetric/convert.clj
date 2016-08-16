@@ -39,23 +39,26 @@
 (defn parse-text [text from-system]
   ((parsers from-system) text))
 
-(defn decimal-round [n]
-  (let [v (format "%.1f" n)
-        dec-v (read-string v)
-        rounded-v (Math/round dec-v)]
-    (if (= dec-v (double rounded-v))
-      (str rounded-v)
-      v)))
+(defn significant-digits [n]
+  (let [stripped (.stripTrailingZeros (bigdec n))
+        precision (.precision stripped)
+        scale (.scale stripped)]
+    (if (< scale 0)
+      (- precision scale)
+      precision)))
 
 (defn convert-units [from to q]
-  (double (:v (fj q from :to to))))
+  (let [q (rationalize q)
+        digits (significant-digits q)
+        precision (if (> digits 3) digits 3)]
+    (with-precision precision (bigdec (:v (fj q from :to to))))))
 
 (defn convert-str [from to quantity]
-  (let [rounded-quantity (decimal-round (convert-units from to quantity))
-        suffix (if (= "1" rounded-quantity)
+  (let [converted-quantity (convert-units from to quantity)
+        suffix (if (= 1M converted-quantity)
                  (singular to)
                  (unit->suffix to))]
-    (str rounded-quantity " " suffix)))
+    (str (.toPlainString converted-quantity) " " suffix)))
 
 (defmulti convert
   (fn [from-system to-system quantity unit] [from-system to-system unit]))
@@ -184,3 +187,5 @@
     (if (insta/failure? parsed)
       nil
       (str/join (insta/transform (transform-map from-system to-system) parsed)))))
+
+(comment (convert-text "1245 oz" :us :metric))
