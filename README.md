@@ -1,6 +1,6 @@
 # imperimetric
 
-#### Live at http://imperimetric.dxtr.se/
+#### Live at http://www.imperimetric.com/
 
 Webapp for converting texts with some system of measurement to another, such as imperial to metric.
 Uses Clojure, reagent, and re-frame.
