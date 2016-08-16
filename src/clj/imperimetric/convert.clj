@@ -36,6 +36,8 @@
     (= :foot unit) "foot"
     :else (unit->suffix unit)))
 
+(def default-precision 3)
+
 (defn parse-text [text from-system]
   ((parsers from-system) text))
 
@@ -50,7 +52,7 @@
 (defn convert-units [from to q]
   (let [q (rationalize q)
         digits (significant-digits q)
-        precision (if (> digits 3) digits 3)]
+        precision (if (> digits default-precision) digits default-precision)]
     (with-precision precision (bigdec (:v (fj q from :to to))))))
 
 (defn convert-str [from to quantity]
