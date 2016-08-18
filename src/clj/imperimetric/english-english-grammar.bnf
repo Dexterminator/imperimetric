@@ -1,0 +1,10 @@
+unit = floz | cup | tablespoon | teaspoon | gallon | pint | quart
+
+(* Volume *)
+floz = #'(?i)fl\.? ozs?' | #'(?i)fl\.?ozs?' | #'(?i)fluid ounces?'
+cup = #'(?i)cups?' | #'(?i)cp'
+tablespoon = #'(?i)tbsps?' | #'(?i)tablespoons?'
+teaspoon = #'(?i)tsps?' | #'(?i)teaspoons?'
+gallon = #'(?i)gallons?' | #'(?i)gals?'
+pint = #'(?i)pints?' | #'(?i)pts?'
+quart = #'(?i)quarts?' | #'(?i)qts?'

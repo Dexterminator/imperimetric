@@ -27,8 +27,8 @@
          "46145 yards, 26.219 miles")))
 
 (deftest convert-singular
-  (is (= (convert-text "1 feet and 1 mile" :us :imperial)
-         "1 foot and 1 mile")))
+  (is (= (convert-text "0.918 m" :metric :us)
+         "1.00 yard")))
 
 ; US customary units
 (deftest us->metric
@@ -39,7 +39,7 @@
 (deftest us->imperial
   (is (= (convert-text us-text :us :imperial)
          (str "3.33 cups sugar, 1.56 fl. oz lime, 4.93 tbsp salt, 24.6 tsp pepper, 0.416 gallons water, 2.50 pints beer, 1.67"
-              " quarts milk, 9 miles away, 3 yards away, 2.5 feet away, 2 inches away, 2 pounds and 2 oz."))))
+              " quarts milk, nine miles away, 3 yards away, 2 1/2 feet away, 2 inches away, 2 pounds and 2 ounces."))))
 
 ; Imperial
 (deftest imperial->metric
@@ -50,7 +50,7 @@
 (deftest imperial->us
   (is (= (convert-text us-text :imperial :us)
          (str "4.80 cups sugar, 1.44 fl. oz lime, 5.07 tbsp salt, 25.4 tsp pepper, 0.600 gallons water, 3.60 pints beer,"
-              " 2.40 quarts milk, 9 miles away, 3 yards away, 2.5 feet away, 2 inches away, 2 pounds and 2 oz."))))
+              " 2.40 quarts milk, nine miles away, 3 yards away, 2 1/2 feet away, 2 inches away, 2 pounds and 2 ounces."))))
 
 ; Metric
 (deftest metric->us

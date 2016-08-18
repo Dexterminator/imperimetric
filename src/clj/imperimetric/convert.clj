@@ -9,10 +9,11 @@
 (defn make-parser [grammar-file]
   (insta/parser (str (slurp base-grammar) (slurp grammar-file))))
 
-(def parsers
-  {:metric   (make-parser "src/clj/imperimetric/metric-grammar.bnf")
-   :us       (make-parser "src/clj/imperimetric/us-grammar.bnf")
-   :imperial (make-parser "src/clj/imperimetric/us-grammar.bnf")})
+(defn get-parser [from to]
+  (cond
+    (= from :metric) (make-parser "src/clj/imperimetric/metric-grammar.bnf")
+    (= to :metric) (make-parser "src/clj/imperimetric/english-metric-grammar.bnf")
+    :else (make-parser "src/clj/imperimetric/english-english-grammar.bnf")))
 
 (def numeral->int
   {"one"       1 "two" 2 "three" 3 "four" 4 "five" 5 "six" 6 "seven" 7 "eight" 8 "nine" 9
@@ -38,8 +39,8 @@
 
 (def default-precision 3)
 
-(defn parse-text [text from-system]
-  ((parsers from-system) text))
+(defn parse-text [text from-system to-system]
+  ((get-parser from-system to-system) text))
 
 (defn significant-digits [n]
   (let [stripped (.stripTrailingZeros (with-precision 100 (bigdec n)))
@@ -64,9 +65,6 @@
 
 (defmulti convert
   (fn [from-system to-system quantity unit] [from-system to-system unit]))
-
-(defn no-convert [unit q]
-  (convert-str unit unit q))
 
 ;; Functions used when unit is the same in us and imperial, to avoid duplication
 (defn mile->metric [q] (convert-str :mile :km q))
@@ -108,12 +106,6 @@
 (defmethod convert [:us :imperial :gallon] [_ _ q _] (convert-str :gallon :brgallon q))
 (defmethod convert [:us :imperial :pint] [_ _ q _] (convert-str :pint :brpint q))
 (defmethod convert [:us :imperial :quart] [_ _ q _] (convert-str :quart :brquart q))
-(defmethod convert [:us :imperial :mile] [_ _ q _] (no-convert :mile q))
-(defmethod convert [:us :imperial :yard] [_ _ q _] (no-convert :yard q))
-(defmethod convert [:us :imperial :foot] [_ _ q _] (no-convert :foot q))
-(defmethod convert [:us :imperial :inch] [_ _ q _] (no-convert :inch q))
-(defmethod convert [:us :imperial :pound] [_ _ q _] (no-convert :pound q))
-(defmethod convert [:us :imperial :oz] [_ _ q _] (no-convert :oz q))
 
 ;; Imperial
 (defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q))
@@ -137,12 +129,6 @@
 (defmethod convert [:imperial :us :gallon] [_ _ q _] (convert-str :brgallon :gallon q))
 (defmethod convert [:imperial :us :pint] [_ _ q _] (convert-str :brpint :pint q))
 (defmethod convert [:imperial :us :quart] [_ _ q _] (convert-str :brquart :quart q))
-(defmethod convert [:imperial :us :mile] [_ _ q _] (no-convert :mile q))
-(defmethod convert [:imperial :us :yard] [_ _ q _] (no-convert :yard q))
-(defmethod convert [:imperial :us :foot] [_ _ q _] (no-convert :foot q))
-(defmethod convert [:imperial :us :inch] [_ _ q _] (no-convert :inch q))
-(defmethod convert [:imperial :us :pound] [_ _ q _] (no-convert :pound q))
-(defmethod convert [:imperial :us :oz] [_ _ q _] (no-convert :oz q))
 
 ;; Metric
 (defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :pint q))
@@ -186,7 +172,7 @@
      :unit                  first}))
 
 (defn convert-text [text from-system to-system]
-  (let [parsed (parse-text text from-system)]
+  (let [parsed (parse-text text from-system to-system)]
     (if (insta/failure? parsed)
       nil
       (str/join (insta/transform (transform-map from-system to-system) parsed)))))
