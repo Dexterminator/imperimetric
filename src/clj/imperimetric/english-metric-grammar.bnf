@@ -21,5 +21,6 @@ pound = #'(?i)pounds?' | #'(?i)lbs?'
 oz = #'(?i)ozs?' | #'(?i)ounces?'
 
 (* Combined *)
-<combined> = pounds-ounces
+<combined> = pounds-ounces | feet-inches
 pounds-ounces = quantity <whitespace>* pound <whitespace>* quantity <whitespace>* oz
+feet-inches = quantity <whitespace>* foot <whitespace>* quantity <whitespace>* inch

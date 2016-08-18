@@ -160,8 +160,14 @@
 (defmethod convert [:metric :imperial :mg] [_ _ q _] (mg->english q))
 
 (defn convert-pounds-ounces [pounds-q _ oz-q _]
-  (let [oz-in-pounds (convert-units :oz :pound oz-q)]
-    (convert :us :metric (+ pounds-q oz-in-pounds) :pound)))
+  (let [oz-in-pounds (convert-units :oz :pound oz-q)
+        total-pounds (+ pounds-q oz-in-pounds)]
+    (convert :us :metric total-pounds :pound)))
+
+(defn convert-feet-inches [feet-q _ inch-q _]
+  (let [inches-in-feet (convert-units :inch :foot inch-q)
+        total-feet (+ feet-q inches-in-feet)]
+    (convert :us :metric total-feet :foot)))
 
 (defn transform-map [from-system to-system]
   (merge
@@ -174,7 +180,8 @@
      :unicode-fraction      unicode->fraction
      :implicit-zero-decimal (partial str "0")
      :unit                  first
-     :pounds-ounces         convert-pounds-ounces}))
+     :pounds-ounces         convert-pounds-ounces
+     :feet-inches           convert-feet-inches}))
 
 (defn convert-text [text from-system to-system]
   (let [parsed (parse-text text from-system to-system)]
