@@ -161,12 +161,16 @@
 
 (defn convert-pounds-ounces [pounds-q _ oz-q _]
   (let [oz-in-pounds (convert-units :oz :pound oz-q)
-        total-pounds (+ pounds-q oz-in-pounds)]
+        total-pounds (with-precision
+                       (max (significant-digits pounds-q) (significant-digits oz-q) default-precision)
+                       (+ pounds-q oz-in-pounds))]
     (convert :us :metric total-pounds :pound)))
 
 (defn convert-feet-inches [feet-q _ inch-q _]
   (let [inches-in-feet (convert-units :inch :foot inch-q)
-        total-feet (+ feet-q inches-in-feet)]
+        total-feet (with-precision
+                     (max (significant-digits feet-q) (significant-digits inch-q) default-precision)
+                     (+ feet-q inches-in-feet))]
     (convert :us :metric total-feet :foot)))
 
 (defn transform-map [from-system to-system]

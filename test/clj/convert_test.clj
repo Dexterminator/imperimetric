@@ -30,6 +30,10 @@
   (is (= (convert-text "0.918 m" :metric :us)
          "1.00 yard")))
 
+(deftest convert-combined
+  (is (= (convert-text "6 feet 4 ½ in tall, weight: 8 lb 3 oz." :us :metric))
+      "1.94 m tall, weight: 3.71 kg."))
+
 ; US customary units
 (deftest us->metric
   (is (= (convert-text us-text :us :metric)
