@@ -1,5 +1,5 @@
 text = token+
-<token> = measurement / word / whitespace
+<token> = combined / measurement / word / whitespace
 <word> = #'[^\s]+'
 measurement = quantity <whitespace>* unit <#'(?!\w)'>
 <whitespace> = #'\s+'

@@ -159,6 +159,10 @@
 (defmethod convert [:metric :imperial :g] [_ _ q _] (g->english q))
 (defmethod convert [:metric :imperial :mg] [_ _ q _] (mg->english q))
 
+(defn convert-pounds-ounces [pounds-q _ oz-q _]
+  (let [oz-in-pounds (convert-units :oz :pound oz-q)]
+    (convert :us :metric (+ pounds-q oz-in-pounds) :pound)))
+
 (defn transform-map [from-system to-system]
   (merge
     (map-all-to [:integer :fraction] read-string)
@@ -169,7 +173,8 @@
      :measurement           (partial convert from-system to-system)
      :unicode-fraction      unicode->fraction
      :implicit-zero-decimal (partial str "0")
-     :unit                  first}))
+     :unit                  first
+     :pounds-ounces         convert-pounds-ounces}))
 
 (defn convert-text [text from-system to-system]
   (let [parsed (parse-text text from-system to-system)]

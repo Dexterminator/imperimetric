@@ -19,3 +19,7 @@ inch = #'(?i)inch(es)?' | #'(?i)in' | '\"'
 (* Weight *)
 pound = #'(?i)pounds?' | #'(?i)lbs?'
 oz = #'(?i)ozs?' | #'(?i)ounces?'
+
+(* Combined *)
+<combined> = pounds-ounces
+pounds-ounces = quantity <whitespace>* pound <whitespace>* quantity <whitespace>* oz

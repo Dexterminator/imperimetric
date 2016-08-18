@@ -18,3 +18,6 @@ kg = #'(?i)kg' | #'(?i)kilograms?'
 hg = #'(?i)hg' | #'(?i)hectograms?'
 g = #'(?i)g' | #'(?i)grams?'
 mg = #'(?i)mg' | #'(?i)milligrams?'
+
+(* Combined *)
+<combined> = measurement

@@ -8,3 +8,6 @@ teaspoon = #'(?i)tsps?' | #'(?i)teaspoons?'
 gallon = #'(?i)gallons?' | #'(?i)gals?'
 pint = #'(?i)pints?' | #'(?i)pts?'
 quart = #'(?i)quarts?' | #'(?i)qts?'
+
+(* Combined *)
+<combined> = measurement
