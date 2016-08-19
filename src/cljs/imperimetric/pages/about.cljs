@@ -73,6 +73,10 @@
                                                     "significant figures"]
     " for precision. By default, three significant figures are used in the result of a conversion. If the input number to a conversion"
     " has more significant figures than three, the input's number of significant figures is used in the result."]
+   [:div.faq-question "Q: Why doesn't the button that converts ounces to fluid ounces do anything? I have ounces in my text."]
+   [:div.faq-answer "A: If the text contains both ounces and fluid ounces, the app assumes that this is because the input text "
+    "disambiguates the different types of ounces, meaning that 'ounce' signifies a weight ounce with relatively high probability and should "
+    "not be changed into a fluid ounce."]
    [:div.faq-question "Q: I have a suggestion/I found a bug! Who do I talk to?"]
    [:div.faq-answer
     "A: You can contact " [:a {:href "http://www.dxtr.se" :target "_blank"} "me"] " by email right "
