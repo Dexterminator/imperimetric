@@ -22,5 +22,5 @@ oz = #'(?i)ozs?' | #'(?i)ounces?'
 
 (* Combined *)
 <combined> = pounds-ounces | feet-inches
-pounds-ounces = quantity <whitespace>* pound <whitespace>* quantity <whitespace>* oz
-feet-inches = quantity <whitespace>* foot <whitespace>* quantity <whitespace>* inch
+pounds-ounces = quantity <' '>? pound <' '>? quantity <' '>? oz
+feet-inches = quantity <' '>? foot <' '>? quantity <' '>? inch
