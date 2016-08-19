@@ -31,7 +31,7 @@
 
 (defn supported-units []
   [:div
-   [:h2 "Supported units"]
+   [:h2 [:a {:name "supported-units"}] "Supported units"]
    [:h3.supported-unit-system "Metric"]
    [:div.supported-units
     [unit-list-div "Volume" [{:unit "Liters" :symbols "(liters, litres, l)"}
