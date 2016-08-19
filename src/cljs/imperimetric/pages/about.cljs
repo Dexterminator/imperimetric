@@ -9,14 +9,14 @@
     " is used in a majority of the world's countries. "
     "However, "
     [:a {:href "https://en.wikipedia.org/wiki/United_States_customary_units" :target "_blank"} "US customary units"]
-     " and the "
+    " and the "
     [:a {:href "https://en.wikipedia.org/wiki/Imperial_units" :target "_blank"} "Imperial system"]
-     " still prevail, and people from countries "
+    " still prevail, and people from countries "
     "that use different systems often encounter recipes and other text in systems they don't know by heart. "]
    [:p
-     "Remembering how to convert between "
+    "Remembering how to convert between "
     [:a {:href "https://en.wikipedia.org/wiki/System_of_measurement" :target "_blank"} "systems of measurement"]
-     " is tedious. "
+    " is tedious. "
     "Instead of you having to convert from cups to deciliters or the other way around, "
     [:span#app-name-text "imperimetric"]
     (str " aims to convert the whole text automatically. For example, \"2 cups milk "
@@ -68,6 +68,11 @@
    [:h2 "FAQ"]
    [:div.faq-question "Q: Why does the site look weird?"]
    [:div.faq-answer "A: This site uses some relatively new web stuff, try upgrading your browser if the site looks strange."]
+   [:div.faq-question "Q: What determines the number of decimals after the decimal point in the conversions?"]
+   [:div.faq-answer "A: The app uses a number of " [:a {:href "https://en.wikipedia.org/wiki/Significant_figures" :targer "_blank"}
+                                                    "significant figures"]
+    " for precision. By default, three significant figures are used in the result of a conversion. If the input number to a conversion"
+    " has more significant figures than three, the input's number of significant figures is used in the result."]
    [:div.faq-question "Q: I have a suggestion/I found a bug! Who do I talk to?"]
    [:div.faq-answer
     "A: You can contact " [:a {:href "http://www.dxtr.se" :target "_blank"} "me"] " by email right "
