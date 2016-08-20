@@ -1,5 +1,5 @@
 unit = floz | cup | tablespoon | teaspoon | gallon | pint | quart | gill | mile | yard | foot | inch |
-pound | oz
+pound | oz | ton
 
 (* Volume *)
 floz = #'(?i)fl\.? ozs?' | #'(?i)fl\.?ozs?' | #'(?i)fluid ounces?'
@@ -20,6 +20,7 @@ inch = #'(?i)inch(es)?' | #'(?i)in' | '\"'
 (* Weight *)
 pound = #'(?i)pounds?' | #'(?i)lbs?'
 oz = #'(?i)ozs?' | #'(?i)ounces?'
+ton = #'(?i)tons?'
 
 (* Combined *)
 <combined> = pounds-ounces | feet-inches

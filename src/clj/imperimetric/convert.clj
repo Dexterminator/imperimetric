@@ -28,7 +28,8 @@
   {:liter  "l" :dl "dl" :cl "cl" :ml "ml" :km "km" :meter "m" :dm "dm" :cm "cm" :mm "mm" :kg "kg" :hg "hg" :g "g" :mg "mg"
    :floz   "fl. oz" :brfloz "fl. oz" :cup "cups" :brcup "cups" :tbsp "tbsp" :brtablespoon "tbsp" :tsp "tsp" :brtsp "tsp"
    :gallon "gallons" :brgallon "gallons" :pint "pints" :brpint "pints" :quart "quarts" :brquart "quarts"
-   :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz" :gill "gills" :brgill "gills"})
+   :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz" :gill "gills" :brgill "gills"
+   :ton "tons" :metricton "tonnes" :brton "tons"})
 
 (defn singular [unit]
   (cond
@@ -99,6 +100,7 @@
 (defmethod convert [:us :metric :inch] [_ _ q _] (inch->metric q))
 (defmethod convert [:us :metric :pound] [_ _ q _] (pound->metric q))
 (defmethod convert [:us :metric :oz] [_ _ q _] (oz->metric q))
+(defmethod convert [:us :metric :ton] [_ _ q _] (convert-str :ton :metricton q))
 
 (defmethod convert [:us :imperial :cup] [_ _ q _] (convert-str :cup :brcup q))
 (defmethod convert [:us :imperial :floz] [_ _ q _] (convert-str :floz :brfloz q))
@@ -108,6 +110,7 @@
 (defmethod convert [:us :imperial :pint] [_ _ q _] (convert-str :pint :brpint q))
 (defmethod convert [:us :imperial :quart] [_ _ q _] (convert-str :quart :brquart q))
 (defmethod convert [:us :imperial :gill] [_ _ q _] (convert-str :gill :brgill q))
+(defmethod convert [:us :imperial :ton] [_ _ q _] (convert-str :ton :brton q))
 
 ;; Imperial
 (defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q))
@@ -124,6 +127,7 @@
 (defmethod convert [:imperial :metric :inch] [_ _ q _] (inch->metric q))
 (defmethod convert [:imperial :metric :pound] [_ _ q _] (pound->metric q))
 (defmethod convert [:imperial :metric :oz] [_ _ q _] (oz->metric q))
+(defmethod convert [:imperial :metric :ton] [_ _ q _] (convert-str :brton :metricton q))
 
 (defmethod convert [:imperial :us :cup] [_ _ q _] (convert-str :brcup :cup q))
 (defmethod convert [:imperial :us :floz] [_ _ q _] (convert-str :brfloz :floz q))
@@ -133,6 +137,7 @@
 (defmethod convert [:imperial :us :pint] [_ _ q _] (convert-str :brpint :pint q))
 (defmethod convert [:imperial :us :quart] [_ _ q _] (convert-str :brquart :quart q))
 (defmethod convert [:imperial :us :gill] [_ _ q _] (convert-str :brgill :gill q))
+(defmethod convert [:imperial :us :ton] [_ _ q _] (convert-str :brton :ton q))
 
 ;; Metric
 (defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :pint q))
@@ -148,6 +153,7 @@
 (defmethod convert [:metric :us :hg] [_ _ q _] (hg->english q))
 (defmethod convert [:metric :us :g] [_ _ q _] (g->english q))
 (defmethod convert [:metric :us :mg] [_ _ q _] (mg->english q))
+(defmethod convert [:metric :us :ton] [_ _ q _] (convert-str :metricton :ton q))
 
 (defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str :liter :brpint q))
 (defmethod convert [:metric :imperial :dl] [_ _ q _] (convert-str :dl :brcup q))
@@ -162,6 +168,7 @@
 (defmethod convert [:metric :imperial :hg] [_ _ q _] (hg->english q))
 (defmethod convert [:metric :imperial :g] [_ _ q _] (g->english q))
 (defmethod convert [:metric :imperial :mg] [_ _ q _] (mg->english q))
+(defmethod convert [:metric :imperial :ton] [_ _ q _] (convert-str :metricton :brton q))
 
 (defn convert-pounds-ounces [pounds-q _ oz-q _]
   (let [oz-in-pounds (convert-units :oz :pound oz-q)
