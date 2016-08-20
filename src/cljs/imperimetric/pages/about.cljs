@@ -56,7 +56,8 @@
                              {:unit "Teaspoon" :symbols "(teaspoons, tsp)"}
                              {:unit "Gallons" :symbols "(gallons, gal)"}
                              {:unit "Pints" :symbols "(pints, pt)"}
-                             {:unit "Quarts" :symbols "(quarts, qt)"}]]
+                             {:unit "Quarts" :symbols "(quarts, qt)"}
+                             {:unit "Gills" :symbols "(gills)"}]]
     [unit-list-div "Distance" [{:unit "Miles" :symbols "(miles, mi)"}
                                {:unit "Yards" :symbols "(yards, yd)"}
                                {:unit "Feet" :symbols "(foot, feet, ft, ')"}
