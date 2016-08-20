@@ -5,10 +5,13 @@
             [imperimetric.handler :refer [handler]]
             [ring.mock.request :refer [request header]]
             [imperimetric.util :refer [map-all-to]]
+            [frinj.jvm :refer [frinj-init!]]
             [clojure.string :as str]))
 
+(frinj-init!)
+
 (def us-text (str "Four cups sugar, 1 1/2 Fluid Ounces lime, 5 tbsps salt, Twenty-five teaspoons pepper, "
-                  "½ gallon water, three pints beer, 2 quarts milk, nine miles away, 3 yards away, "
+                  "½ gallon water, three pints beer, 2 quarts milk, 2 gill gin, nine miles away, 3 yards away, "
                   "2 1/2 feet away, 2 inches away, 2 pounds and 2 ounces."))
 (def metric-text (str "Four liters sugar, .90 Decilitres lime, 5 cL salt, Twenty-five ml pepper, nine km away, "
                       "9 meters away, 2 centimetres away, 120 millimetre away, 2 kg, 2 hg, 2 Grams, 2 milligrams."))
@@ -37,23 +40,23 @@
 (facts "About conversions from US customary units"
   (fact "Correctly converts to metric"
         (convert-text us-text :us :metric) =>
-        (str "9.46 dl sugar, 4.44 cl lime, 73.9 ml salt, 123 ml pepper, 1.89 l water, 1.42 l beer, 1.89 l milk, 14.5 km"
+        (str "9.46 dl sugar, 4.44 cl lime, 73.9 ml salt, 123 ml pepper, 1.89 l water, 1.42 l beer, 1.89 l milk, 23.7 cl gin, 14.5 km"
              " away, 2.74 m away, 0.762 m away, 5.08 cm away, 0.907 kg and 56.7 g."))
   (fact "Correctly converts to Imperial"
         (convert-text us-text :us :imperial) =>
         (str "3.33 cups sugar, 1.56 fl. oz lime, 4.93 tbsp salt, 24.6 tsp pepper, 0.416 gallons water, 2.50 pints beer, 1.67"
-             " quarts milk, nine miles away, 3 yards away, 2 1/2 feet away, 2 inches away, 2 pounds and 2 ounces.")))
+             " quarts milk, 1.67 gills gin, nine miles away, 3 yards away, 2 1/2 feet away, 2 inches away, 2 pounds and 2 ounces.")))
 
 
 (facts "About conversions from Imperial"
   (fact "Correctly converts to metric"
         (convert-text us-text :imperial :metric) =>
         (str "11.4 dl sugar, 4.26 cl lime, 75 ml salt, 125 ml pepper, 2.27 l water, 1.70 l beer,"
-             " 2.27 l milk, 14.5 km away, 2.74 m away, 0.762 m away, 5.08 cm away, 0.907 kg and 56.7 g."))
+             " 2.27 l milk, 28.4 cl gin, 14.5 km away, 2.74 m away, 0.762 m away, 5.08 cm away, 0.907 kg and 56.7 g."))
   (fact "Correctly converts to US customary units"
         (convert-text us-text :imperial :us) =>
         (str "4.80 cups sugar, 1.44 fl. oz lime, 5.07 tbsp salt, 25.4 tsp pepper, 0.600 gallons water, 3.60 pints beer,"
-             " 2.40 quarts milk, nine miles away, 3 yards away, 2 1/2 feet away, 2 inches away, 2 pounds and 2 ounces.")))
+             " 2.40 quarts milk, 2.40 gills gin, nine miles away, 3 yards away, 2 1/2 feet away, 2 inches away, 2 pounds and 2 ounces.")))
 
 
 (facts "About conversions from metric"

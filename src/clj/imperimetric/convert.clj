@@ -28,7 +28,7 @@
   {:liter  "l" :dl "dl" :cl "cl" :ml "ml" :km "km" :meter "m" :dm "dm" :cm "cm" :mm "mm" :kg "kg" :hg "hg" :g "g" :mg "mg"
    :floz   "fl. oz" :brfloz "fl. oz" :cup "cups" :brcup "cups" :tbsp "tbsp" :brtablespoon "tbsp" :tsp "tsp" :brtsp "tsp"
    :gallon "gallons" :brgallon "gallons" :pint "pints" :brpint "pints" :quart "quarts" :brquart "quarts"
-   :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz"})
+   :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz" :gill "gills" :brgill "gills"})
 
 (defn singular [unit]
   (cond
@@ -92,6 +92,7 @@
 (defmethod convert [:us :metric :gallon] [_ _ q _] (convert-str :gallon :liter q))
 (defmethod convert [:us :metric :pint] [_ _ q _] (convert-str :pint :liter q))
 (defmethod convert [:us :metric :quart] [_ _ q _] (convert-str :quart :liter q))
+(defmethod convert [:us :metric :gill] [_ _ q _] (convert-str :gill :cl q))
 (defmethod convert [:us :metric :mile] [_ _ q _] (mile->metric q))
 (defmethod convert [:us :metric :yard] [_ _ q _] (yard->metric q))
 (defmethod convert [:us :metric :foot] [_ _ q _] (foot->metric q))
@@ -106,6 +107,7 @@
 (defmethod convert [:us :imperial :gallon] [_ _ q _] (convert-str :gallon :brgallon q))
 (defmethod convert [:us :imperial :pint] [_ _ q _] (convert-str :pint :brpint q))
 (defmethod convert [:us :imperial :quart] [_ _ q _] (convert-str :quart :brquart q))
+(defmethod convert [:us :imperial :gill] [_ _ q _] (convert-str :gill :brgill q))
 
 ;; Imperial
 (defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q))
@@ -115,6 +117,7 @@
 (defmethod convert [:imperial :metric :gallon] [_ _ q _] (convert-str :brgallon :liter q))
 (defmethod convert [:imperial :metric :pint] [_ _ q _] (convert-str :brpint :liter q))
 (defmethod convert [:imperial :metric :quart] [_ _ q _] (convert-str :brquart :liter q))
+(defmethod convert [:imperial :metric :gill] [_ _ q _] (convert-str :brgill :cl q))
 (defmethod convert [:imperial :metric :mile] [_ _ q _] (mile->metric q))
 (defmethod convert [:imperial :metric :yard] [_ _ q _] (yard->metric q))
 (defmethod convert [:imperial :metric :foot] [_ _ q _] (foot->metric q))
@@ -129,6 +132,7 @@
 (defmethod convert [:imperial :us :gallon] [_ _ q _] (convert-str :brgallon :gallon q))
 (defmethod convert [:imperial :us :pint] [_ _ q _] (convert-str :brpint :pint q))
 (defmethod convert [:imperial :us :quart] [_ _ q _] (convert-str :brquart :quart q))
+(defmethod convert [:imperial :us :gill] [_ _ q _] (convert-str :brgill :gill q))
 
 ;; Metric
 (defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :pint q))

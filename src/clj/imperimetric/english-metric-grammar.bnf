@@ -1,4 +1,4 @@
-unit = floz | cup | tablespoon | teaspoon | gallon | pint | quart | mile | yard | foot | inch |
+unit = floz | cup | tablespoon | teaspoon | gallon | pint | quart | gill | mile | yard | foot | inch |
 pound | oz
 
 (* Volume *)
@@ -9,6 +9,7 @@ teaspoon = #'(?i)tsps?' | #'(?i)teaspoons?'
 gallon = #'(?i)gallons?' | #'(?i)gals?'
 pint = #'(?i)pints?' | #'(?i)pts?'
 quart = #'(?i)quarts?' | #'(?i)qts?'
+gill = #'(?i)gills?'
 
 (* Distance *)
 mile = #'(?i)miles?' | #'(?i)mi'
