@@ -59,9 +59,11 @@
     [unit-list-div "Distance" [{:unit "Miles" :symbols "(miles, mi)"}
                                {:unit "Yards" :symbols "(yards, yd)"}
                                {:unit "Feet" :symbols "(foot, feet, ft, ')"}
-                               {:unit "Inches" :symbols "(inches, in, \")"}]]
+                               {:unit "Inches" :symbols "(inches, in, \")"}
+                               {:unit "Combined" :symbols "(e.g 6 feet 4 inches, 6'4\")"}]]
     [unit-list-div "Weight" [{:unit "Pounds" :symbols "(pounds, lb)"}
-                             {:unit "Ounces" :symbols "(ounces, oz)"}]]]])
+                             {:unit "Ounces" :symbols "(ounces, oz)"}
+                             {:unit "Combined" :symbols "(e.g 6 pounds 2 ounces, 6lb 2oz)"}]]]])
 
 (defn faq []
   [:div
