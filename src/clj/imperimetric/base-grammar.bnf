@@ -1,7 +1,9 @@
 text = token+
-<token> = combined / measurement / word / whitespace
+<token> = combined / measurement-expr / word / whitespace
 <word> = #'[^\s]+'
+<measurement-expr> = right-paren? measurement
 measurement = quantity <whitespace>* unit <#'(?!\w)'>
+<right-paren> = '('
 <whitespace> = #'\s+'
 <quantity> = mixed | integer | decimal | fraction | numeral
 mixed = integer <whitespace> fraction

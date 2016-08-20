@@ -204,3 +204,5 @@
       nil
       (str/join (insta/transform (transform-map from-system to-system) parsed)))))
 
+(comment
+  (convert-text "(1/4 oz)" :us :metric))

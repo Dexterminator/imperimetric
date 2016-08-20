@@ -36,7 +36,9 @@
         (convert-text "6 feet 4 ½ in tall, weight: 8 lb 3 oz." :us :metric) =>
         "1.94 m tall, weight: 3.71 kg.")
   (fact "Does not try to parse division by zero"
-        (convert-text "1/0 oz." :us :metric) => "1/0 oz."))
+        (convert-text "1/0 oz." :us :metric) => "1/0 oz.")
+  (fact "Converts units in parens"
+        (convert-text "(1/4 oz)" :us :metric) "(7.09 g)"))
 
 
 (facts "About conversions from US customary units"
