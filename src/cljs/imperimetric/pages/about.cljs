@@ -46,7 +46,8 @@
     [unit-list-div "Weight" [{:unit "Kilograms" :symbols "(kilograms, kg)"}
                              {:unit "Hectograms" :symbols "(hectograms, hg)"}
                              {:unit "Grams" :symbols "(grams, g)"}
-                             {:unit "Milligrams" :symbols "(milligrams, mg)"}]]]
+                             {:unit "Milligrams" :symbols "(milligrams, mg)"}
+                             {:unit "Tonnes" :symbols "(tons, tonnes)"}]]]
    [:h3.supported-unit-system "US and Imperial"]
    [:div.supported-units
     [unit-list-div "Volume" [{:unit "Cups" :symbols "(cups, cp)"}
@@ -63,6 +64,7 @@
                                {:unit "Combined" :symbols "(e.g 6 feet 4 inches, 6'4\")"}]]
     [unit-list-div "Weight" [{:unit "Pounds" :symbols "(pounds, lb)"}
                              {:unit "Ounces" :symbols "(ounces, oz)"}
+                             {:unit "Tons" :symbols "(tons)"}
                              {:unit "Combined" :symbols "(e.g 6 pounds 2 ounces, 6lb 2oz)"}]]]])
 
 (defn faq []
@@ -79,6 +81,11 @@
    [:div.faq-answer "A: If the text contains both ounces and fluid ounces, the app assumes that this is because the input text "
     "disambiguates the different types of ounces, meaning that 'ounce' signifies a weight ounce with relatively high probability and should "
     "not be changed into a fluid ounce."]
+   [:div.faq-question "Q: Why arent tons/tonnes behaving as I expect?"]
+   [:div.faq-answer "A: " [:a {:href "https://en.wikipedia.org/wiki/Ton" :target "_blank"} "Tons/tonnes"]
+    " are used differently in different countries, but some uses seem to be more common. "
+    "I use the same conversions as Wikipedia and Google, where an Imperial ton is 2.240 lb, a US ton is 2000 lb and a metric ton "
+    "is 1000 kg."]
    [:div.faq-question "Q: I have a suggestion/I found a bug! Who do I talk to?"]
    [:div.faq-answer
     "A: You can contact " [:a {:href "http://www.dxtr.se" :target "_blank"} "me"] " by email right "
