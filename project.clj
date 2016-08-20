@@ -39,7 +39,7 @@
 
   :profiles
   {:dev
-   {:dependencies []
+   {:dependencies [[midje "1.8.3"]]
 
     :plugins      [[lein-figwheel "0.5.4-3"]
                    [lein-doo "0.1.6"]]
