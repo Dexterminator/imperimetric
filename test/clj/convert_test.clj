@@ -34,7 +34,9 @@
         (convert-text "0.918 m" :metric :us) => "1.00 yard")
   (fact "Combined units result in single correct converted unit"
         (convert-text "6 feet 4 ½ in tall, weight: 8 lb 3 oz." :us :metric) =>
-        "1.94 m tall, weight: 3.71 kg."))
+        "1.94 m tall, weight: 3.71 kg.")
+  (fact "Does not try to parse division by zero"
+        (convert-text "1/0 oz." :us :metric) => "1/0 oz."))
 
 
 (facts "About conversions from US customary units"
