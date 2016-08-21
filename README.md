@@ -7,9 +7,8 @@ Uses [Clojure](http://clojure.org/), [ClojureScript](http://clojurescript.org/),
 
 Libraries that have been very helpful:
 
-[Instaparse](https://github.com/Engelberg/instaparse)
-
-[frinj](https://github.com/martintrojer/frinj)
+- [Instaparse](https://github.com/Engelberg/instaparse)
+- [frinj](https://github.com/martintrojer/frinj)
 
 ## Development Mode
 
