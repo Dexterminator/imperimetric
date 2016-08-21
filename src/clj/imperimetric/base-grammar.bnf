@@ -1,11 +1,14 @@
 text = token+
-<token> = combined / measurement-expr / word / whitespace
+<token> = combined / measurement-expr / interval / word / whitespace
+interval = quantity-no-numeral dash quantity-no-numeral <whitespace>* unit
+<dash> = '-'
 <word> = #'[^\s]+'
 <measurement-expr> = right-paren? measurement
 measurement = quantity <whitespace>* unit <#'(?!\w)'>
 <right-paren> = '('
 <whitespace> = #'\s+'
-<quantity> = mixed | integer | decimal | fraction | numeral
+<quantity> = quantity-no-numeral | numeral
+<quantity-no-numeral> = mixed | integer | decimal | fraction
 mixed = integer <whitespace> fraction
 integer = #'\d+'
 decimal = #'\d+\.\d+' | implicit-zero-decimal

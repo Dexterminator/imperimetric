@@ -29,7 +29,7 @@
    :floz   "fl. oz" :brfloz "fl. oz" :cup "cups" :brcup "cups" :tbsp "tbsp" :brtablespoon "tbsp" :tsp "tsp" :brtsp "tsp"
    :gallon "gallons" :brgallon "gallons" :pint "pints" :brpint "pints" :quart "quarts" :brquart "quarts"
    :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz" :gill "gills" :brgill "gills"
-   :ton "tons" :metricton "tonnes" :brton "tons"})
+   :ton    "tons" :metricton "tonnes" :brton "tons"})
 
 (defn singular [unit]
   (cond
@@ -184,6 +184,9 @@
                      (+ feet-q inches-in-feet))]
     (convert :us :metric total-feet :foot)))
 
+(defn convert-interval [from-system to-system q1 dash q2 unit]
+  (str (convert from-system to-system q1 unit) dash (convert from-system to-system q2 unit)))
+
 (defn transform-map [from-system to-system]
   (merge
     (map-all-to [:integer :fraction] read-string)
@@ -192,6 +195,7 @@
     {:decimal               bigdec
      :text                  str
      :measurement           (partial convert from-system to-system)
+     :interval              (partial convert-interval from-system to-system)
      :unicode-fraction      unicode->fraction
      :implicit-zero-decimal (partial str "0")
      :unit                  first
@@ -204,5 +208,3 @@
       nil
       (str/join (insta/transform (transform-map from-system to-system) parsed)))))
 
-(comment
-  (convert-text "(1/4 oz)" :us :metric))

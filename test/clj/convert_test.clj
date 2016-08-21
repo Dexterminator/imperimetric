@@ -38,7 +38,9 @@
   (fact "Does not try to parse division by zero"
         (convert-text "1/0 oz." :us :metric) => "1/0 oz.")
   (fact "Converts units in parens"
-        (convert-text "(1/4 oz)" :us :metric) "(7.09 g)"))
+        (convert-text "(1/4 oz)" :us :metric) "(7.09 g)")
+  (fact "Converts interval"
+        (convert-text "1-1 1/2 cup, 2-3 tbsps." :us :metric) => "2.37 dl-3.55 dl, 29.6 ml-44.4 ml."))
 
 
 (facts "About conversions from US customary units"
