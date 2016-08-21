@@ -3,7 +3,13 @@
 #### Live at http://www.imperimetric.com/
 
 Webapp for converting texts with some system of measurement to another, such as imperial to metric.
-Uses Clojure, reagent, and re-frame.
+Uses [Clojure](http://clojure.org/), [ClojureScript](http://clojurescript.org/), [Reagent](https://reagent-project.github.io/), and [re-frame](https://github.com/Day8/re-frame).
+
+Libraries that have been very helpful:
+
+[Instaparse](https://github.com/Engelberg/instaparse)
+
+[frinj](https://github.com/martintrojer/frinj)
 
 ## Development Mode
 
@@ -41,10 +47,8 @@ lein midje
 or, to have midje continuously run tests as you edit files:
 ````
 lein clean
-leing midje :autotest
+lein midje :autotest
 ```
-
-The above command assumes that you have [phantomjs](https://www.npmjs.com/package/phantomjs) installed. However, please note that [doo](https://github.com/bensu/doo) can be configured to run cljs.test in many other JS environments (chrome, ie, safari, opera, slimer, node, rhino, or nashorn).
 
 ## Production Build
 
