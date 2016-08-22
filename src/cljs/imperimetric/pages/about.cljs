@@ -66,7 +66,8 @@
     [unit-list-div "Weight" [{:unit "Pounds" :symbols "(pounds, lb)"}
                              {:unit "Ounces" :symbols "(ounces, oz)"}
                              {:unit "Tons" :symbols "(tons)"}
-                             {:unit "Combined" :symbols "(e.g 6 pounds 2 ounces, 6lb 2oz)"}]]]])
+                             {:unit "Combined" :symbols "(e.g 6 pounds 2 ounces, 6lb 2oz)"}]]]
+   [:div "More units (area, temperature, speed) coming soon!"]])
 
 (defn faq []
   [:div
