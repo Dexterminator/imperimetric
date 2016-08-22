@@ -64,26 +64,34 @@
                  (unit->suffix to))]
     (str (.toPlainString converted-quantity) " " suffix)))
 
+(def english-systems #{:us :imperial})
+(def english-units #{:mile :yard :foot :inch :pound :oz})
+(def metric-to-english-units #{:km :m :dm :cm :mm :kg :hg :g :mg})
+
 (defmulti convert
-  (fn [from-system to-system quantity unit] [from-system to-system unit]))
+  (fn [from-system to-system quantity unit]
+    (cond
+      (and (english-systems from-system) (english-units unit)) [:english to-system unit]
+      (and (english-systems to-system) (metric-to-english-units unit)) [from-system :english unit]
+      :else [from-system to-system unit])))
 
-;; Functions used when unit is the same in us and imperial, to avoid duplication
-(defn mile->metric [q] (convert-str :mile :km q))
-(defn yard->metric [q] (convert-str :yard :meter q))
-(defn foot->metric [q] (convert-str :foot :meter q))
-(defn inch->metric [q] (convert-str :inch :cm q))
-(defn pound->metric [q] (convert-str :pound :kg q))
-(defn oz->metric [q] (convert-str :oz :g q))
+;; English units (units that are the same in US and Imperial)
+(defmethod convert [:english :metric :mile] [_ _ q _] (convert-str :mile :km q))
+(defmethod convert [:english :metric :yard] [_ _ q _] (convert-str :yard :meter q))
+(defmethod convert [:english :metric :foot] [_ _ q _] (convert-str :foot :meter q))
+(defmethod convert [:english :metric :inch] [_ _ q _] (convert-str :inch :cm q))
+(defmethod convert [:english :metric :pound] [_ _ q _] (convert-str :pound :kg q))
+(defmethod convert [:english :metric :oz] [_ _ q _] (convert-str :oz :g q))
 
-(defn km->english [q] (convert-str :km :mile q))
-(defn m->english [q] (convert-str :meter :yard q))
-(defn dm->english [q] (convert-str :dm :feet q))
-(defn cm->english [q] (convert-str :cm :inch q))
-(defn mm->english [q] (convert-str :mm :inch q))
-(defn kg->english [q] (convert-str :kg :pound q))
-(defn hg->english [q] (convert-str :hg :oz q))
-(defn g->english [q] (convert-str :g :oz q))
-(defn mg->english [q] (convert-str :mg :oz q))
+(defmethod convert [:metric :english :km] [_ _ q _] (convert-str :km :mile q))
+(defmethod convert [:metric :english :m] [_ _ q _] (convert-str :meter :yard q))
+(defmethod convert [:metric :english :dm] [_ _ q _] (convert-str :dm :feet q))
+(defmethod convert [:metric :english :cm] [_ _ q _] (convert-str :cm :inch q))
+(defmethod convert [:metric :english :mm] [_ _ q _] (convert-str :mm :inch q))
+(defmethod convert [:metric :english :kg] [_ _ q _] (convert-str :kg :pound q))
+(defmethod convert [:metric :english :hg] [_ _ q _] (convert-str :hg :oz q))
+(defmethod convert [:metric :english :g] [_ _ q _] (convert-str :g :oz q))
+(defmethod convert [:metric :english :mg] [_ _ q _] (convert-str :mg :oz q))
 
 ;; US customary units
 (defmethod convert [:us :metric :cup] [_ _ q _] (convert-str :cup :dl q))
@@ -94,12 +102,6 @@
 (defmethod convert [:us :metric :pint] [_ _ q _] (convert-str :pint :liter q))
 (defmethod convert [:us :metric :quart] [_ _ q _] (convert-str :quart :liter q))
 (defmethod convert [:us :metric :gill] [_ _ q _] (convert-str :gill :cl q))
-(defmethod convert [:us :metric :mile] [_ _ q _] (mile->metric q))
-(defmethod convert [:us :metric :yard] [_ _ q _] (yard->metric q))
-(defmethod convert [:us :metric :foot] [_ _ q _] (foot->metric q))
-(defmethod convert [:us :metric :inch] [_ _ q _] (inch->metric q))
-(defmethod convert [:us :metric :pound] [_ _ q _] (pound->metric q))
-(defmethod convert [:us :metric :oz] [_ _ q _] (oz->metric q))
 (defmethod convert [:us :metric :ton] [_ _ q _] (convert-str :ton :metricton q))
 
 (defmethod convert [:us :imperial :cup] [_ _ q _] (convert-str :cup :brcup q))
@@ -121,12 +123,6 @@
 (defmethod convert [:imperial :metric :pint] [_ _ q _] (convert-str :brpint :liter q))
 (defmethod convert [:imperial :metric :quart] [_ _ q _] (convert-str :brquart :liter q))
 (defmethod convert [:imperial :metric :gill] [_ _ q _] (convert-str :brgill :cl q))
-(defmethod convert [:imperial :metric :mile] [_ _ q _] (mile->metric q))
-(defmethod convert [:imperial :metric :yard] [_ _ q _] (yard->metric q))
-(defmethod convert [:imperial :metric :foot] [_ _ q _] (foot->metric q))
-(defmethod convert [:imperial :metric :inch] [_ _ q _] (inch->metric q))
-(defmethod convert [:imperial :metric :pound] [_ _ q _] (pound->metric q))
-(defmethod convert [:imperial :metric :oz] [_ _ q _] (oz->metric q))
 (defmethod convert [:imperial :metric :ton] [_ _ q _] (convert-str :brton :metricton q))
 
 (defmethod convert [:imperial :us :cup] [_ _ q _] (convert-str :brcup :cup q))
@@ -144,30 +140,12 @@
 (defmethod convert [:metric :us :dl] [_ _ q _] (convert-str :dl :cup q))
 (defmethod convert [:metric :us :cl] [_ _ q _] (convert-str :cl :floz q))
 (defmethod convert [:metric :us :ml] [_ _ q _] (convert-str :ml :tsp q))
-(defmethod convert [:metric :us :km] [_ _ q _] (km->english q))
-(defmethod convert [:metric :us :m] [_ _ q _] (m->english q))
-(defmethod convert [:metric :us :dm] [_ _ q _] (dm->english q))
-(defmethod convert [:metric :us :cm] [_ _ q _] (cm->english q))
-(defmethod convert [:metric :us :mm] [_ _ q _] (mm->english q))
-(defmethod convert [:metric :us :kg] [_ _ q _] (kg->english q))
-(defmethod convert [:metric :us :hg] [_ _ q _] (hg->english q))
-(defmethod convert [:metric :us :g] [_ _ q _] (g->english q))
-(defmethod convert [:metric :us :mg] [_ _ q _] (mg->english q))
 (defmethod convert [:metric :us :ton] [_ _ q _] (convert-str :metricton :ton q))
 
 (defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str :liter :brpint q))
 (defmethod convert [:metric :imperial :dl] [_ _ q _] (convert-str :dl :brcup q))
 (defmethod convert [:metric :imperial :cl] [_ _ q _] (convert-str :cl :brfloz q))
 (defmethod convert [:metric :imperial :ml] [_ _ q _] (convert-str :ml :brtsp q))
-(defmethod convert [:metric :imperial :km] [_ _ q _] (km->english q))
-(defmethod convert [:metric :imperial :m] [_ _ q _] (m->english q))
-(defmethod convert [:metric :imperial :dm] [_ _ q _] (dm->english q))
-(defmethod convert [:metric :imperial :cm] [_ _ q _] (cm->english q))
-(defmethod convert [:metric :imperial :mm] [_ _ q _] (mm->english q))
-(defmethod convert [:metric :imperial :kg] [_ _ q _] (kg->english q))
-(defmethod convert [:metric :imperial :hg] [_ _ q _] (hg->english q))
-(defmethod convert [:metric :imperial :g] [_ _ q _] (g->english q))
-(defmethod convert [:metric :imperial :mg] [_ _ q _] (mg->english q))
 (defmethod convert [:metric :imperial :ton] [_ _ q _] (convert-str :metricton :brton q))
 
 (defn convert-pounds-ounces [pounds-q _ oz-q _]
