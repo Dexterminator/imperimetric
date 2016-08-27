@@ -5,16 +5,17 @@
             [imperimetric.handler :refer [handler]]
             [ring.mock.request :refer [request header]]
             [imperimetric.util :refer [map-all-to]]
-            [frinj.jvm :refer [frinj-init!]]
+            [imperimetric.frinj-setup :refer [frinj-setup!]]
             [clojure.string :as str]))
 
-(frinj-init!)
+(frinj-setup!)
 
 (def us-text (str "Four cups sugar, 1 1/2 Fluid Ounces lime, 5 tbsps salt, Twenty-five teaspoons pepper, "
                   "½ gallon water, three pints beer, 2 quarts milk, 2 gill gin, nine miles away, 3 yards away, "
                   "2 1/2 feet away, 2 inches away, 2 pounds, 2 ounces, 4 tons."))
 (def metric-text (str "Four liters sugar, .90 Decilitres lime, 5 cL salt, Twenty-five ml pepper, nine km away, "
-                      "9 meters away, 2 centimetres away, 120 millimetre away, 2 kg, 2 hg, 2 Grams, 2 milligrams, 4 tons."))
+                      "9 meters away, 2 centimetres away, 120 millimetre away, 2 kg, 2 hg, 2 Grams, 2 milligrams,"
+                      " 4 tons, 1 km2, 1 square meter, 5 square dm, 1 sq cm, 1mm^2."))
 
 (facts "About map-all-to"
   (fact "empty vector gives empty map"
@@ -72,12 +73,12 @@
         (convert-text metric-text :metric :us) =>
         (str "8.45 pints sugar, 0.380 cups lime, 1.69 fl. oz salt, 5.07 tsp pepper, 5.59 miles away,"
              " 9.84 yards away, 0.787 inches away, 4.72 inches away, 4.41 pounds, 7.05 oz, 0.0705 oz, 0.0000705 oz,"
-             " 4.41 tons."))
+             " 4.41 tons, 0.386 sq mi, 1.20 sq yd, 0.538 sq ft, 0.155 sq in, 0.00155 sq in."))
   (fact "Correctly converts to Imperial"
         (convert-text metric-text :metric :imperial) =>
         (str "7.04 pints sugar, 0.317 cups lime, 1.76 fl. oz salt, 5 tsp pepper, 5.59 miles"
              " away, 9.84 yards away, 0.787 inches away, 4.72 inches away, 4.41 pounds, 7.05 oz, 0.0705 oz, 0.0000705"
-             " oz, 3.94 tons.")))
+             " oz, 3.94 tons, 0.386 sq mi, 1.20 sq yd, 0.538 sq ft, 0.155 sq in, 0.00155 sq in.")))
 
 
 (facts "About api conversions"

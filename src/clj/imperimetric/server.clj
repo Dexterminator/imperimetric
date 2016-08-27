@@ -1,15 +1,15 @@
 (ns imperimetric.server
   (:require [imperimetric.handler :refer [handler dev-handler]]
             [config.core :refer [env]]
-            [frinj.jvm :refer [frinj-init!]]
+            [imperimetric.frinj-setup :refer [frinj-setup!]]
             [ring.adapter.jetty :refer [run-jetty]])
   (:gen-class))
 
 (defn -main [& args]
-  (frinj-init!)
+  (frinj-setup!)
   (let [port (Integer/parseInt (or (env :port) "3000"))]
     (run-jetty handler {:port port :join? false})))
 
 (defn dev-main []
-  (frinj-init!)
+  (frinj-setup!)
   (run-jetty dev-handler {:port 4000 :join? false}))

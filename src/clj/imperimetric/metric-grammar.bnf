@@ -1,4 +1,4 @@
-unit = l | dl | cl | ml | km | m | dm | cm | mm | kg | hg | g | mg | ton
+unit = l | dl | cl | ml | km | m | dm | cm | mm | kg | hg | g | mg | ton | km2 | m2 | dm2 | cm2 | mm2
 
 (* Volume *)
 l = #'(?i)l' | #'(?i)lit(er|re)s?'
@@ -19,6 +19,13 @@ hg = #'(?i)hg' | #'(?i)hectograms?'
 g = #'(?i)g' | #'(?i)grams?'
 mg = #'(?i)mg' | #'(?i)milligrams?'
 ton = #'(?i)tons?' | #'(?i)tonnes?'
+
+(* Area *)
+km2 = square-prefix <' '> km | km square-suffix
+m2 = square-prefix <' '> m | m square-suffix
+dm2 = square-prefix <' '> dm | dm square-suffix
+cm2 = square-prefix <' '> cm | cm square-suffix
+mm2 = square-prefix <' '> mm | mm square-suffix
 
 (* Combined *)
 <combined> = measurement

@@ -25,3 +25,5 @@ unicode-fraction = '¼' | '½' | '¾' | '⅓' | '⅔' | '⅕' | '⅖'
 base = #'(?i)twenty' | #'(?i)thirty' | #'(?i)forty' | #'(?i)fifty' |
 #'(?i)sixty' | #'(?i)seventy' | #'(?i)eighty' | #'(?i)ninety'
 base-with-suffix = base <'-'?> 1-9
+square-prefix = #'(?i)square' | #'(?i)sq'
+square-suffix = '^2'| '²' | '2'
