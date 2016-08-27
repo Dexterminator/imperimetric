@@ -1,5 +1,5 @@
 unit = floz | cup | tablespoon | teaspoon | gallon | pint | quart | gill | mile | yard | foot | inch |
-pound | oz | ton | sqmile | sqyard | sqfoot | sqinch | acre
+pound | oz | ton | sqmile | sqyard | sqfoot | sqinch | acre |mph|fps
 
 (* Volume *)
 floz = #'(?i)fl\.? ozs?' | #'(?i)fl\.?ozs?' | #'(?i)fluid ounces?'
@@ -28,6 +28,10 @@ sqyard = square-prefix <' '> yard | yard square-suffix
 sqfoot = square-prefix <' '> foot | foot square-suffix
 sqinch = square-prefix <' '> inch | inch square-suffix
 acre = #'(?i)acres?' | #'(?i)ac'
+
+(* Speed *)
+mph = #'(?i)miles per hour'|#'(?i)mph'|'mi/h'
+fps = #'(?i)feet per second'|#'(?i)fps'|'ft/s'
 
 (* Combined *)
 <combined> = pounds-ounces | feet-inches

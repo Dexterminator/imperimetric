@@ -12,4 +12,5 @@
   (add-unit! :sqmile (fj :mile :mile))
   (add-unit! :sqyard (fj :yard :yard))
   (add-unit! :sqfoot (fj :foot :foot))
-  (add-unit! :sqinch (fj :inch :inch)))
+  (add-unit! :sqinch (fj :inch :inch))
+  (add-unit! :mps (fj :m :per :second)))
