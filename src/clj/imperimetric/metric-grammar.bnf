@@ -26,7 +26,7 @@ m2 = square-prefix <' '> m | m square-suffix
 dm2 = square-prefix <' '> dm | dm square-suffix
 cm2 = square-prefix <' '> cm | cm square-suffix
 mm2 = square-prefix <' '> mm | mm square-suffix
-hectare = #'(?i)hectare' | #'(?i)ha'
+hectare = #'(?i)hectares?' | #'(?i)ha'
 
 (* Combined *)
 <combined> = measurement
