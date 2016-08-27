@@ -10,7 +10,7 @@
    :ton    "tons" :metricton "tonnes" :brton "tons" :km2 "km²" :m2 "m²" :dm2 "dm²" :cm2 "cm²", :mm2 "mm²"
    :sqmile "sq mi" :sqyard "sq yd" :sqfoot "sq ft" :sqinch "sq in" :hectare "hectares" :acre "acres"})
 
-(def s-suffix-units #{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard})
+(def s-suffix-units #{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard :hectare :acre})
 
 (defn- singular [unit]
   (cond
