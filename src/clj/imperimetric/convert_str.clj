@@ -10,10 +10,12 @@
    :ton    "tons" :metricton "tonnes" :brton "tons" :km2 "km²" :m2 "m²" :dm2 "dm²" :cm2 "cm²", :mm2 "mm²"
    :sqmile "sq mi" :sqyard "sq yd" :sqfoot "sq ft" :sqinch "sq in"})
 
+(def s-suffix-units #{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard})
+
 (defn- singular [unit]
   (cond
-    (#{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard} unit) (let [suffix (unit->suffix unit)]
-                                                                                        (subs suffix 0 (dec (count suffix))))
+    (s-suffix-units unit) (let [suffix (unit->suffix unit)]
+                            (subs suffix 0 (dec (count suffix))))
     (= :foot unit) "foot"
     :else (unit->suffix unit)))
 
