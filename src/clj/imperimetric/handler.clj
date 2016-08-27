@@ -7,7 +7,7 @@
             [ring.util.response :refer [resource-response]]
             [ring.util.codec :refer [url-decode url-encode]]
             [ring.middleware.reload :refer [wrap-reload]]
-            [imperimetric.convert :refer [convert-text]]
+            [imperimetric.convert.core :refer [convert-text]]
             [medley.core :refer [map-keys]]
             [cheshire.core :as json]))
 

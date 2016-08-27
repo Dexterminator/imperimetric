@@ -1,6 +1,6 @@
-(ns imperimetric.system-conversions
-  (:require [imperimetric.precision :refer [significant-digits default-precision]]
-            [imperimetric.convert-str :refer [convert-str convert-units]]))
+(ns imperimetric.convert.system-conversions
+  (:require [imperimetric.convert.precision :refer [significant-digits default-precision]]
+            [imperimetric.convert.convert-str :refer [convert-str convert-units]]))
 
 (def english-systems #{:us :imperial})
 (def english-units #{:mile :yard :foot :inch :pound :oz :sqmile :sqyard :sqfoot :sqinch :acre})

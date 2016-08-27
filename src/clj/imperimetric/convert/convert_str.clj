@@ -1,5 +1,5 @@
-(ns imperimetric.convert-str
-  (:require [imperimetric.precision :refer [significant-digits default-precision]]
+(ns imperimetric.convert.convert-str
+  (:require [imperimetric.convert.precision :refer [significant-digits default-precision]]
             [frinj.ops :refer [fj to]]))
 
 (def unit->suffix

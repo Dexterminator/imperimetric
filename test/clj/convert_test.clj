@@ -1,7 +1,7 @@
 (ns clj.convert-test
-  (:require [clojure.test :refer :all]
-            [midje.sweet :refer :all]
-            [imperimetric.convert :refer [convert-text parse-text]]
+  (:require [midje.sweet :refer :all]
+            [imperimetric.convert.core :refer [convert-text]]
+            [imperimetric.convert.parser :refer [parse-text]]
             [imperimetric.handler :refer [handler]]
             [ring.mock.request :refer [request header]]
             [imperimetric.util :refer [map-all-to]]

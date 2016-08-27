@@ -1,4 +1,4 @@
-(ns imperimetric.precision)
+(ns imperimetric.convert.precision)
 
 (def default-precision 3)
 
