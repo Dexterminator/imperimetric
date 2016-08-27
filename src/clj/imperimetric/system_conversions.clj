@@ -3,7 +3,7 @@
             [imperimetric.convert-str :refer [convert-str convert-units]]))
 
 (def english-systems #{:us :imperial})
-(def english-units #{:mile :yard :foot :inch :pound :oz})
+(def english-units #{:mile :yard :foot :inch :pound :oz :sqmile :sqyard :sqfoot :sqinch})
 (def metric-to-english-units #{:km :m :dm :cm :mm :kg :hg :g :mg :km2 :m2 :dm2 :cm2 :mm2})
 
 (defmulti convert
@@ -20,6 +20,10 @@
 (defmethod convert [:english :metric :inch] [_ _ q _] (convert-str :inch :cm q))
 (defmethod convert [:english :metric :pound] [_ _ q _] (convert-str :pound :kg q))
 (defmethod convert [:english :metric :oz] [_ _ q _] (convert-str :oz :g q))
+(defmethod convert [:english :metric :sqmile] [_ _ q _] (convert-str :sqmile :km2 q))
+(defmethod convert [:english :metric :sqyard] [_ _ q _] (convert-str :sqyard :m2 q))
+(defmethod convert [:english :metric :sqfoot] [_ _ q _] (convert-str :sqfoot :cm2 q))
+(defmethod convert [:english :metric :sqinch] [_ _ q _] (convert-str :sqinch :cm2 q))
 
 (defmethod convert [:metric :english :km] [_ _ q _] (convert-str :km :mile q))
 (defmethod convert [:metric :english :m] [_ _ q _] (convert-str :meter :yard q))
