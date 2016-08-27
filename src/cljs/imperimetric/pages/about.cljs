@@ -53,7 +53,9 @@
                            {:unit "Square decimeters" :symbols "(dm², dm^2, dm2, square decimeters, sq dm)"}
                            {:unit "Square centimeters" :symbols "(cm², cm^2, cm2, square centimeters, sq cm)"}
                            {:unit "Square millimeters" :symbols "(mm², mm^2, mm2, square millimeters, sq mm)"}
-                           {:unit "Hectares" :symbols "(hectares, ha)"}]]]
+                           {:unit "Hectares" :symbols "(hectares, ha)"}]]
+    [unit-list-div "Speed" [{:unit "Kilometers per hour" :symbols "(kilometers per hour, km/h, kmh, kph)"}
+                            {:unit "Meters per second" :symbols "(meters per second, m/s)"}]]]
    [:h3.supported-unit-system "US and Imperial"]
    [:div.supported-units
     [unit-list-div "Volume" [{:unit "Cups" :symbols "(cups, cp)"}
@@ -77,8 +79,10 @@
                            {:unit "Square yards" :symbols "(square yards, sq yd, yd², yd^2, yd2)"}
                            {:unit "Square feet" :symbols "(square feet, sq ft, ft², ft^2, ft2)"}
                            {:unit "Square inches" :symbols "(square inches, sq in, in², in^2, in2)"}
-                           {:unit "Acres" :symbols "(acres, ac)"}]]]
-   [:div "More units (temperature, speed) coming soon!"]])
+                           {:unit "Acres" :symbols "(acres, ac)"}]]
+    [unit-list-div "Speed" [{:unit "Miles per hour" :symbols "(miles per hour, mph, mi/h)"}
+                            {:unit "Feet per second" :symbols "(feet per second, ft/s, fps)"}]]]
+   [:div "More units coming soon!"]])
 
 (defn faq []
   [:div
