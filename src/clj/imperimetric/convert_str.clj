@@ -8,7 +8,7 @@
    :gallon "gallons" :brgallon "gallons" :pint "pints" :brpint "pints" :quart "quarts" :brquart "quarts"
    :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz" :gill "gills" :brgill "gills"
    :ton    "tons" :metricton "tonnes" :brton "tons" :km2 "km²" :m2 "m²" :dm2 "dm²" :cm2 "cm²", :mm2 "mm²"
-   :sqmile "sq mi" :sqyard "sq yd" :sqfoot "sq ft" :sqinch "sq in"})
+   :sqmile "sq mi" :sqyard "sq yd" :sqfoot "sq ft" :sqinch "sq in" :hectare "hectares" :acre "acres"})
 
 (def s-suffix-units #{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard})
 

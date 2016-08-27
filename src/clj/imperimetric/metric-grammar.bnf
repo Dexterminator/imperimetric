@@ -1,4 +1,4 @@
-unit = l | dl | cl | ml | km | m | dm | cm | mm | kg | hg | g | mg | ton | km2 | m2 | dm2 | cm2 | mm2
+unit = l | dl | cl | ml | km | m | dm | cm | mm | kg | hg | g | mg | ton | km2 | m2 | dm2 | cm2 | mm2 | hectare
 
 (* Volume *)
 l = #'(?i)l' | #'(?i)lit(er|re)s?'
@@ -26,6 +26,7 @@ m2 = square-prefix <' '> m | m square-suffix
 dm2 = square-prefix <' '> dm | dm square-suffix
 cm2 = square-prefix <' '> cm | cm square-suffix
 mm2 = square-prefix <' '> mm | mm square-suffix
+hectare = #'(?i)hectare' | #'(?i)ha'
 
 (* Combined *)
 <combined> = measurement

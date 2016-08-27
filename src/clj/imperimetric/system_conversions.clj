@@ -3,8 +3,8 @@
             [imperimetric.convert-str :refer [convert-str convert-units]]))
 
 (def english-systems #{:us :imperial})
-(def english-units #{:mile :yard :foot :inch :pound :oz :sqmile :sqyard :sqfoot :sqinch})
-(def metric-to-english-units #{:km :m :dm :cm :mm :kg :hg :g :mg :km2 :m2 :dm2 :cm2 :mm2})
+(def english-units #{:mile :yard :foot :inch :pound :oz :sqmile :sqyard :sqfoot :sqinch :acre})
+(def metric-to-english-units #{:km :m :dm :cm :mm :kg :hg :g :mg :km2 :m2 :dm2 :cm2 :mm2 :hectare})
 
 (defmulti convert
   (fn [from-system to-system quantity unit]
@@ -24,6 +24,7 @@
 (defmethod convert [:english :metric :sqyard] [_ _ q _] (convert-str :sqyard :m2 q))
 (defmethod convert [:english :metric :sqfoot] [_ _ q _] (convert-str :sqfoot :cm2 q))
 (defmethod convert [:english :metric :sqinch] [_ _ q _] (convert-str :sqinch :cm2 q))
+(defmethod convert [:english :metric :acre] [_ _ q _] (convert-str :acre :hectare q))
 
 (defmethod convert [:metric :english :km] [_ _ q _] (convert-str :km :mile q))
 (defmethod convert [:metric :english :m] [_ _ q _] (convert-str :meter :yard q))
@@ -39,6 +40,7 @@
 (defmethod convert [:metric :english :dm2] [_ _ q _] (convert-str :dm2 :sqfoot q))
 (defmethod convert [:metric :english :cm2] [_ _ q _] (convert-str :cm2 :sqinch q))
 (defmethod convert [:metric :english :mm2] [_ _ q _] (convert-str :mm2 :sqinch q))
+(defmethod convert [:metric :english :hectare] [_ _ q _] (convert-str :hectare :acre q))
 
 ;; US customary units
 (defmethod convert [:us :metric :cup] [_ _ q _] (convert-str :cup :dl q))
