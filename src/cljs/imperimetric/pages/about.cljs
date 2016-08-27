@@ -47,7 +47,13 @@
                              {:unit "Hectograms" :symbols "(hectograms, hg)"}
                              {:unit "Grams" :symbols "(grams, g)"}
                              {:unit "Milligrams" :symbols "(milligrams, mg)"}
-                             {:unit "Tonnes" :symbols "(tons, tonnes)"}]]]
+                             {:unit "Tonnes" :symbols "(tons, tonnes)"}]]
+    [unit-list-div "Area" [{:unit "Square kilometers" :symbols "(km², km^2, km2, square kilometers, sq km)"}
+                           {:unit "Square meters" :symbols "(m², m^2, m2, square meters, sq m)"}
+                           {:unit "Square decimeters" :symbols "(dm², dm^2, dm2, square decimeters, sq dm)"}
+                           {:unit "Square centimeters" :symbols "(cm², cm^2, cm2, square centimeters, sq cm)"}
+                           {:unit "Square millimeters" :symbols "(mm², mm^2, mm2, square millimeters, sq mm)"}
+                           {:unit "Hectares" :symbols "(hectares, ha)"}]]]
    [:h3.supported-unit-system "US and Imperial"]
    [:div.supported-units
     [unit-list-div "Volume" [{:unit "Cups" :symbols "(cups, cp)"}
@@ -66,8 +72,13 @@
     [unit-list-div "Weight" [{:unit "Pounds" :symbols "(pounds, lb)"}
                              {:unit "Ounces" :symbols "(ounces, oz)"}
                              {:unit "Tons" :symbols "(tons)"}
-                             {:unit "Combined" :symbols "(e.g 6 pounds 2 ounces, 6lb 2oz)"}]]]
-   [:div "More units (area, temperature, speed) coming soon!"]])
+                             {:unit "Combined" :symbols "(e.g 6 pounds 2 ounces, 6lb 2oz)"}]]
+    [unit-list-div "Area" [{:unit "Square miles" :symbols "(square miles, sq mi, mi², mi^2, mi2)"}
+                           {:unit "Square yards" :symbols "(square yards, sq yd, yd², yd^2, yd2)"}
+                           {:unit "Square feet" :symbols "(square feet, sq ft, ft², ft^2, ft2)"}
+                           {:unit "Square inches" :symbols "(square inches, sq in, in², in^2, in2)"}
+                           {:unit "Acres" :symbols "(acres, ac)"}]]]
+   [:div "More units (temperature, speed) coming soon!"]])
 
 (defn faq []
   [:div
