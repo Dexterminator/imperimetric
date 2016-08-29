@@ -9,7 +9,7 @@
    :mile   "miles" :yard "yards" :foot "feet" :inch "inches" :pound "pounds" :oz "oz" :gill "gills" :brgill "gills"
    :ton    "tons" :metricton "tonnes" :brton "tons" :km2 "km²" :m2 "m²" :dm2 "dm²" :cm2 "cm²", :mm2 "mm²"
    :sqmile "sq mi" :sqyard "sq yd" :sqfoot "sq ft" :sqinch "sq in" :hectare "hectares" :acre "acres" :kph "km/h"
-   :mph    "mph" :fps "ft/s" :mps "m/s"})
+   :mph    "mph" :fps "ft/s" :mps "m/s" :celsius "°C" :fahrenheit "°F"})
 
 (def s-suffix-units #{:cup :brcup :gallon :brgallon :pint :brpint :quart :brquart :mile :yard :hectare :acre})
 
@@ -20,15 +20,25 @@
     (= :foot unit) "foot"
     :else (unit->suffix unit)))
 
+(defn celsius->fahrenheit [q]
+  (bigdec (+ 32 (* q 9/5))))
+
+(defn fahrenheit->celsius [q]
+  (bigdec (* 5/9 (- q 32))))
+
 (defn convert-units [from-unit to-unit q]
   (let [q (rationalize q)
         digits (significant-digits q)
         precision (if (> digits default-precision) digits default-precision)]
-    (with-precision precision (bigdec (:v (-> (fj q from-unit) (to to-unit)))))))
+    (with-precision precision
+      (case from-unit
+        :celsius (celsius->fahrenheit q)
+        :fahrenheit (fahrenheit->celsius q)
+        (-> (fj q from-unit) (to to-unit) :v bigdec)))))
 
 (defn convert-str [from to quantity]
   (let [converted-quantity (convert-units from to quantity)
         suffix (if (= 1M converted-quantity)
                  (singular to)
                  (unit->suffix to))]
-    (str (.toPlainString converted-quantity) " " suffix)))
+    (str (.toPlainString converted-quantity) (if-not (#{:celsius :fahrenheit} from) " ") suffix)))

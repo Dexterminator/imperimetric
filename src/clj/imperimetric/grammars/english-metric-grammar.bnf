@@ -1,5 +1,5 @@
 unit = floz | cup | tablespoon | teaspoon | gallon | pint | quart | gill | mile | yard | foot | inch |
-pound | oz | ton | sqmile | sqyard | sqfoot | sqinch | acre |mph|fps
+pound | oz | ton | sqmile | sqyard | sqfoot | sqinch | acre | mph | fps | fahrenheit
 
 (* Volume *)
 floz = #'(?i)fl\.? ozs?' | #'(?i)fl\.?ozs?' | #'(?i)fluid ounces?'
@@ -32,6 +32,11 @@ acre = #'(?i)acres?' | #'(?i)ac'
 (* Speed *)
 mph = #'(?i)miles per hour'|#'(?i)mph'|'mi/h'
 fps = #'(?i)feet per second'|#'(?i)fps'|'ft/s'
+
+(* Temperature *)
+fahrenheit = degree-prefix <' '>? degree-suffix
+<degree-prefix> = #'(?i)degrees?' | #'(?i)deg' | '°'
+<degree-suffix> = #'(?i)fahrenheit' | #'(?i)F'
 
 (* Combined *)
 <combined> = pounds-ounces | feet-inches

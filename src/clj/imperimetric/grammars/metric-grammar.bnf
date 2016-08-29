@@ -1,4 +1,4 @@
-unit = l | dl | cl | ml | km | m | dm | cm | mm | kg | hg | g | mg | ton | km2 | m2 | dm2 | cm2 | mm2 | hectare | kph| mps
+unit = l | dl | cl | ml | km | m | dm | cm | mm | kg | hg | g | mg | ton | km2 | m2 | dm2 | cm2 | mm2 | hectare | kph| mps | celsius
 
 (* Volume *)
 l = #'(?i)l' | #'(?i)lit(er|re)s?'
@@ -31,6 +31,11 @@ hectare = #'(?i)hectares?' | #'(?i)ha'
 (* Speed *)
 kph = #'(?i)kilomet(er|re)s per hour' | #'(?i)km/h' | #'(?i)kph' | #'(?i)kmh'
 mps = #'(?i)met(er|re) per second' | 'm/s'
+
+(* Temperature *)
+celsius = degree-prefix <' '>? degree-suffix
+<degree-prefix> = #'(?i)degrees?'|#'(?i)deg'|'°'
+<degree-suffix> = #'(?i)celsius'|#'(?i)centigrade'|#'(?i)C'
 
 (* Combined *)
 <combined> = measurement
