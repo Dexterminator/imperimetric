@@ -47,7 +47,7 @@
 (defmethod convert [:metric :english :mps] [_ _ q _] (convert-str :mps :fps q))
 
 ;; US customary units
-(defmethod convert [:us :metric :cup] [_ _ q _] (convert-str :cup :dl q))
+(defmethod convert [:us :metric :cup] [_ _ q _] (convert-str :cup :ml q))
 (defmethod convert [:us :metric :floz] [_ _ q _] (convert-str :floz :cl q))
 (defmethod convert [:us :metric :tablespoon] [_ _ q _] (convert-str :tbsp :ml q))
 (defmethod convert [:us :metric :teaspoon] [_ _ q _] (convert-str :tsp :ml q))
@@ -68,7 +68,7 @@
 (defmethod convert [:us :imperial :ton] [_ _ q _] (convert-str :ton :brton q))
 
 ;; Imperial
-(defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :dl q))
+(defmethod convert [:imperial :metric :cup] [_ _ q _] (convert-str :brcup :ml q))
 (defmethod convert [:imperial :metric :floz] [_ _ q _] (convert-str :brfloz :cl q))
 (defmethod convert [:imperial :metric :tablespoon] [_ _ q _] (convert-str :brtablespoon :ml q))
 (defmethod convert [:imperial :metric :teaspoon] [_ _ q _] (convert-str :brtsp :ml q))

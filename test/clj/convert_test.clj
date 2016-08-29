@@ -42,13 +42,13 @@
   (fact "Converts units in parens"
     (convert-text "(1/4 oz)" :us :metric) "(7.09 g)")
   (fact "Converts interval"
-    (convert-text "1-1 1/2 cup, 2-3 tbsps." :us :metric) => "2.37 dl-3.55 dl, 29.6 ml-44.4 ml."))
+    (convert-text "1-1 1/2 cup, 2-3 tbsps." :us :metric) => "237 ml-355 ml, 29.6 ml-44.4 ml."))
 
 
 (facts "About conversions from US customary units"
   (fact "Correctly converts to metric"
     (convert-text us-text :us :metric) =>
-    (str "9.46 dl sugar, 4.44 cl lime, 73.9 ml salt, 123 ml pepper, 1.89 l water, 1.42 l beer, 1.89 l milk, 23.7 cl"
+    (str "946 ml sugar, 4.44 cl lime, 73.9 ml salt, 123 ml pepper, 1.89 l water, 1.42 l beer, 1.89 l milk, 23.7 cl"
          " gin, 14.5 km away, 2.74 m away, 0.762 m away, 5.08 cm away, 0.907 kg, 56.7 g, 3.63 tonnes,"
          " 2.59 km², 0.836 m², 0.0929 m², 6.45 cm², 0.405 hectares, 1.61 km/h, 0.305 m/s."))
   (fact "Correctly converts to Imperial"
@@ -61,7 +61,7 @@
 (facts "About conversions from Imperial"
   (fact "Correctly converts to metric"
     (convert-text us-text :imperial :metric) =>
-    (str "11.4 dl sugar, 4.26 cl lime, 75 ml salt, 125 ml pepper, 2.27 l water, 1.70 l beer,"
+    (str "1140 ml sugar, 4.26 cl lime, 75 ml salt, 125 ml pepper, 2.27 l water, 1.70 l beer,"
          " 2.27 l milk, 28.4 cl gin, 14.5 km away, 2.74 m away, 0.762 m away, 5.08 cm away, 0.907 kg, 56.7 g,"
          " 4.06 tonnes, 2.59 km², 0.836 m², 0.0929 m², 6.45 cm², 0.405 hectares, 1.61 km/h, 0.305 m/s."))
   (fact "Correctly converts to US customary units"
