@@ -20,7 +20,7 @@
     "Instead of you having to convert from cups to deciliters or the other way around, "
     [:span#app-name-text "imperimetric"]
     (str " aims to convert the whole text automatically. For example, \"2 cups milk "
-         "and 4 tablespoons sugar\" becomes \"4.73 dl milk and 59.1 ml sugar\".")]])
+         "and 4 tablespoons sugar\" becomes \"473 ml milk and 59.1 ml sugar\".")]])
 
 (defn unit-list-div [title units]
   [:div.unit-list
