@@ -22,7 +22,7 @@
 (defmethod convert [:english :metric :oz] [_ _ q _] (convert-str :oz :g q))
 (defmethod convert [:english :metric :sqmile] [_ _ q _] (convert-str :sqmile :km2 q))
 (defmethod convert [:english :metric :sqyard] [_ _ q _] (convert-str :sqyard :m2 q))
-(defmethod convert [:english :metric :sqfoot] [_ _ q _] (convert-str :sqfoot :cm2 q))
+(defmethod convert [:english :metric :sqfoot] [_ _ q _] (convert-str :sqfoot :m2 q))
 (defmethod convert [:english :metric :sqinch] [_ _ q _] (convert-str :sqinch :cm2 q))
 (defmethod convert [:english :metric :acre] [_ _ q _] (convert-str :acre :hectare q))
 (defmethod convert [:english :metric :mph] [_ _ q _] (convert-str :mph :kph q))
