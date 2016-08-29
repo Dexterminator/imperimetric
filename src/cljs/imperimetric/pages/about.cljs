@@ -112,7 +112,7 @@
    [:div.faq-answer "A: Yes, the code is on " [:a {:href "https://github.com/Dexterminator/imperimetric" :target "_blank"} "GitHub"] "."]])
 
 (defn about []
-  [:div
+  [:div.about
    [motivation]
    [supported-units]
    [faq]])
