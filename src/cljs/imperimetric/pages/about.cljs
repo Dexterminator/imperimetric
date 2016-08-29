@@ -55,7 +55,8 @@
                            {:unit "Square millimeters" :symbols "(mm², mm^2, mm2, square millimeters, sq mm)"}
                            {:unit "Hectares" :symbols "(hectares, ha)"}]]
     [unit-list-div "Speed" [{:unit "Kilometers per hour" :symbols "(kilometers per hour, km/h, kmh, kph)"}
-                            {:unit "Meters per second" :symbols "(meters per second, m/s)"}]]]
+                            {:unit "Meters per second" :symbols "(meters per second, m/s)"}]]
+    [unit-list-div "Temperature" [{:unit "Degrees Celsius" :symbols "(°C, degrees Celsius, degrees centigrade, deg C)"}]]]
    [:h3.supported-unit-system "US and Imperial"]
    [:div.supported-units
     [unit-list-div "Volume" [{:unit "Cups" :symbols "(cups, cp)"}
@@ -81,8 +82,8 @@
                            {:unit "Square inches" :symbols "(square inches, sq in, in², in^2, in2)"}
                            {:unit "Acres" :symbols "(acres, ac)"}]]
     [unit-list-div "Speed" [{:unit "Miles per hour" :symbols "(miles per hour, mph, mi/h)"}
-                            {:unit "Feet per second" :symbols "(feet per second, ft/s, fps)"}]]]
-   [:div "More units coming soon!"]])
+                            {:unit "Feet per second" :symbols "(feet per second, ft/s, fps)"}]]
+    [unit-list-div "Temperature" [{:unit "Degrees Fahrenheit" :symbols "(°F, degrees Fahrenheit, deg F)"}]]]])
 
 (defn faq []
   [:div
