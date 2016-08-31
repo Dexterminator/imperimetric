@@ -103,19 +103,12 @@
 (defmethod convert [:metric :imperial :ml] [_ _ q _] (convert-str :ml :brtsp q))
 (defmethod convert [:metric :imperial :ton] [_ _ q _] (convert-str :metricton :brton q))
 
-(defn convert-pounds-ounces [pounds-q _ oz-q _]
-  (let [oz-in-pounds (convert-units :oz :pound oz-q)
-        total-pounds (with-precision
-                       (max (significant-digits pounds-q) (significant-digits oz-q) default-precision)
-                       (+ pounds-q oz-in-pounds))]
-    (convert :us :metric total-pounds :pound)))
-
-(defn convert-feet-inches [feet-q _ inch-q _]
-  (let [inches-in-feet (convert-units :inch :foot inch-q)
-        total-feet (with-precision
-                     (max (significant-digits feet-q) (significant-digits inch-q) default-precision)
-                     (+ feet-q inches-in-feet))]
-    (convert :us :metric total-feet :foot)))
+(defn convert-combined [larger-unit-q [larger-unit _] smaller-unit-q [smaller-unit _]]
+  (let [smaller-in-larger (convert-units smaller-unit larger-unit smaller-unit-q)
+        total (with-precision
+                     (max (significant-digits larger-unit-q) (significant-digits smaller-unit-q) default-precision)
+                     (+ larger-unit-q smaller-in-larger))]
+    (convert :english :metric total larger-unit)))
 
 (defn convert-interval [from-system to-system q1 dash q2 unit]
   (str (convert from-system to-system q1 unit) dash (convert from-system to-system q2 unit)))

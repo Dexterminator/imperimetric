@@ -1,7 +1,7 @@
 (ns imperimetric.convert.core
   (:require [clojure.string :as str]
             [imperimetric.util :refer [map-all-to]]
-            [imperimetric.convert.system-conversions :refer [convert convert-pounds-ounces convert-feet-inches convert-interval]]
+            [imperimetric.convert.system-conversions :refer [convert convert-combined convert-interval]]
             [imperimetric.convert.precision :refer [significant-digits default-precision]]
             [imperimetric.convert.parser :refer [parse-text]]
             [instaparse.core :as insta]))
@@ -27,8 +27,8 @@
      :unicode-fraction      unicode->fraction
      :implicit-zero-decimal (partial str "0")
      :unit                  first
-     :pounds-ounces         convert-pounds-ounces
-     :feet-inches           convert-feet-inches}))
+     :pounds-ounces         convert-combined
+     :feet-inches           convert-combined}))
 
 (defn convert-text [text from-system to-system]
   (let [parsed (parse-text text from-system to-system)]
