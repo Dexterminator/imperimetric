@@ -34,7 +34,7 @@ mph = #'(?i)miles per hour'|#'(?i)mph'|'mi/h'
 fps = #'(?i)feet per second'|#'(?i)fps'|'ft/s'
 
 (* Temperature *)
-fahrenheit = degree-prefix <' '>? degree-suffix
+fahrenheit = degree-prefix <' '>? degree-suffix | degree-suffix
 <degree-prefix> = #'(?i)degrees?' | #'(?i)deg' | '°'
 <degree-suffix> = #'(?i)fahrenheit' | #'(?i)F'
 
