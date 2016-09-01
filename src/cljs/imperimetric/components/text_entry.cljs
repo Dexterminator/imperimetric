@@ -13,7 +13,6 @@
 (defn text-entry []
   (let [text (subscribe [:text])
         from-system (subscribe [:from-system])]
-    (prn from-system)
     (fn []
       [:textarea#text-entry {:max-length  "2800"
                              :placeholder (if (= :metric @from-system)
