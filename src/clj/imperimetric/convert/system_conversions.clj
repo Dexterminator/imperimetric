@@ -106,8 +106,8 @@
 (defn convert-combined [larger-unit-q [larger-unit _] smaller-unit-q [smaller-unit _]]
   (let [smaller-in-larger (convert-units smaller-unit larger-unit smaller-unit-q)
         total (with-precision
-                     (max (significant-digits larger-unit-q) (significant-digits smaller-unit-q) default-precision)
-                     (+ larger-unit-q smaller-in-larger))]
+                (max (significant-digits larger-unit-q) (significant-digits smaller-unit-q) default-precision)
+                (+ larger-unit-q smaller-in-larger))]
     (convert :english :metric total larger-unit)))
 
 (defn convert-interval [from-system to-system q1 dash q2 unit]

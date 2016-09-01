@@ -27,8 +27,7 @@
      :unicode-fraction      unicode->fraction
      :implicit-zero-decimal (partial str "0")
      :unit                  first
-     :pounds-ounces         convert-combined
-     :feet-inches           convert-combined}))
+     :combined              convert-combined}))
 
 (defn convert-text [text from-system to-system]
   (let [parsed (parse-text text from-system to-system)]

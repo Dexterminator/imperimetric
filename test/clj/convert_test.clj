@@ -17,6 +17,8 @@
 (def metric-text (str "Four liters sugar, .90 Decilitres lime, 5 cL salt, Twenty-five ml pepper, nine km away, "
                       "9 meters away, 2 centimetres away, 120 millimetre away, 2 kg, 2 hg, 2 Grams, 2 milligrams,"
                       " 4 tons, 1 km2, 1 square meter, 5 square dm, 1 sq cm, 1mm^2, 1 hectare, 1 km/h, 1 m/s, 30°C."))
+(def combined-text (str "1 mile 100 yards, 1mile 1 foot, 1 mile 1 inch, 1 yard 1 foot, 1 yard 1 inch,"
+                        " 6 feet 4 ½ in tall, weight: 8 lb 3 oz."))
 
 (facts "About map-all-to"
   (fact "empty vector gives empty map"
@@ -34,9 +36,6 @@
     (convert-text "42195 m, 42.195 km" :metric :us) => "46145 yards, 26.219 miles")
   (fact "Conversions which result in exactly 1 use singular units"
     (convert-text "0.918 m" :metric :us) => "1.00 yard")
-  (fact "Combined units result in single correct converted unit"
-    (convert-text "6 feet 4 ½ in tall, weight: 8 lb 3 oz." :us :metric) =>
-    "1.94 m tall, weight: 3.71 kg.")
   (fact "Does not try to parse division by zero"
     (convert-text "1/0 oz." :us :metric) => "1/0 oz.")
   (fact "Converts units in parens"
@@ -84,6 +83,11 @@
          " away, 9.84 yards away, 0.787 inches away, 4.72 inches away, 4.41 pounds, 7.05 oz, 0.0705 oz, 0.0000705"
          " oz, 3.94 tons, 0.386 sq mi, 1.20 sq yd, 0.538 sq ft, 0.155 sq in, 0.00155 sq in, 2.47 acres, 0.621 mph,"
          " 3.28 ft/s, 86°F.")))
+
+(facts "About combined units"
+  (fact "Combined units result in single correct converted unit"
+    (convert-text combined-text :us :metric) =>
+    "1.71 km, 1.61 km, 1.61 km, 1.22 m, 0.942 m, 1.94 m tall, weight: 3.71 kg."))
 
 
 (facts "About api conversions"

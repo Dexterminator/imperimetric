@@ -39,6 +39,10 @@ fahrenheit = degree-prefix <' '>? degree-suffix
 <degree-suffix> = #'(?i)fahrenheit' | #'(?i)F'
 
 (* Combined *)
-<combined> = pounds-ounces | feet-inches
-pounds-ounces = quantity <' '>? pound <' '>? quantity <' '>? oz
-feet-inches = quantity <' '>? foot <' '>? quantity <' '>? inch
+combined = pounds-ounces | mile-lower | yard-lower | feet-inches
+<mile-lower> = quantity <' '>? mile <' '>? quantity <' '>? lower-than-mile
+<lower-than-mile> = yard | foot | inch
+<yard-lower> = quantity <' '>? yard <' '>? quantity <' '>? lower-than-yard
+<lower-than-yard> = foot | inch
+<pounds-ounces> = quantity <' '>? pound <' '>? quantity <' '>? oz
+<feet-inches> = quantity <' '>? foot <' '>? quantity <' '>? inch
