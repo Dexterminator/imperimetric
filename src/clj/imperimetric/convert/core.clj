@@ -20,13 +20,14 @@
     (map-all-to [:integer :fraction] read-string)
     (map-all-to [:1-9 :10-19 :base] (comp numeral->int str/lower-case))
     (map-all-to [:base-with-suffix :mixed] +)
+    (map-all-to [:unit :temperature] first)
     {:decimal               bigdec
+     :negative-quantity     -
      :text                  str
      :measurement           (partial convert from-system to-system)
      :interval              (partial convert-interval from-system to-system)
      :unicode-fraction      unicode->fraction
      :implicit-zero-decimal (partial str "0")
-     :unit                  first
      :combined              convert-combined}))
 
 (defn convert-text [text from-system to-system]

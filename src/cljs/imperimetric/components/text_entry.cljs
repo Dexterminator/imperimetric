@@ -8,7 +8,7 @@
 
 (def metric-placeholder
   (str "Paste or write some text here, like \n\"700 ml of milk and 100 grams butter\" or \n\"My 40 m² apartment is 3 kilometers"
-       " away\", or \n\"the engine temperature exceeded 120°C as the car reached 180 km/h\"."))
+       " away\" or \n\"the engine temperature exceeded 120°C as the car reached 180 km/h\"."))
 
 (defn text-entry []
   (let [text (subscribe [:text])

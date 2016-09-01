@@ -13,3 +13,4 @@ ton = #'(?i)tons?'
 
 (* Combined *)
 <combined> = measurement
+<temperature> = #'(?!)'
