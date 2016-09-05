@@ -94,13 +94,21 @@
 (defmethod convert [:metric :us :l] [_ _ q _] (convert-str :liter :pint q))
 (defmethod convert [:metric :us :dl] [_ _ q _] (convert-str :dl :cup q))
 (defmethod convert [:metric :us :cl] [_ _ q _] (convert-str :cl :floz q))
-(defmethod convert [:metric :us :ml] [_ _ q _] (convert-str :ml :tsp q))
+(defmethod convert [:metric :us :ml] [_ _ q _] (let [to (cond
+                                                          (< q 14) :tsp
+                                                          (< q 100) :tbsp
+                                                          :else :cup)]
+                                                 (convert-str :ml to q)))
 (defmethod convert [:metric :us :ton] [_ _ q _] (convert-str :metricton :ton q))
 
 (defmethod convert [:metric :imperial :l] [_ _ q _] (convert-str :liter :brpint q))
 (defmethod convert [:metric :imperial :dl] [_ _ q _] (convert-str :dl :brcup q))
 (defmethod convert [:metric :imperial :cl] [_ _ q _] (convert-str :cl :brfloz q))
-(defmethod convert [:metric :imperial :ml] [_ _ q _] (convert-str :ml :brtsp q))
+(defmethod convert [:metric :imperial :ml] [_ _ q _] (let [to (cond
+                                                                (< q 14) :brtsp
+                                                                (< q 100) :brtablespoon
+                                                                :else :brcup)]
+                                                       (convert-str :ml to q)))
 (defmethod convert [:metric :imperial :ton] [_ _ q _] (convert-str :metricton :brton q))
 
 (defn convert-combined [larger-unit-q [larger-unit _] smaller-unit-q [smaller-unit _]]

@@ -47,7 +47,9 @@
   (fact "Does not convert negative non-temperature"
     (convert-text "-10 oz, -1 cup, -10miles, -12 mph" :us :metric) => "-10 oz, -1 cup, -10miles, -12 mph")
   (fact "English -> english does not convert temperature"
-    (convert-text "-10F, -10.2F" :us :imperial) => "-10F, -10.2F"))
+    (convert-text "-10F, -10.2F" :us :imperial) => "-10F, -10.2F")
+  (fact "100 ml or more gets converted to cups"
+    (convert-text "10 ml, 16 ml, 101 ml, 900 ml." :metric :us) => "2.03 tsp, 1.08 tbsp, 0.427 cups, 3.80 cups."))
 
 
 (facts "About conversions from US customary units"
@@ -79,13 +81,13 @@
 (facts "About conversions from metric"
   (fact "Correctly converts to US customary units"
     (convert-text metric-text :metric :us) =>
-    (str "8.45 pints sugar, 0.380 cups lime, 1.69 fl. oz salt, 5.07 tsp pepper, 5.59 miles away,"
+    (str "8.45 pints sugar, 0.380 cups lime, 1.69 fl. oz salt, 1.69 tbsp pepper, 5.59 miles away,"
          " 9.84 yards away, 0.787 inches away, 4.72 inches away, 4.41 pounds, 7.05 oz, 0.0705 oz, 0.0000705 oz,"
          " 4.41 tons, 0.386 sq mi, 1.20 sq yd, 0.538 sq ft, 0.155 sq in, 0.00155 sq in, 2.47 acres, 0.621 mph,"
          " 3.28 ft/s, 86°F."))
   (fact "Correctly converts to Imperial"
     (convert-text metric-text :metric :imperial) =>
-    (str "7.04 pints sugar, 0.317 cups lime, 1.76 fl. oz salt, 5 tsp pepper, 5.59 miles"
+    (str "7.04 pints sugar, 0.317 cups lime, 1.76 fl. oz salt, 1.67 tbsp pepper, 5.59 miles"
          " away, 9.84 yards away, 0.787 inches away, 4.72 inches away, 4.41 pounds, 7.05 oz, 0.0705 oz, 0.0000705"
          " oz, 3.94 tons, 0.386 sq mi, 1.20 sq yd, 0.538 sq ft, 0.155 sq in, 0.00155 sq in, 2.47 acres, 0.621 mph,"
          " 3.28 ft/s, 86°F.")))
