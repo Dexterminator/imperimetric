@@ -7,6 +7,7 @@ cl = #'(?i)cls?' | #'(?i)centilit(er|re)s?'
 ml = #'(?i)mls?' | #'(?i)millilit(er|re)s?'
 
 (* Distance *)
+distance = km | m | dm | cm | mm
 km = #'(?i)km' | #'(?i)kilomet(er|re)s?'
 m = #'(?i)m' | #'(?i)met(er|re)s?'
 dm = #'(?i)dm' | #'(?i)decimet(er|re)s?'

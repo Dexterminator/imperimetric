@@ -12,6 +12,7 @@ quart = #'(?i)quarts?' | #'(?i)qts?'
 gill = #'(?i)gills?'
 
 (* Distance *)
+distance = mile | yard | foot | inch
 mile = #'(?i)miles?' | #'(?i)mi'
 yard = #'(?i)yards?' | #'(?i)yd'
 foot = #'(?i)foot' | #'(?i)feet' | #'(?i)ft' | '\''

@@ -49,7 +49,12 @@
   (fact "English -> english does not convert temperature"
     (convert-text "-10F, -10.2F" :us :imperial) => "-10F, -10.2F")
   (fact "100 ml or more gets converted to cups"
-    (convert-text "10 ml, 16 ml, 101 ml, 900 ml." :metric :us) => "2.03 tsp, 1.08 tbsp, 0.427 cups, 3.80 cups."))
+    (convert-text "10 ml, 16 ml, 101 ml, 900 ml." :metric :us) => "2.03 tsp, 1.08 tbsp, 0.427 cups, 3.80 cups.")
+  (fact "Converts furniture style measurements"
+    (convert-text (str "Coffee table dimensions: 20\"x50\"X15.5\" Bookcase H58\"xW31\"xD15.5\" Sofa"
+                       " (83”L 35”W 35”H) Bed (83”L 44”W 17”H)") :us :metric) =>
+    (str "Coffee table dimensions: 50.8 cmx127 cmX39.4 cm Bookcase H147 cmxW78.7 cmxD39.4 cm Sofa (211 cmL"
+         " 88.9 cmW 88.9 cmH) Bed (211 cmL 112 cmW 43.2 cmH)")))
 
 
 (facts "About conversions from US customary units"
