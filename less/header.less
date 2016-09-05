@@ -1,53 +1,53 @@
 @import "vars";
 
 #header {
-    position: relative;
-    height: 70px;
-    margin-bottom: 20px;
-    background-color: @blue;
+  position: relative;
+  height: 70px;
+  margin-bottom: 20px;
+  background-color: @blue;
 }
 
 #app-nav-name {
-    font-size: 30px;
-    font-weight: 300;
-    text-decoration: none;
-    color: @orange;
+  font-size: 30px;
+  font-weight: 300;
+  text-decoration: none;
+  color: @orange;
 }
 
 #app-name-text {
-    color: @orange;
+  color: @orange;
 }
 
 #main-nav {
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    height: inherit;
-    width: @page-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: inherit;
+  width: @page-width;
 }
 
 #about-nav {
-    color: white;
-    margin-left: auto;
-    align: right;
-    margin-top: 10px;
-    font-size: 12px;
+  color: white;
+  margin-left: auto;
+  align: right;
+  margin-top: 10px;
+  font-size: 12px;
 
-    &:hover {
-        color: @mid-dark-grey;
-    }
+  &:hover {
+    color: @mid-dark-grey;
+  }
 }
 
 @media all and (max-width: 1100px) {
-    #main-nav {
-        width: 90%;
-    }
+  #main-nav {
+    width: 90%;
+  }
 }
 
 @media all and (max-width: 550px) {
-    #header {
-        position: fixed;
-        width: 100%;
-        z-index: 10;
-    }
+  #header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+  }
 }

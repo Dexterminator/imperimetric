@@ -3,216 +3,216 @@
 @duration: 0.5s;
 
 #button-area {
-    margin-bottom: 10px;
-    display: flex;
+  margin-bottom: 10px;
+  display: flex;
 }
 
 .button-group-headline {
-    color: @mid-dark-grey;
-    margin-right: 20px;
+  color: @mid-dark-grey;
+  margin-right: 20px;
 }
 
 .to-button-group-headline {
-    color: @mid-dark-grey;
-    margin-right: 40px;
+  color: @mid-dark-grey;
+  margin-right: 40px;
 }
 
 .button-group {
-    flex: 0 1 50%;
-    border: 2px solid @grey;
-    padding: 10px;
-    border-radius: @border-radius;
-    display: inline-flex;
+  flex: 0 1 50%;
+  border: 2px solid @grey;
+  padding: 10px;
+  border-radius: @border-radius;
+  display: inline-flex;
 }
 
 #left-button-group {
-    margin-right: 10px;
-    .button-group;
+  margin-right: 10px;
+  .button-group;
 }
 
 #right-button-group {
-    .button-group;
+  .button-group;
 }
 
 .button {
-    border-radius: 20px;
-    text-align: center;
-    cursor: pointer;
-    margin-right: 5px;
-    display: inline-block;
-    background-color: white;
-    border: 1px solid @orange;
-    padding: 9px 19px 9px 19px;
-    color: @orange;
-    box-shadow: inset 0 0 0 0 @grey;
-    -webkit-transition: box-shadow @duration;
-    -moz-transition: box-shadow @duration;
-    transition: box-shadow @duration;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-right: 5px;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid @orange;
+  padding: 9px 19px 9px 19px;
+  color: @orange;
+  box-shadow: inset 0 0 0 0 @grey;
+  -webkit-transition: box-shadow @duration;
+  -moz-transition: box-shadow @duration;
+  transition: box-shadow @duration;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
-    &:hover {
-        box-shadow: inset 0 -100px 0 -40px @grey;
-    }
+  &:hover {
+    box-shadow: inset 0 -100px 0 -40px @grey;
+  }
 }
 
 .ounce-button {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    font-size: 13px;
-    text-decoration: underline;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
 
-    &:hover {
-        color: @orange;
-    }
+  &:hover {
+    color: @orange;
+  }
 
-    &:active {
-        color: @grey;
-    }
+  &:active {
+    color: @grey;
+  }
 }
 
 .active-button {
-    background-color: @orange;
-    color: white;
-    border: 1px solid @orange;
-    -webkit-transition: color 0.3s;
-    -moz-transition: color 0.3s;
-    transition: color 0.3s;
+  background-color: @orange;
+  color: white;
+  border: 1px solid @orange;
+  -webkit-transition: color 0.3s;
+  -moz-transition: color 0.3s;
+  transition: color 0.3s;
 
-    &:hover {
-        background-color: @orange;
-        border: 1px solid @orange;
-        box-shadow: none;
-    }
+  &:hover {
+    background-color: @orange;
+    border: 1px solid @orange;
+    box-shadow: none;
+  }
 }
 
 #copy {
-    position: absolute;
-    margin-left: 480px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    background: @light-grey;
-    padding: 5px 6px 1px 8px;
-    border-radius: @border-radius;
-    box-shadow: 2px 2px 2px #888888;
-    -webkit-transition: opacity 0.3s ease-in;
-    transition: opacity 0.3s ease-in;
+  position: absolute;
+  margin-left: 480px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  background: @light-grey;
+  padding: 5px 6px 1px 8px;
+  border-radius: @border-radius;
+  box-shadow: 2px 2px 2px #888888;
+  -webkit-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
 }
 
 #clipboard {
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .tooltip {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    font-size: 12px;
-    bottom: 120%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.5s;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
 #ounce-tooltip {
-    width: 200px;
-    font-size: 12px;
-    left: 20%;
+  width: 200px;
+  font-size: 12px;
+  left: 20%;
 }
 
 .tooltip-trigger .tooltip::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
 }
 
 .tooltip-trigger:hover .tooltip {
-    visibility: visible;
-    opacity: 0.85;
+  visibility: visible;
+  opacity: 0.85;
 }
 
 @media all and (max-width: 1100px) {
-    #button-area {
-        flex-direction: column;
-        border: 2px solid @light-grey;
-        border-radius: @border-radius;
-    }
+  #button-area {
+    flex-direction: column;
+    border: 2px solid @light-grey;
+    border-radius: @border-radius;
+  }
 
-    .button-group {
-        border: none;
-    }
+  .button-group {
+    border: none;
+  }
 
-    #left-button-group {
-        border: none;
-        flex-basis: auto;
-    }
+  #left-button-group {
+    border: none;
+    flex-basis: auto;
+  }
 
-    #right-button-group {
-        border: none;
-        flex-basis: auto;
-    }
+  #right-button-group {
+    border: none;
+    flex-basis: auto;
+  }
 
-    #copy {
-        margin-left: -11px;
-        margin-top: 200px;
-    }
+  #copy {
+    margin-left: -11px;
+    margin-top: 200px;
+  }
 
-    .tooltip {
-        font-size: 11px;
-        width: 100px;
-        left: 80%;
-    }
+  .tooltip {
+    font-size: 11px;
+    width: 100px;
+    left: 80%;
+  }
 }
 
 @media all and (max-width: 550px) {
-    .button {
-        font-size: 12px;
-        margin-bottom: 5px;
-    }
+  .button {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
 
-    .button-group-headline {
-        margin-bottom: 10px;
-    }
+  .button-group-headline {
+    margin-bottom: 10px;
+  }
 
-    .to-button-group-headline {
-        margin-bottom: 10px;
-    }
+  .to-button-group-headline {
+    margin-bottom: 10px;
+  }
 
-    #button-area {
-        flex-direction: row;
-    }
+  #button-area {
+    flex-direction: row;
+  }
 
-    #left-button-group {
-        display: flex;
-        flex-direction: column;
-        flex-basis: 50%;
-    }
+  #left-button-group {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+  }
 
-    #right-button-group {
-        display: flex;
-        flex-direction: column;
-        flex-basis: 50%;
-    }
+  #right-button-group {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+  }
 
-    #copy {
-        margin-top: 120px;
-    }
+  #copy {
+    margin-top: 120px;
+  }
 }

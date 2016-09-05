@@ -2,81 +2,81 @@
 @import "vars";
 
 #main-description {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #ounce-note {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 #more-unit-info {
-    font-size: 13px;
-    margin-right: 2px;
+  font-size: 13px;
+  margin-right: 2px;
 }
 
 #text-entry {
-    resize: none;
-    border: 1px solid @mid-dark-grey;
-    border-radius: @border-radius;
-    height: 60vh;
-    margin-right: 10px;
-    flex: 0 1 50%;
-    padding: 10px;
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 1pt 1pt @orange;
-    }
-    .base-text-style
+  resize: none;
+  border: 1px solid @mid-dark-grey;
+  border-radius: @border-radius;
+  height: 60vh;
+  margin-right: 10px;
+  flex: 0 1 50%;
+  padding: 10px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 1pt 1pt @orange;
+  }
+  .base-text-style
 }
 
 #result-text {
-    flex: 0 1 50%;
-    background: @light-grey;
-    border-radius: @border-radius;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    padding: 10px;
-    overflow: scroll;
-    max-height: 60vh;
+  flex: 0 1 50%;
+  background: @light-grey;
+  border-radius: @border-radius;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  padding: 10px;
+  overflow: scroll;
+  max-height: 60vh;
 }
 
 #convert-area {
-    display: flex;
+  display: flex;
 }
 
 @media all and (max-width: 1100px) {
-    #convert-area {
-        flex-direction: column;
-        width: 100%;
-    }
+  #convert-area {
+    flex-direction: column;
+    width: 100%;
+  }
 
-    #text-entry {
-        min-height: 180px;
-        max-height: 180px;
-        margin-right: 0;
-        margin-bottom: 5px;
-    }
+  #text-entry {
+    min-height: 180px;
+    max-height: 180px;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
 
-    #result-text {
-        min-height: 180px;
-        max-height: 180px;
-    }
+  #result-text {
+    min-height: 180px;
+    max-height: 180px;
+  }
 }
 
 @media all and (max-width: 550px) {
-    #main-description {
-        padding-top: 85px;
-    }
+  #main-description {
+    padding-top: 85px;
+  }
 
-    #text-entry {
-        font-size: 0.9rem;
-        min-height: 100px;
-        max-height: 100px;
-    }
+  #text-entry {
+    font-size: 0.9rem;
+    min-height: 100px;
+    max-height: 100px;
+  }
 
-    #result-text {
-        font-size: 0.9rem;
-        min-height: 100px;
-        max-height: 100px;
-    }
+  #result-text {
+    font-size: 0.9rem;
+    min-height: 100px;
+    max-height: 100px;
+  }
 }
