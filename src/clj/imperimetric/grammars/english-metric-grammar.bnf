@@ -15,7 +15,7 @@ gill = #'(?i)gills?'
 mile = #'(?i)miles?' | #'(?i)mi'
 yard = #'(?i)yards?' | #'(?i)yd'
 foot = #'(?i)foot' | #'(?i)feet' | #'(?i)ft' | '\''
-inch = #'(?i)inch(es)?' | #'(?i)in' | '\"'
+inch = #'(?i)inch(es)?' | #'(?i)in' | '”' | '\"'
 
 (* Weight *)
 pound = #'(?i)pounds?' | #'(?i)lbs?'

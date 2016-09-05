@@ -17,7 +17,7 @@
 (def metric-text (str "Four liters sugar, .90 Decilitres lime, 5 cL salt, Twenty-five ml pepper, nine km away, "
                       "9 meters away, 2 centimetres away, 120 millimetre away, 2 kg, 2 hg, 2 Grams, 2 milligrams,"
                       " 4 tons, 1 km2, 1 square meter, 5 square dm, 1 sq cm, 1mm^2, 1 hectare, 1 km/h, 1 m/s, 30°C."))
-(def combined-text (str "1 mile 100 yards, 1mile 1 foot, 1 mile 1 inch, 1 yard 1 foot, 1 yard 1 inch,"
+(def combined-text (str "1 mile 100 yards, 1mile 1 foot, 1 mile 1 inch, 1 yard 1 foot, 1 yard 1 ”,"
                         " 6 feet 4 ½ in tall, weight: 8 lb 3 oz."))
 
 (facts "About map-all-to"
