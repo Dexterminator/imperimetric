@@ -1,33 +1,32 @@
 (ns imperimetric.subs
-    (:require-macros [reagent.ratom :refer [reaction]])
-    (:require [re-frame.core :refer [register-sub]]))
+    (:require [re-frame.core :refer [reg-sub]]))
 
-(register-sub
+(reg-sub
  :active-panel
  (fn [db _]
-   (reaction (:active-panel @db))))
+   (:active-panel db)))
 
-(register-sub
+(reg-sub
   :converted-text
   (fn [db _]
-    (reaction (:converted-text @db))))
+    (:converted-text db)))
 
-(register-sub
+(reg-sub
   :from-system
   (fn [db _]
-    (reaction (:from-system @db))))
+    (:from-system db)))
 
-(register-sub
+(reg-sub
   :loading
   (fn [db _]
-    (reaction (:loading @db))))
+    (:loading db)))
 
-(register-sub
+(reg-sub
   :to-system
   (fn [db _]
-    (reaction (:to-system @db))))
+    (:to-system db)))
 
-(register-sub
+(reg-sub
   :text
   (fn [db _]
-    (reaction (:text @db))))
+    (:text db)))

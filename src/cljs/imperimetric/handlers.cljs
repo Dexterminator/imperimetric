@@ -1,5 +1,5 @@
 (ns imperimetric.handlers
-  (:require [re-frame.core :refer [register-handler trim-v dispatch]]
+  (:require [re-frame.core :refer [reg-event-db trim-v dispatch]]
             [imperimetric.db :as db]
             [imperimetric.api :as api]
             [imperimetric.utils-js :refer [log]]
@@ -80,42 +80,42 @@
             (assoc :text changed-text)))
       db)))
 
-(register-handler
+(reg-event-db
   :text-changed
-  trim-v
+  [trim-v]
   text-changed-handler)
 
-(register-handler
+(reg-event-db
   :initialize-db
   (fn [_ _]
     db/default-db))
 
-(register-handler
+(reg-event-db
   :set-active-panel
   (fn [db [_ active-panel]]
     (assoc db :active-panel active-panel)))
 
-(register-handler
+(reg-event-db
   :convert-response
-  trim-v
+  [trim-v]
   convert-response-handler)
 
-(register-handler
+(reg-event-db
   :failed-response
-  trim-v
+  [trim-v]
   failed-response-handler)
 
-(register-handler
+(reg-event-db
   :from-button-clicked
-  trim-v
+  [trim-v]
   from-button-clicked-handler)
 
-(register-handler
+(reg-event-db
   :to-button-clicked
-  trim-v
+  [trim-v]
   to-button-clicked-handler)
 
-(register-handler
+(reg-event-db
   :ounce-button-clicked
-  trim-v
+  [trim-v]
   ounce-button-clicked-handler)
