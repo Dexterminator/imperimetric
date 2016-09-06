@@ -1,5 +1,5 @@
 (ns imperimetric.handlers
-  (:require [re-frame.core :refer [reg-event-db trim-v dispatch]]
+  (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx trim-v dispatch]]
             [imperimetric.db :as db]
             [imperimetric.api :as api]
             [imperimetric.utils-js :refer [log]]
@@ -32,15 +32,14 @@
                         (assoc updated-db other-system-type (system-switches system))
                         updated-db)]
       (if-not (str/blank? (:text adjusted-db))
-        (do
-          (api-convert-call adjusted-db (:text adjusted-db))
-          (assoc adjusted-db :loading true))
-        adjusted-db))))
+        {:api-convert-call [adjusted-db (:text adjusted-db)]
+         :db               (assoc adjusted-db :loading true)}
+        {:db adjusted-db}))))
 
-(defn from-button-clicked-handler [db [from-system]]
+(defn from-button-clicked-handler [{db :db} [from-system]]
   (button-clicked-helper db :from-system :to-system from-system))
 
-(defn to-button-clicked-handler [db [to-system]]
+(defn to-button-clicked-handler [{db :db} [to-system]]
   (button-clicked-helper db :to-system :from-system to-system))
 
 (defn convert-response-handler [db [{original-text  :original-text
@@ -51,16 +50,15 @@
       (= (:text db) original-text) (assoc updated-db :converted-text converted-text)
       :else db)))
 
-(defn text-changed-handler [db [text]]
+(defn text-changed-handler [{db :db} [text]]
   (if-not (str/blank? text)
-    (do
-      (api-convert-call db text)
-      (-> db
-          (assoc :loading true)
-          (assoc :text text)))
-    (-> db
-        (dissoc :converted-text)
-        (dissoc :text))))
+    {:api-convert-call [db text]
+     :db               (-> db
+                           (assoc :loading true)
+                           (assoc :text text))}
+    {:db (-> db
+             (dissoc :converted-text)
+             (dissoc :text))}))
 
 (def ounce-pattern (js/RegExp. "ounces?|ozs?" "ig"))
 (def fluid-ounce-pattern #"(?i)fluid ounces?|flozs?|fl\.\s?oz")
@@ -70,20 +68,19 @@
     (.replace text ounce-pattern "fl. oz")
     text))
 
-(defn ounce-button-clicked-handler [db _]
+(defn ounce-button-clicked-handler [{db :db} _]
   (let [changed-text (make-ounces-fluid (:text db))]
     (if-not (= changed-text (:text db))
-      (do
-        (api-convert-call db changed-text)
-        (-> db
-            (assoc :loading true)
-            (assoc :text changed-text)))
-      db)))
+      {:api-convert-call [db changed-text]
+       :db               (-> db
+                             (assoc :loading true)
+                             (assoc :text changed-text))}
+      {:db db})))
 
-(reg-event-db
-  :text-changed
-  [trim-v]
-  text-changed-handler)
+(reg-fx
+  :api-convert-call
+  (fn [[db text]]
+    (api-convert-call db text)))
 
 (reg-event-db
   :initialize-db
@@ -105,17 +102,22 @@
   [trim-v]
   failed-response-handler)
 
-(reg-event-db
+(reg-event-fx
+  :text-changed
+  [trim-v]
+  text-changed-handler)
+
+(reg-event-fx
   :from-button-clicked
   [trim-v]
   from-button-clicked-handler)
 
-(reg-event-db
+(reg-event-fx
   :to-button-clicked
   [trim-v]
   to-button-clicked-handler)
 
-(reg-event-db
+(reg-event-fx
   :ounce-button-clicked
   [trim-v]
   ounce-button-clicked-handler)
