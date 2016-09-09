@@ -9,6 +9,7 @@
 
 (defn result-text []
   (let [text (subscribe [:converted-text])
+        loading? (subscribe [:loading])
         default-tooltip "Copy to clipboard"
         tooltip-text (r/atom default-tooltip)]
     (fn []
@@ -20,4 +21,4 @@
                               :on-mouse-leave      #(reset! tooltip-text default-tooltip)}
         [:img#clipboard {:src "images/clipboard.svg"}]
         [:span.tooltip @tooltip-text]]
-       @text])))
+       [:span {:class (if @loading? "result-text-loading")} @text]])))
