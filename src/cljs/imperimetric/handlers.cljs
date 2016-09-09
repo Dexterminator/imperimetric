@@ -1,9 +1,10 @@
 (ns imperimetric.handlers
-  (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx trim-v dispatch]]
+  (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx trim-v dispatch debug]]
             [imperimetric.db :as db]
             [imperimetric.api :as api]
             [imperimetric.utils-js :refer [log]]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [imperimetric.config :as config]))
 
 (defn failed-response-handler [db [{:keys [status status-text]}]]
   (log (str "Something went wrong: " status " " status-text))
@@ -77,6 +78,8 @@
                              (assoc :text changed-text))}
       {:db db})))
 
+(def standard-interceptors [(when config/debug? debug) trim-v])
+
 (reg-fx
   :api-convert-call
   (fn [[db text]]
@@ -89,35 +92,36 @@
 
 (reg-event-db
   :set-active-panel
-  (fn [db [_ active-panel]]
+  standard-interceptors
+  (fn [db [active-panel]]
     (assoc db :active-panel active-panel)))
 
 (reg-event-db
   :convert-response
-  [trim-v]
+  standard-interceptors
   convert-response-handler)
 
 (reg-event-db
   :failed-response
-  [trim-v]
+  standard-interceptors
   failed-response-handler)
 
 (reg-event-fx
   :text-changed
-  [trim-v]
+  standard-interceptors
   text-changed-handler)
 
 (reg-event-fx
   :from-button-clicked
-  [trim-v]
+  standard-interceptors
   from-button-clicked-handler)
 
 (reg-event-fx
   :to-button-clicked
-  [trim-v]
+  standard-interceptors
   to-button-clicked-handler)
 
 (reg-event-fx
   :ounce-button-clicked
-  [trim-v]
+  standard-interceptors
   ounce-button-clicked-handler)
