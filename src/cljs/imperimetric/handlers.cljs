@@ -1,10 +1,11 @@
 (ns imperimetric.handlers
-  (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx trim-v dispatch debug]]
+  (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx trim-v dispatch debug after]]
             [imperimetric.db :as db]
             [imperimetric.api :as api]
             [imperimetric.utils-js :refer [log]]
             [clojure.string :as str]
-            [imperimetric.config :as config]))
+            [imperimetric.config :as config]
+            [cljs.spec :as s]))
 
 (defn failed-response-handler [db [{:keys [status status-text]}]]
   (log (str "Something went wrong: " status " " status-text))
@@ -88,7 +89,14 @@
                              (assoc :text changed-text))}
       {:db db})))
 
-(def standard-interceptors [(when config/debug? debug) trim-v])
+(defn check-and-throw
+  [a-spec db]
+  (when-not (s/valid? a-spec db)
+    (throw (ex-info (str "spec check failed: " (s/explain-str a-spec db)) {}))))
+
+(def check-spec-interceptor (after (partial check-and-throw :imperimetric.db/db)))
+
+(def standard-interceptors [(when config/debug? [debug check-spec-interceptor]) trim-v])
 
 (reg-fx
   :api-convert-call
