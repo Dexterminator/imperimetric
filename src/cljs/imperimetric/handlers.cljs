@@ -70,7 +70,7 @@
              (dissoc :converted-text)
              (dissoc :text))}))
 
-(def ounce-pattern (js/RegExp. "ounces?|ozs?" "ig"))
+(def ounce-pattern (js/RegExp. "ounces?(?!\\w)|ozs?(?!\\w)" "ig"))
 (def fluid-ounce-pattern #"(?i)fluid ounces?|flozs?|fl\.\s?oz")
 
 (defn make-ounces-fluid [text]
