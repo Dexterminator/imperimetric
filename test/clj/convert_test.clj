@@ -51,7 +51,9 @@
   (fact "100 ml or more gets converted to cups"
     (convert-text "10 ml, 16 ml, 101 ml, 900 ml." :metric :us) => "2.03 tsp, 1.08 tbsp, 0.427 cups, 3.80 cups.")
   (fact "Fractions with infinite expansions use 3 significant digits"
-    (convert-text "1/3 cup" :us :metric) => "78.9 ml"))
+    (convert-text "1/3 cup" :us :metric) => "78.9 ml")
+  (fact "Newlines don't work in measurements"
+    (convert-text "1 \noz" :us :metric) => "1 \noz"))
 
 
 (facts "About conversions from US customary units"
