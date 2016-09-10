@@ -28,7 +28,7 @@
 
 (defn button-clicked-helper [db clicked-system-type other-system-type system]
   (if (= system (db clicked-system-type))
-    db
+    {:db db}
     (let [updated-db (assoc db clicked-system-type system)
           adjusted-db (if (= system (db other-system-type))
                         (assoc updated-db other-system-type (system-switches system))
