@@ -1,13 +1,14 @@
 text = token+
-<token> = combined / measurement-expr / interval / word / whitespace
+<token> = combined / measurement-expr / interval / word / whitespace-and-newline
 interval = quantity-no-numeral dash quantity-no-numeral <whitespace>* unit
 <dash> = '-'
-<word> = #'[^ \t]+'
+<word> = #'[^\s]+'
 <measurement-expr> = common-prefix-char? measurement
 measurement = quantity <whitespace-or-dash> unit <#'(?!\w)'> | maybe-negative-quantity <whitespace>* temperature <#'(?!\w)'>
 <whitespace-or-dash> = <whitespace>* | <dash>
 <common-prefix-char> = '(' | '"' | '\''
 <whitespace> = #'[ \t]+'
+<whitespace-and-newline> = #'\s+'
 <maybe-negative-quantity> = negative-quantity | quantity
 negative-quantity = <minus> quantity
 <minus> = '-'

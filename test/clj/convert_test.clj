@@ -54,6 +54,8 @@
     (convert-text "1/3 cup" :us :metric) => "78.9 ml")
   (fact "Newlines don't work in measurements"
     (convert-text "1 \noz" :us :metric) => "1 \noz")
+  (fact "Newlines are allowed between measurements"
+    (convert-text "1 oz salt\n1 mph." :us :metric) => "28.3 g salt\n1.61 km/h.")
   (fact "Dashes are ok in some measurements"
     (convert-text "Grease and flour an 8-inch square pan." :us :metric) => "Grease and flour an 20.3 cm square pan."))
 
