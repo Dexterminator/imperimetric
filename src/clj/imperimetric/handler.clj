@@ -16,11 +16,17 @@
 (defn params [ctx]
   (map-keys keyword (get-in ctx [:request :params])))
 
+(def systems #{"us" "imperial" "metric"})
+
 (defresource conversion
   :available-media-types ["application/json"]
   :uri-too-long? (fn [ctx]
                    (< param-max-length
                       (count (url-decode (get-in ctx [:request :query-string])))))
+  :malformed? (fn [ctx]
+                (let [{from :from to :to} (params ctx)]
+                  (if-not (and (systems from) (systems to))
+                    {:message "Bad request: Allowed systems are: \"us\", \"imperial\", and \"metric\"."})))
   :handle-ok (fn [ctx]
                (let [{text :text
                       from :from

@@ -119,4 +119,11 @@
                                        "to"   "metric"})) =>
     {:status  414
      :headers {"Content-Type" "text/plain;charset=UTF-8"}
-     :body    "Request URI too long."}))
+     :body    "Request URI too long."})
+  (fact "System arguments have to be us, imerial, or metric"
+    (handler (request :get "/convert" {"text" "1 fl. oz of water"
+                                       "from" "wat"
+                                       "to" "metric"})) =>
+    {:status  400
+     :headers {"Content-Type" "text/plain;charset=UTF-8"}
+     :body    "Bad request: Allowed systems are: \"us\", \"imperial\", and \"metric\"."}))
