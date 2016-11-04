@@ -7,7 +7,7 @@
 
 (js/Clipboard. "#copy")
 
-(defn result-text [loading?]
+(defn result-text []
   (let [text (subscribe [:converted-text])
         loading? (subscribe [:loading?])
         default-tooltip "Copy to clipboard"
