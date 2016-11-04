@@ -17,9 +17,9 @@
     (:from-system db)))
 
 (reg-sub
-  :loading
+  :loading?
   (fn [db _]
-    (:loading db)))
+    (:loading? db)))
 
 (reg-sub
   :to-system

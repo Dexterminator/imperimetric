@@ -1,13 +1,15 @@
 @import "vars";
 
 .spinner {
-  margin-top: 3px;
-  margin-left: 15px;
+  position: relative;
   border: 2px solid @dark-grey;
   border-top: 2px solid white;
+  top: 2px;
+  left: 5px;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 13px;
+  height: 13px;
+  display: inline-block;
   animation: spin 1.1s cubic-bezier(0.7, 0.2, 0.3, 0.7) infinite;
 }
 

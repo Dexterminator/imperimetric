@@ -10,7 +10,7 @@
 (defn failed-response-handler [db [{:keys [status status-text]}]]
   (log (str "Something went wrong: " status " " status-text))
   (-> db
-      (dissoc :loading)
+      (dissoc :loading?)
       (assoc :converted-text "Something went wrong when converting text :(")))
 
 (defn api-convert-call [from-system to-system text]
@@ -35,7 +35,7 @@
                         updated-db)]
       (if-not (str/blank? (:text adjusted-db))
         {:api-convert-call [(:from-system adjusted-db) (:to-system adjusted-db) (:text adjusted-db)]
-         :db               (assoc adjusted-db :loading true)}
+         :db               (assoc adjusted-db :loading? true)}
         {:db adjusted-db}))))
 
 (defn from-button-clicked-handler [{db :db} [from-system]]
@@ -50,11 +50,11 @@
     {:api-convert-call [(:from-system db) (:to-system db) (:text db)]
      :db               (-> db
                            (assoc :latest-requested-text (:text db))
-                           (assoc :loading true))}))
+                           (assoc :loading? true))}))
 
 (defn convert-response-handler [db [{original-text  :original-text
                                      converted-text :converted-text}]]
-  (let [updated-db (dissoc db :loading)]
+  (let [updated-db (dissoc db :loading?)]
     (cond
       (str/blank? (:text db)) (dissoc updated-db :converted-text)
       (= (:latest-requested-text db) original-text) (assoc updated-db :converted-text converted-text)
@@ -84,7 +84,7 @@
     (if-not (= changed-text (:text db))
       {:api-convert-call [(:from-system db) (:to-system db) changed-text]
        :db               (-> db
-                             (assoc :loading true)
+                             (assoc :loading? true)
                              (assoc :latest-requested-text changed-text)
                              (assoc :text changed-text))}
       {:db db})))

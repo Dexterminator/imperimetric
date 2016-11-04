@@ -16,11 +16,10 @@
   [panels panel-name])
 
 (defn main-panel []
-  (let [active-panel (subscribe [:active-panel])
-        loading (subscribe [:loading])]
+  (let [active-panel (subscribe [:active-panel])]
     (fn []
       [:div
-       [header @active-panel @loading]
+       [header @active-panel]
        [:div#pagewrap
         [show-panel @active-panel]
         [footer]]])))
