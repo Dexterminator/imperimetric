@@ -21,5 +21,5 @@
                               :on-mouse-leave      #(reset! tooltip-text default-tooltip)}
         [:img#clipboard {:src "images/clipboard.svg"}]
         [:span.tooltip @tooltip-text]]
-       [:span {:class (if @loading? "result-text-loading")} @text]
+       [:span.loaded-text {:class (if @loading? "result-text-loading")} @text]
        (if @loading? [:div.spinner])])))
