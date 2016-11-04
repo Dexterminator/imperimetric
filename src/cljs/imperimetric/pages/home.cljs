@@ -10,8 +10,8 @@
     [:div
      [:div#main-description
       "Welcome to "
-      [:span#app-name-text "imperimetric"]
-      ". Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer. "
+      [:span#app-name-text "imperimetric."]
+      " Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer. "
       [:span#ounce-note
        "Note: imperimetric assumes 'ounces'/'oz' as weight ounces and 'fluid ounces'/'floz'/'fl. oz' as fluid ounces. "]
       [:div
