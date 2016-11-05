@@ -11,14 +11,15 @@
      [:div#main-description
       "Welcome to "
       [:span#app-name-text "imperimetric."]
-      " Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer. "
-      [:div#ounce-note
-       [:i#ounce-note-icon.fa.fa-exclamation-circle]
-       [:span#ounce-note-text
-        " Note: imperimetric assumes 'ounces'/'oz' as weight ounces and 'fluid ounces'/'floz'/'fl. oz' as fluid ounces. "
-        [:a {:href "#/about"} "More unit info"]]]
-      [:div.ounce-button {:class "tooltip-trigger" :on-click #(dispatch [:ounce-button-clicked])} "Make my ounces fluid!"
-       [:span.tooltip {:id "ounce-tooltip"} "Converts 'ounce'/'oz' into 'fl. oz' if the text does not already contain any fluid ounces."]]]
+      " Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer! "
+      [:div.ounce-info
+       [:div#ounce-note
+        [:i#ounce-note-icon.fa.fa-exclamation-circle]
+        [:span#ounce-note-text
+         " Note: imperimetric assumes 'ounces'/'oz' as weight ounces and 'fluid ounces'/'floz'/'fl. oz' as fluid ounces. "
+         [:a {:href "#/about"} "More unit info"]]]
+       [:div.ounce-button {:class "tooltip-trigger" :on-click #(dispatch [:ounce-button-clicked])} "Make ounces fluid?"
+        [:span.tooltip {:id "ounce-tooltip"} "Converts 'ounce'/'oz' into 'fl. oz' if the text does not already contain any fluid ounces."]]]]
      [:div#button-area
       [from-button-area]
       [to-button-area]]
