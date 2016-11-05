@@ -19,7 +19,7 @@
           [:span#ounce-note-text
            " Note: imperimetric assumes 'ounces'/'oz' as weight ounces and 'fluid ounces'/'floz'/'fl. oz' as fluid ounces. "
            [:a {:href "#/about"} "More unit info"]]]
-         [:div.ounce-button {:class    (str "tooltip-trigger" (when-not @ounce-conversion-possible? " hidden"))
+         [:div.ounce-button {:class    (str "tooltip-trigger" (when-not @ounce-conversion-possible? " deactivated"))
                              :on-click (when @ounce-conversion-possible? #(dispatch [:ounce-button-clicked]))} "Make ounces fluid?"
           [:span.tooltip {:id "ounce-tooltip"} "Converts 'ounce'/'oz' into 'fl. oz' if the text does not already contain any fluid ounces."]]]]
        [:div#button-area
