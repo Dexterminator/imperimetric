@@ -66,8 +66,9 @@
   position: relative;
   cursor: pointer;
   margin-left: 10px;
-  font-size: 13px;
+  font-size: 17px;
   text-decoration: underline;
+  transition: opacity 0.5s ease;
 
   &:hover {
     color: @mid-dark-grey;
@@ -75,6 +76,11 @@
 
   &:active {
     color: @grey;
+  }
+
+  &.hidden {
+    cursor: default;
+    opacity: 0;
   }
 }
 

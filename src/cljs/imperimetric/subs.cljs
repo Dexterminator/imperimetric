@@ -30,3 +30,20 @@
   :text
   (fn [db _]
     (:text db)))
+
+(reg-sub
+  :text-contains-ounces?
+  (fn [db _]
+    (:text-contains-ounces? db)))
+
+(reg-sub
+  :text-contains-fluid-ounces?
+  (fn [db _]
+    (:text-contains-fluid-ounces? db)))
+
+(reg-sub
+  :ounce-conversion-possible?
+  :<- [:text-contains-ounces?]
+  :<- [:text-contains-fluid-ounces?]
+  (fn [[text-contains-ounces? text-contains-fluid-ounces?]]
+    (and text-contains-ounces? (not text-contains-fluid-ounces?))))

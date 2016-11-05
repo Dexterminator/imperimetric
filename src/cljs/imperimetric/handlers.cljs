@@ -60,19 +60,24 @@
       (= (:latest-requested-text db) original-text) (assoc updated-db :converted-text converted-text)
       :else db)))
 
+(def ounce-pattern (js/RegExp. "ounces?(?!\\w)|ozs?(?!\\w)" "ig"))
+(def fluid-ounce-pattern #"(?i)fluid ounces?|flozs?|fl\.\s?oz")
+(def ounce-pattern-2 #"(?i)ounces?|ozs?")
+
 (defn text-changed-handler [{db :db} [text]]
   (if-not (str/blank? text)
     (let [now (.now js/Date)]
       {:db             (-> db
                            (assoc :latest-text-timestamp now)
-                           (assoc :text text))
+                           (assoc :text text)
+                           (assoc :text-contains-fluid-ounces? (boolean (re-find fluid-ounce-pattern text)))
+                           (assoc :text-contains-ounces? (boolean (re-find ounce-pattern-2 text))))
        :dispatch-later [{:ms 300 :dispatch [:text-wait-over now]}]})
     {:db (-> db
              (dissoc :converted-text)
+             (dissoc :text-contains-fluid-ounces?)
+             (dissoc :text-contains-ounces?)
              (dissoc :text))}))
-
-(def ounce-pattern (js/RegExp. "ounces?(?!\\w)|ozs?(?!\\w)" "ig"))
-(def fluid-ounce-pattern #"(?i)fluid ounces?|flozs?|fl\.\s?oz")
 
 (defn make-ounces-fluid [text]
   (if-not (or (str/blank? text) (re-find fluid-ounce-pattern text))
@@ -84,6 +89,8 @@
     (if-not (= changed-text (:text db))
       {:api-convert-call [(:from-system db) (:to-system db) changed-text]
        :db               (-> db
+                             (assoc :text-contains-fluid-ounces? true)
+                             (assoc :text-contains-ounces? false)
                              (assoc :loading? true)
                              (assoc :latest-requested-text changed-text)
                              (assoc :text changed-text))}
