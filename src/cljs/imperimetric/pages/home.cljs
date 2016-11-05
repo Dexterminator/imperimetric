@@ -15,7 +15,7 @@
         " Paste or type some text to automatically convert the measurements it contains into the system of measurement you prefer! "
         [:div.ounce-info
          [:div#ounce-note
-          [:i#ounce-note-icon.fa.fa-exclamation-circle]
+          [:i#ounce-note-icon.fa.fa-info-circle]
           [:span#ounce-note-text
            " Note: imperimetric assumes 'ounces'/'oz' as weight ounces and 'fluid ounces'/'floz'/'fl. oz' as fluid ounces. "
            [:a {:href "#/about"} "More unit info"]]]
