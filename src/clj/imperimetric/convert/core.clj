@@ -32,6 +32,5 @@
 
 (defn convert-text [text from-system to-system]
   (let [parsed (parse-text text from-system to-system)]
-    (if (insta/failure? parsed)
-      nil
+    (when-not (insta/failure? parsed)
       (str/join (insta/transform (transform-map from-system to-system) parsed)))))

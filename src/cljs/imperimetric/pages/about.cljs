@@ -26,8 +26,8 @@
   [:div.unit-list
    [:h4.supported-unit-type title]
    [:ul
-    (for [unit units]
-      ^{:key (:unit unit)} [:li (:unit unit) [:div.unit-symbols (:symbols unit)]])]])
+    (for [{:keys [unit symbols]} units]
+      ^{:key unit} [:li unit [:div.unit-symbols symbols]])]])
 
 (defn supported-units []
   [:div
@@ -111,11 +111,8 @@
    [:div.faq-question "Q: Can I see the source code anywhere?"]
    [:div.faq-answer "A: Yes, the code is on " [:a {:href "https://github.com/Dexterminator/imperimetric" :target "_blank"} "GitHub"] "."]])
 
-(defn about []
+(defn about-panel []
   [:div.about
    [motivation]
    [supported-units]
    [faq]])
-
-(defn about-panel []
-  (fn [] [about]))

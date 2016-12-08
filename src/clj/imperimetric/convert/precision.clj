@@ -6,6 +6,6 @@
   (let [stripped (.stripTrailingZeros (with-precision 100 (bigdec n)))
         precision (.precision stripped)
         scale (.scale stripped)]
-    (if (< scale 0)
+    (if (neg? scale)
       (- precision scale)
       precision)))
