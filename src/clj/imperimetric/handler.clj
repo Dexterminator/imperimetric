@@ -24,13 +24,11 @@
                    (< param-max-length
                       (count (url-decode (get-in ctx [:request :query-string])))))
   :malformed? (fn [ctx]
-                (let [{from :from to :to} (params ctx)]
+                (let [{:keys [from to]} (params ctx)]
                   (if-not (and (systems from) (systems to))
                     {:message "Bad request: Allowed systems are: \"us\", \"imperial\", and \"metric\"."})))
   :handle-ok (fn [ctx]
-               (let [{text :text
-                      from :from
-                      to   :to} (params ctx)
+               (let [{:keys [text from to]} (params ctx)
                      converted-text (convert-text (url-decode text) (keyword from) (keyword to))]
                  (json/generate-string {:converted-text converted-text
                                         :original-text  text}))))

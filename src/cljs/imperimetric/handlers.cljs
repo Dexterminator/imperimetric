@@ -52,8 +52,7 @@
                            (assoc :latest-requested-text (:text db))
                            (assoc :loading? true))}))
 
-(defn convert-response-handler [db [{original-text  :original-text
-                                     converted-text :converted-text}]]
+(defn convert-response-handler [db [{:keys [original-text converted-text]}]]
   (let [updated-db (dissoc db :loading?)]
     (cond
       (str/blank? (:text db)) (dissoc updated-db :converted-text)
