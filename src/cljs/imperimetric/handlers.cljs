@@ -38,13 +38,13 @@
          :db               (assoc adjusted-db :loading? true)}
         {:db adjusted-db}))))
 
-(defn from-button-clicked-handler [{db :db} [from-system]]
+(defn from-button-clicked-handler [{:keys [db]} [from-system]]
   (button-clicked-helper db :from-system :to-system from-system))
 
-(defn to-button-clicked-handler [{db :db} [to-system]]
+(defn to-button-clicked-handler [{:keys [db]} [to-system]]
   (button-clicked-helper db :to-system :from-system to-system))
 
-(defn text-wait-over-handler [{db :db} [timestamp]]
+(defn text-wait-over-handler [{:keys [db]} [timestamp]]
   (if (< timestamp (:latest-text-timestamp db))
     {:db db}
     {:api-convert-call [(:from-system db) (:to-system db) (:text db)]
@@ -62,7 +62,7 @@
 (def ounce-pattern (js/RegExp. "ounces?(?!\\w)|ozs?(?!\\w)" "ig"))
 (def fluid-ounce-pattern (js/RegExp. "fluid ounces?(?!\\w)|flozs?(?!\\w)|fl\\.\\s?ozs?(?!\\w)" "ig"))
 
-(defn text-changed-handler [{db :db} [text]]
+(defn text-changed-handler [{:keys [db]} [text]]
   (if-not (str/blank? text)
     (let [now (.now js/Date)]
       {:db             (assoc db
@@ -82,7 +82,7 @@
     (.replace text ounce-pattern "fl. oz")
     text))
 
-(defn ounce-button-clicked-handler [{db :db} _]
+(defn ounce-button-clicked-handler [{:keys [db]} _]
   (let [changed-text (make-ounces-fluid (:text db))]
     (if-not (= changed-text (:text db))
       {:api-convert-call [(:from-system db) (:to-system db) changed-text]
