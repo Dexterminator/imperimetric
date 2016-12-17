@@ -13,10 +13,9 @@
 (defn text-entry []
   (let [text (subscribe [:text])
         from-system (subscribe [:from-system])]
-    (fn []
-      [:textarea#text-entry {:max-length  "2800"
-                             :placeholder (if (= :metric @from-system)
-                                            metric-placeholder
-                                            english-placeholder)
-                             :on-change   #(dispatch [:text-changed (target-value %)])
-                             :value       @text}])))
+    [:textarea#text-entry {:max-length  "2800"
+                           :placeholder (if (= :metric @from-system)
+                                          metric-placeholder
+                                          english-placeholder)
+                           :on-change   #(dispatch [:text-changed (target-value %)])
+                           :value       @text}]))

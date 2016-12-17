@@ -17,9 +17,8 @@
 
 (defn main-panel []
   (let [active-panel (subscribe [:active-panel])]
-    (fn []
-      [:div
-       [header @active-panel]
-       [:div#pagewrap
-        [show-panel @active-panel]
-        [footer]]])))
+    [:div
+     [header @active-panel]
+     [:div#pagewrap
+      [show-panel @active-panel]
+      [footer]]]))

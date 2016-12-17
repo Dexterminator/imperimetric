@@ -14,19 +14,17 @@
 
 (defn from-button-area []
   (let [from-system (subscribe [:from-system])]
-    (fn []
-      [:div#left-button-group
-       [:div.button-group-headline "From"]
-       [from-button "US customary units" :us from-system]
-       [from-button "Imperial" :imperial from-system]
-       [from-button "Metric" :metric from-system]])))
+    [:div#left-button-group
+     [:div.button-group-headline "From"]
+     [from-button "US customary units" :us from-system]
+     [from-button "Imperial" :imperial from-system]
+     [from-button "Metric" :metric from-system]]))
 
 (defn to-button-area []
   (let [to-system (subscribe [:to-system])]
-    (fn []
-      [:div#right-button-group
-       [:div.to-button-group-headline "To"]
-       [to-button "US customary units" :us to-system]
-       [to-button "Imperial" :imperial to-system]
-       [to-button "Metric" :metric to-system]])))
+    [:div#right-button-group
+     [:div.to-button-group-headline "To"]
+     [to-button "US customary units" :us to-system]
+     [to-button "Imperial" :imperial to-system]
+     [to-button "Metric" :metric to-system]]))
 
