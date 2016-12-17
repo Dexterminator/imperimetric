@@ -48,9 +48,9 @@
   (if (< timestamp (:latest-text-timestamp db))
     {:db db}
     {:api-convert-call [(:from-system db) (:to-system db) (:text db)]
-     :db               (-> db
-                           (assoc :latest-requested-text (:text db))
-                           (assoc :loading? true))}))
+     :db               (assoc db
+                         :latest-requested-text (:text db)
+                         :loading? true)}))
 
 (defn convert-response-handler [db [{:keys [original-text converted-text]}]]
   (let [updated-db (dissoc db :loading?)]
@@ -65,17 +65,17 @@
 (defn text-changed-handler [{db :db} [text]]
   (if-not (str/blank? text)
     (let [now (.now js/Date)]
-      {:db             (-> db
-                           (assoc :latest-text-timestamp now)
-                           (assoc :text text)
-                           (assoc :text-contains-fluid-ounces? (boolean (.match text fluid-ounce-pattern)))
-                           (assoc :text-contains-ounces? (boolean (.match text ounce-pattern))))
+      {:db             (assoc db
+                         :latest-text-timestamp now
+                         :text text
+                         :text-contains-fluid-ounces? (boolean (.match text fluid-ounce-pattern))
+                         :text-contains-ounces? (boolean (.match text ounce-pattern)))
        :dispatch-later [{:ms 300 :dispatch [:text-wait-over now]}]})
-    {:db (-> db
-             (dissoc :converted-text)
-             (dissoc :text-contains-fluid-ounces?)
-             (dissoc :text-contains-ounces?)
-             (dissoc :text))}))
+    {:db (dissoc db
+                 :converted-text
+                 :text-contains-fluid-ounces?
+                 :text-contains-ounces?
+                 :text)}))
 
 (defn make-ounces-fluid [text]
   (if-not (or (str/blank? text) (.match text fluid-ounce-pattern))
@@ -86,12 +86,12 @@
   (let [changed-text (make-ounces-fluid (:text db))]
     (if-not (= changed-text (:text db))
       {:api-convert-call [(:from-system db) (:to-system db) changed-text]
-       :db               (-> db
-                             (assoc :text-contains-fluid-ounces? true)
-                             (assoc :text-contains-ounces? false)
-                             (assoc :loading? true)
-                             (assoc :latest-requested-text changed-text)
-                             (assoc :text changed-text))}
+       :db               (assoc db
+                           :text-contains-fluid-ounces? true
+                           :text-contains-ounces? false
+                           :loading? true
+                           :latest-requested-text changed-text
+                           :text changed-text)}
       {:db db})))
 
 (defn check-and-throw
