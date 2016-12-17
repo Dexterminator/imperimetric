@@ -1,6 +1,6 @@
 (ns imperimetric.core
     (:require [reagent.core :as reagent]
-              [re-frame.core :as re-frame]
+              [re-frame.core :as rf]
               [devtools.core :as devtools]
               [imperimetric.handlers]
               [imperimetric.subs]
@@ -15,11 +15,12 @@
     (devtools/install!)))
 
 (defn mount-root []
+  (rf/clear-subscription-cache!)
   (reagent/render [views/main-panel]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []
   (routes/app-routes)
-  (re-frame/dispatch-sync [:initialize-db])
+  (rf/dispatch-sync [:initialize-db])
   (dev-setup)
   (mount-root))
