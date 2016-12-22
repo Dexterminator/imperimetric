@@ -27,8 +27,7 @@
    :imperial :metric})
 
 (defn button-clicked-helper [db clicked-system-type other-system-type system]
-  (if (= system (db clicked-system-type))
-    {:db db}
+  (if (not= system (db clicked-system-type))
     (let [updated-db (assoc db clicked-system-type system)
           adjusted-db (if (= system (db other-system-type))
                         (assoc updated-db other-system-type (system-switches system))
@@ -45,8 +44,7 @@
   (button-clicked-helper db :to-system :from-system to-system))
 
 (defn text-wait-over-handler [{:keys [db]} [timestamp]]
-  (if (< timestamp (:latest-text-timestamp db))
-    {:db db}
+  (if (= timestamp (:latest-text-timestamp db))
     {:api-convert-call [(:from-system db) (:to-system db) (:text db)]
      :db               (assoc db
                          :latest-requested-text (:text db)
@@ -84,15 +82,14 @@
 
 (defn ounce-button-clicked-handler [{:keys [db]} _]
   (let [changed-text (make-ounces-fluid (:text db))]
-    (if-not (= changed-text (:text db))
+    (if (not= changed-text (:text db))
       {:api-convert-call [(:from-system db) (:to-system db) changed-text]
        :db               (assoc db
                            :text-contains-fluid-ounces? true
                            :text-contains-ounces? false
                            :loading? true
                            :latest-requested-text changed-text
-                           :text changed-text)}
-      {:db db})))
+                           :text changed-text)})))
 
 (defn check-and-throw
   [a-spec db]
