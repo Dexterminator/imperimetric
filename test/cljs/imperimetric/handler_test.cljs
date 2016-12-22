@@ -2,7 +2,8 @@
   (:require [cljs.test :refer-macros [deftest testing is]]
             [imperimetric.handlers :refer [make-ounces-fluid failed-response-handler
                                            from-button-clicked-handler to-button-clicked-handler
-                                           text-wait-over-handler]]
+                                           text-wait-over-handler convert-response-handler
+                                           text-changed-handler ounce-button-clicked-handler]]
             [pjstadig.humane-test-output]))
 
 (deftest make-ounces-fluid-test
@@ -66,3 +67,36 @@
                                            :from-system           :us
                                            :to-system             :metric}}
                                      [2]))))))
+
+(deftest convert-response-handler-test
+  (testing "convert-response-handler"
+    (testing "adds the converted text to the db"
+      (is (= {:text                  "3 oz"
+              :converted-text        "85.0 g"
+              :latest-requested-text "3 oz"}
+             (convert-response-handler {:loading?              true
+                                        :text                  "3 oz"
+                                        :latest-requested-text "3 oz"}
+                                       [{:original-text "3 oz" :converted-text "85.0 g"}]))))
+    (testing "removes converted text from db if input text is empty"
+      (is (= {:text ""}
+             (convert-response-handler {:loading?       true
+                                        :text           ""
+                                        :converted-text "3 o"}
+                                       [{:original-text "3 oz" :converted-text "85.0 g"}]))))))
+
+(deftest ounce-button-clicked-handler-test
+  (testing "ounce-button-clicked-handler"
+    (testing "changes text and performs an api call"
+      (let [changed-text "3 fl. oz"]
+        (is (= {:db               {:text                        changed-text
+                                   :text-contains-fluid-ounces? true
+                                   :text-contains-ounces?       false
+                                   :loading?                    true
+                                   :latest-requested-text       changed-text
+                                   :from-system                 :us
+                                   :to-system                   :metric}
+                :api-convert-call [:us :metric changed-text]}
+               (ounce-button-clicked-handler {:db {:text        "3 oz"
+                                                   :from-system :us
+                                                   :to-system   :metric}} [])))))))
