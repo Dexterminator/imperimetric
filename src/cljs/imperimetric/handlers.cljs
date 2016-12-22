@@ -1,5 +1,6 @@
 (ns imperimetric.handlers
-  (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx trim-v dispatch debug after]]
+  (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx reg-cofx
+                                   inject-cofx trim-v dispatch debug after]]
             [imperimetric.db :as db]
             [imperimetric.api :as api]
             [clojure.string :as str]
@@ -58,15 +59,14 @@
 (def ounce-pattern (js/RegExp. "ounces?(?!\\w)|ozs?(?!\\w)" "ig"))
 (def fluid-ounce-pattern (js/RegExp. "fluid ounces?(?!\\w)|flozs?(?!\\w)|fl\\.\\s?ozs?(?!\\w)" "ig"))
 
-(defn text-changed-handler [{:keys [db]} [text]]
+(defn text-changed-handler [{:keys [db now]} [text]]
   (if-not (str/blank? text)
-    (let [now (.now js/Date)]
-      {:db             (assoc db
-                         :latest-text-timestamp now
-                         :text text
-                         :text-contains-fluid-ounces? (boolean (.match text fluid-ounce-pattern))
-                         :text-contains-ounces? (boolean (.match text ounce-pattern)))
-       :dispatch-later [{:ms 300 :dispatch [:text-wait-over now]}]})
+    {:db             (assoc db
+                       :latest-text-timestamp now
+                       :text text
+                       :text-contains-fluid-ounces? (boolean (.match text fluid-ounce-pattern))
+                       :text-contains-ounces? (boolean (.match text ounce-pattern)))
+     :dispatch-later [{:ms 300 :dispatch [:text-wait-over now]}]}
     {:db (dissoc db
                  :converted-text
                  :text-contains-fluid-ounces?
@@ -103,6 +103,11 @@
   (fn [[from-system to-system text]]
     (api-convert-call from-system to-system text)))
 
+(reg-cofx
+  :now
+  (fn [cofx _]
+    (assoc cofx :now (.now js/Date))))
+
 (reg-event-db
   :initialize-db
   (fn [_ _]
@@ -131,7 +136,7 @@
 
 (reg-event-fx
   :text-changed
-  standard-interceptors
+  [standard-interceptors (inject-cofx :now)]
   text-changed-handler)
 
 (reg-event-fx

@@ -85,6 +85,25 @@
                                         :converted-text "3 o"}
                                        [{:original-text "3 oz" :converted-text "85.0 g"}]))))))
 
+(deftest text-changed-handler-test
+  (testing "text-changed-handler"
+    (testing "updates db with new text and timestamp"
+      (let [now 1482418660170
+            result (text-changed-handler {:db {} :now now} ["3 oz"])
+            db (select-keys (:db result) [:latest-text-timestamp :text])
+            dispatch-later-args (:dispatch-later result)]
+        (is (= db {:latest-text-timestamp now
+                   :text                  "3 oz"})
+            (= dispatch-later-args [{:ms 300 :dispatch [:text-wait-over now]}]))))
+    (testing "removes all values related to text when it is blank"
+      (is (= {:db {}}
+             (text-changed-handler {:db {:converted-text              "85.0 g"
+                                         :text                        "3 oz"
+                                         :text-contains-fluid-ounces? false
+                                         :text-contains-ounces?       true}
+                                    :now 1}
+                                   [""]))))))
+
 (deftest ounce-button-clicked-handler-test
   (testing "ounce-button-clicked-handler"
     (testing "changes text and performs an api call"
