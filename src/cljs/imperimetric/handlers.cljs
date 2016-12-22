@@ -2,13 +2,11 @@
   (:require [re-frame.core :refer [reg-event-db reg-event-fx reg-fx trim-v dispatch debug after]]
             [imperimetric.db :as db]
             [imperimetric.api :as api]
-            [imperimetric.utils-js :refer [log]]
             [clojure.string :as str]
             [imperimetric.config :as config]
             [cljs.spec :as s]))
 
-(defn failed-response-handler [db [{:keys [status status-text]}]]
-  (log (str "Something went wrong: " status " " status-text))
+(defn failed-response-handler [db _]
   (-> db
       (dissoc :loading?)
       (assoc :converted-text "Something went wrong when converting text :(")))
