@@ -40,10 +40,11 @@
 
   :profiles
   {:dev
-   {:dependencies [[midje "1.8.3"]]
+   {:dependencies [[midje "1.8.3"]
+                   [pjstadig/humane-test-output "0.8.1"]]
 
     :plugins      [[lein-figwheel "0.5.4-3"]
-                   [lein-doo "0.1.6"]]
+                   [lein-doo "0.1.7"]]
     }}
 
   :uberjar {:aot :all}
