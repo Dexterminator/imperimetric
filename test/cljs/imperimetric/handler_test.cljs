@@ -32,6 +32,16 @@
              (from-button-clicked-handler {:db {:from-system :us
                                                 :to-system   :metric
                                                 :text        "3 oz"}}
+                                          [:imperial]))))
+    (testing "switches the to-system when systems are identical"
+      (is (= {:db               {:from-system :imperial
+                                 :to-system   :metric
+                                 :loading?    true
+                                 :text        "3 oz"}
+              :api-convert-call [:imperial :metric "3 oz"]}
+             (from-button-clicked-handler {:db {:from-system :us
+                                                :to-system   :imperial
+                                                :text        "3 oz"}}
                                           [:imperial])))))
   (testing "to-button-clicked-handler"
     (testing "performs an api call when the from system changes and updates db"
@@ -43,7 +53,17 @@
              (to-button-clicked-handler {:db {:from-system :us
                                               :to-system   :metric
                                               :text        "3 oz"}}
-                                        [:imperial]))))))
+                                        [:imperial]))))
+    (testing "switches the from-system when systems are identical"
+      (is (= {:db               {:from-system :metric
+                                 :to-system   :us
+                                 :loading?    true
+                                 :text        "3 oz"}
+              :api-convert-call [:metric :us "3 oz"]}
+             (to-button-clicked-handler {:db {:from-system :us
+                                              :to-system   :metric
+                                              :text        "3 oz"}}
+                                        [:us]))))))
 
 (deftest text-wait-over-handler-test
   (testing "text-wait-over-handler"
