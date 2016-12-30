@@ -117,10 +117,10 @@
             (= dispatch-later-args [{:ms 300 :dispatch [:text-wait-over now]}]))))
     (testing "removes all values related to text when it is blank"
       (is (= {:db {}}
-             (text-changed-handler {:db {:converted-text              "85.0 g"
-                                         :text                        "3 oz"
-                                         :text-contains-fluid-ounces? false
-                                         :text-contains-ounces?       true}
+             (text-changed-handler {:db  {:converted-text              "85.0 g"
+                                          :text                        "3 oz"
+                                          :text-contains-fluid-ounces? false
+                                          :text-contains-ounces?       true}
                                     :now 1}
                                    [""]))))))
 

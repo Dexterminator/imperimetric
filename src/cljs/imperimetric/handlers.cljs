@@ -30,9 +30,10 @@
     (let [updated-db (assoc db clicked-system-type system)
           adjusted-db (if (= system (db other-system-type))
                         (assoc updated-db other-system-type (system-switches system))
-                        updated-db)]
-      (if-not (str/blank? (:text adjusted-db))
-        {:api-convert-call [(:from-system adjusted-db) (:to-system adjusted-db) (:text adjusted-db)]
+                        updated-db)
+          {:keys [text from-system to-system]} adjusted-db]
+      (if-not (str/blank? text)
+        {:api-convert-call [from-system to-system text]
          :db               (assoc adjusted-db :loading? true)}
         {:db adjusted-db}))))
 
@@ -43,11 +44,12 @@
   (button-clicked-helper db :to-system :from-system to-system))
 
 (defn text-wait-over-handler [{:keys [db]} [timestamp]]
-  (if (= timestamp (:latest-text-timestamp db))
-    {:api-convert-call [(:from-system db) (:to-system db) (:text db)]
-     :db               (assoc db
-                         :latest-requested-text (:text db)
-                         :loading? true)}))
+  (let [{:keys [latest-text-timestamp from-system to-system text]} db]
+    (if (= timestamp latest-text-timestamp)
+      {:api-convert-call [from-system to-system text]
+       :db               (assoc db
+                           :latest-requested-text text
+                           :loading? true)})))
 
 (defn convert-response-handler [db [{:keys [original-text converted-text]}]]
   (let [updated-db (dissoc db :loading?)]
@@ -79,9 +81,10 @@
     text))
 
 (defn ounce-button-clicked-handler [{:keys [db]} _]
-  (let [changed-text (make-ounces-fluid (:text db))]
-    (if (not= changed-text (:text db))
-      {:api-convert-call [(:from-system db) (:to-system db) changed-text]
+  (let [{:keys [text from-system to-system]} db
+        changed-text (make-ounces-fluid text)]
+    (if (not= changed-text text)
+      {:api-convert-call [from-system to-system changed-text]
        :db               (assoc db
                            :text-contains-fluid-ounces? true
                            :text-contains-ounces? false
