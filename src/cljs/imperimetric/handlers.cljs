@@ -45,7 +45,7 @@
 
 (defn text-wait-over-handler [{:keys [db]} [timestamp]]
   (let [{:keys [latest-text-timestamp from-system to-system text]} db]
-    (if (= timestamp latest-text-timestamp)
+    (when (= timestamp latest-text-timestamp)
       {:api-convert-call [from-system to-system text]
        :db               (assoc db
                            :latest-requested-text text
@@ -83,7 +83,7 @@
 (defn ounce-button-clicked-handler [{:keys [db]} _]
   (let [{:keys [text from-system to-system]} db
         changed-text (make-ounces-fluid text)]
-    (if (not= changed-text text)
+    (when (not= changed-text text)
       {:api-convert-call [from-system to-system changed-text]
        :db               (assoc db
                            :text-contains-fluid-ounces? true
