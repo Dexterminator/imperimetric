@@ -31,7 +31,10 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"]
 
-  :figwheel {:css-dirs     ["resources/public/css"]}
+  :figwheel {:css-dirs         ["resources/public/css"]
+             :nrepl-host       "0.0.0.0"
+             :nrepl-port       7888
+             :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"]}
 
   :less {:source-paths ["less"]
          :target-path  "resources/public/css"}
@@ -41,8 +44,10 @@
   :profiles
   {:dev
    {:dependencies [[midje "1.8.3"]
-                   [pjstadig/humane-test-output "0.8.1"]]
-
+                   [pjstadig/humane-test-output "0.8.1"]
+                   [figwheel-sidecar "0.5.0"]
+                   [com.cemerick/piggieback "0.2.1"]
+                   [org.clojure/test.check "0.9.0"]]
     :plugins      [[lein-figwheel "0.5.4-3"]
                    [lein-doo "0.1.7"]]
     }}
@@ -69,7 +74,7 @@
                     :pretty-print    false}}
     {:id           "devcards"
      :source-paths ["src/devcards" "src/cljs"]
-     :figwheel     {:devcards  true}
+     :figwheel     {:devcards true}
      :compiler     {:main                 imperimetric.core-card
                     :output-to            "resources/public/js/compiled/devcards.js"
                     :output-dir           "resources/public/js/compiled/devcards_out"

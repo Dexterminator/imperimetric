@@ -5,6 +5,7 @@
             [imperimetric.api :as api]
             [clojure.string :as str]
             [imperimetric.config :as config]
+            [cljs.spec.test :as stest]
             [cljs.spec :as s]))
 
 (defn failed-response-handler [db _]
@@ -80,6 +81,15 @@
     (.replace text ounce-pattern "fl. oz")
     text))
 
+(s/fdef make-ounces-fluid
+        :args (s/cat :text string?)
+        :ret string?)
+
+(comment
+  (stest/check `make-ounces-fluid)
+  (make-ounces-fluid "lol oz")
+  (make-ounces-fluid nil))
+
 (defn ounce-button-clicked-handler [{:keys [db]} _]
   (let [{:keys [text from-system to-system]} db
         changed-text (make-ounces-fluid text)]
@@ -110,7 +120,7 @@
   (->interceptor
     :id :check-spec
     :after (fn check-spec-after [context]
-             (let [db    (get-effect context :db)
+             (let [db (get-effect context :db)
                    event (get-coeffect context :event)]
                (check-spec ::imperimetric.db/db db event)
                context))))
