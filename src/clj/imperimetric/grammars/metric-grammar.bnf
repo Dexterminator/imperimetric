@@ -14,7 +14,7 @@ cm = #'(?i)cm' | #'(?i)centimet(er|re)s?'
 mm = #'(?i)mm' | #'(?i)millimet(er|re)s?'
 
 (* Weight *)
-kg = #'(?i)kg' | #'(?i)kilograms?'
+kg = #'(?i)kg' | #'(?i)kilograms?' | #'(?i)kilos?'
 hg = #'(?i)hg' | #'(?i)hectograms?'
 g = #'(?i)g' | #'(?i)grams?'
 mg = #'(?i)mg' | #'(?i)milligrams?'
