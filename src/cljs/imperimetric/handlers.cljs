@@ -81,15 +81,6 @@
     (.replace text ounce-pattern "fl. oz")
     text))
 
-(s/fdef make-ounces-fluid
-        :args (s/cat :text string?)
-        :ret string?)
-
-(comment
-  (stest/check `make-ounces-fluid)
-  (make-ounces-fluid "lol oz")
-  (make-ounces-fluid nil))
-
 (defn ounce-button-clicked-handler [{:keys [db]} _]
   (let [{:keys [text from-system to-system]} db
         changed-text (make-ounces-fluid text)]
