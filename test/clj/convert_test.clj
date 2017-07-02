@@ -41,7 +41,8 @@
   (fact "Converts units in parens"
     (convert-text "(1/4 oz)" :us :metric) "(7.09 g)")
   (fact "Converts interval"
-    (convert-text "1-1 1/2 cup, 2-3 tbsps." :us :metric) => "237 ml-355 ml, 29.6 ml-44.4 ml.")
+    (convert-text "1-1 1/2 cup, 2-3 tbsps, 1-3 mi, 1-3 minutes." :us :metric) =>
+    "237 ml-355 ml, 29.6 ml-44.4 ml, 1.61 km-4.83 km, 1-3 minutes.")
   (fact "Converts negative temperature"
     (convert-text "-5 degrees fahrenheit, -30F, -10.5F" :us :metric) => "-20.6°C, -34.4°C, -23.6°C")
   (fact "Does not convert negative non-temperature"

@@ -1,6 +1,6 @@
 text = token+
 <token> = combined / measurement-expr / interval / word / whitespace-and-newline
-interval = quantity-no-numeral dash quantity-no-numeral <whitespace>* unit
+interval = quantity-no-numeral dash quantity-no-numeral <whitespace>* unit <#'(?!\w)'>
 <dash> = '-'
 <word> = #'[^\s]+'
 <measurement-expr> = common-prefix-char? measurement
