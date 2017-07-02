@@ -16,7 +16,8 @@
                  [cljsjs/clipboard "1.5.13-0"]
                  [ring "1.5.0"]
                  [ring/ring-mock "0.3.0"]
-                 [devcards "0.2.2"]]
+                 [devcards "0.2.2"]
+                 [org.clojure/test.check "0.9.0"]]
 
   :uberjar-name "imperimetric-standalone.jar"
 
