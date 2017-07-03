@@ -42,7 +42,21 @@
              (from-button-clicked-handler {:db {:from-system :us
                                                 :to-system   :imperial
                                                 :text        "3 oz"}}
-                                          [:imperial])))))
+                                          [:imperial]))))
+    (testing "does not perform api call if text is blank"
+      (is (= {:db {:from-system :imperial
+                   :to-system   :metric
+                   :text        ""}}
+             (from-button-clicked-handler {:db {:from-system :us
+                                                :to-system   :imperial
+                                                :text        ""}}
+                                          [:imperial]))))
+    (testing "does not do anything if system did not change"
+      (is (= nil
+             (from-button-clicked-handler {:db {:from-system :us
+                                                :to-system   :metric
+                                                :text        "3 oz"}}
+                                          [:us])))))
   (testing "to-button-clicked-handler"
     (testing "performs an api call when the from system changes and updates db"
       (is (= {:db               {:from-system :us

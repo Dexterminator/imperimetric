@@ -27,16 +27,16 @@
    :imperial :metric})
 
 (defn button-clicked-helper [db clicked-system-type other-system-type system]
-  (if (not= system (db clicked-system-type))
-    (let [updated-db (assoc db clicked-system-type system)
-          adjusted-db (if (= system (db other-system-type))
-                        (assoc updated-db other-system-type (system-switches system))
-                        updated-db)
-          {:keys [text from-system to-system]} adjusted-db]
+  (when (not= system (db clicked-system-type))
+    (let [db (-> db
+                 (assoc clicked-system-type system)
+                 (merge (when (= system (db other-system-type))
+                          {other-system-type (system-switches system)})))
+          {:keys [text from-system to-system]} db]
       (if-not (str/blank? text)
         {:api-convert-call [from-system to-system text]
-         :db               (assoc adjusted-db :loading? true)}
-        {:db adjusted-db}))))
+         :db               (assoc db :loading? true)}
+        {:db db}))))
 
 (defn from-button-clicked-handler [{:keys [db]} [from-system]]
   (button-clicked-helper db :from-system :to-system from-system))
