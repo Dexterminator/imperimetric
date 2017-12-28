@@ -2,7 +2,7 @@
   (:require [midje.sweet :refer :all]
             [imperimetric.convert.core :refer [convert-text]]
             [imperimetric.convert.parser :refer [parse-text]]
-            [imperimetric.handler :refer [handler]]
+            [imperimetric.handler :refer [dev-handler]]
             [ring.mock.request :refer [request header]]
             [imperimetric.util :refer [map-all-to]]
             [imperimetric.frinj-setup :refer [frinj-setup!]]
@@ -109,24 +109,23 @@
 
 (facts "About api conversions"
   (fact "A typical api call returns success and correct json"
-    (handler (request :get "/convert" {"text" "1 fl. oz of water."
-                                       "from" "us"
-                                       "to"   "metric"})) =>
-    {:status  200
-     :headers {"Content-Type" "application/json;charset=UTF-8"
-               "Vary"         "Accept"}
-     :body    "{\"converted-text\":\"2.96 cl of water.\",\"original-text\":\"1 fl. oz of water.\"}"})
+    (select-keys (dev-handler (request :get "/convert" {"text" "1 fl. oz of water."
+                                                        "from" "us"
+                                                        "to"   "metric"}))
+                 [:status :body]) =>
+    {:status 200
+     :body   "{\"converted-text\":\"2.96 cl of water.\",\"original-text\":\"1 fl. oz of water.\"}"})
   (fact "A very long URL results in a uri too long response"
-    (handler (request :get "/convert" {"text" (str/join (repeat 3000 "a"))
-                                       "from" "us"
-                                       "to"   "metric"})) =>
-    {:status  414
-     :headers {"Content-Type" "text/plain;charset=UTF-8"}
-     :body    "Request URI too long."})
+    (select-keys (dev-handler (request :get "/convert" {"text" (str/join (repeat 3000 "a"))
+                                                        "from" "us"
+                                                        "to"   "metric"}))
+                 [:status :body]) =>
+    {:status 414
+     :body   "Request URI too long."})
   (fact "System arguments have to be us, imerial, or metric"
-    (handler (request :get "/convert" {"text" "1 fl. oz of water"
-                                       "from" "wat"
-                                       "to" "metric"})) =>
-    {:status  400
-     :headers {"Content-Type" "text/plain;charset=UTF-8"}
-     :body    "Bad request: Allowed systems are: \"us\", \"imperial\", and \"metric\"."}))
+    (select-keys (dev-handler (request :get "/convert" {"text" "1 fl. oz of water"
+                                                        "from" "wat"
+                                                        "to"   "metric"}))
+                 [:status :body]) =>
+    {:status 400
+     :body   "Bad request: Allowed systems are: \"us\", \"imperial\", and \"metric\"."}))

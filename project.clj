@@ -6,16 +6,17 @@
                  [re-frame "0.9.1"]
                  [secretary "1.2.3"]
                  [cljs-ajax "0.5.8"]
-                 [compojure "1.5.1"]
+                 [compojure "1.6.0"]
                  [instaparse "1.4.3"]
-                 [liberator "0.14.1"]
+                 [liberator "0.15.1"]
                  [medley "0.8.4"]
                  [frinj "0.2.5"]
                  [cheshire "5.6.3"]
                  [yogthos/config "0.8"]
                  [cljsjs/clipboard "1.5.13-0"]
-                 [ring "1.5.0"]
-                 [ring/ring-mock "0.3.0"]
+                 [ring "1.6.3"]
+                 [ring/ring-mock "0.3.2"]
+                 [ring/ring-defaults "0.3.1"]
                  [devcards "0.2.2"]
                  [org.clojure/test.check "0.9.0"]]
 
@@ -46,10 +47,10 @@
   {:dev
    {:dependencies [[midje "1.8.3"]
                    [pjstadig/humane-test-output "0.8.1"]
-                   [figwheel-sidecar "0.5.0"]
+                   [figwheel-sidecar "0.5.14"]
                    [com.cemerick/piggieback "0.2.1"]
                    [org.clojure/test.check "0.9.0"]]
-    :plugins      [[lein-figwheel "0.5.4-3"]
+    :plugins      [[lein-figwheel "0.5.14"]
                    [lein-doo "0.1.7"]]
     }}
 
@@ -84,13 +85,14 @@
     {:id           "test"
      :source-paths ["src/cljs" "test/cljs"]
      :compiler     {:output-to     "resources/public/js/compiled/test.js"
+                    :output-dir    "resources/public/js/compiled/test_out"
                     :main          imperimetric.runner
                     :optimizations :none}}
     ]}
 
   :main imperimetric.server
 
-  :aot [imperimetric.server]
+  :aot [clojure.tools.logging.impl imperimetric.server]
 
   :prep-tasks [["cljsbuild" "once" "min"] "compile"]
   )
